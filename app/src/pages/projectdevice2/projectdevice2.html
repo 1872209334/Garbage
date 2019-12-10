@@ -1,0 +1,55 @@
+<!--
+  Generated template for the Projectdevice2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>设备详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-bounce scroll="false">
+    <div class="project_box project_box_flex">
+        <div class="project_flex_child">
+            <!--<p class="project_text_size1 project_text_color1" style="line-height: 3rem">有线中控1</p>-->
+            <p *ngIf="item.niName" class="project_text_size1 project_text_color1" style="line-height: 3rem">{{item.niName}}</p>
+            <p *ngIf="!item.niName && item.specificator" class="project_text_size1 project_text_color1" style="line-height: 3rem">{{item.specificator}}</p>
+            <p *ngIf="!item.niName && !item.specificator && item.deviceCode" class="project_text_size1 project_text_color1" style="line-height: 3rem">{{item.deviceCode}}</p>
+            <p class="project_text_size project_text_color2">{{item.siteName}}</p>
+        </div>
+        <div *ngIf="item.warnIndex == -1 || !item.warnIndex" class="project_flex_child" style="line-height: 4.5rem">
+            <p class="project_text_color3 project_float_right">正常</p>
+            <img src="../../assets/imgs/state_normal.png" class="project_item_img project_float_right" style="margin-top: 0.8rem">
+        </div>
+        <div *ngIf="item.warnIndex == 2" class="project_flex_child" style="line-height: 4.5rem">
+            <p class="project_text_color4 project_float_right">离线</p>
+            <img src="../../assets/imgs/state_offline.png" class="project_item_img project_float_right" style="margin-top: 0.8rem">
+        </div>
+        <div *ngIf="item.warnIndex == 1" class="project_flex_child" style="line-height: 4.5rem">
+            <p class="project_text_color5 project_float_right">故障</p>
+            <img src="../../assets/imgs/state_alarm.png" class="project_item_img project_float_right" style="margin-top: 0.8rem">
+        </div>
+        <div *ngIf="item.warnIndex == 0" class="project_flex_child" style="line-height: 4.5rem">
+            <p class="project_text_color5 project_float_right">报警</p>
+            <img src="../../assets/imgs/state_alarm.png" class="project_item_img project_float_right" style="margin-top: 0.8rem">
+        </div>
+    </div>
+    <div class="project_box project_box_border" style="margin-top: 1rem">
+        <span class="project_text_size1 project_text_color1">编号</span>
+        <span *ngIf="item.isDevice ==0" class="project_text_color project_text_size project_float_right">{{item.deviceCode}}</span>
+        <span *ngIf="item.isDevice !=0" class="project_text_color project_text_size project_float_right">{{item.deviceCode2}}</span>
+    </div>
+    <div class="project_box project_box_border">
+        <span class="project_text_size1 project_text_color1">位置</span>
+        <span *ngIf="item.isDevice ==0" class="project_text_color project_text_size project_float_right">{{item.place}}</span>
+      <span *ngIf="item.isDevice !=0" class="project_text_color project_text_size project_float_right">{{item.message}}</span>
+    </div>
+    <div class="project_box project_box_border">
+        <p class="project_text_size1 project_text_color1" style="width: 9rem;display: inline-block">故障状态</p>
+        <p class="project_text_color project_text_size project_text_msg" style="text-align: right">{{info.node}}</p>
+    </div>
+</ion-content>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcSiteEquipmentRelevanceMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcSiteEquipmentRelevance">
+	  <result column="id"        jdbcType="INTEGER"   property="id"       />
+      <result column="bid"       jdbcType="INTEGER"   property="bid"      />
+	  <result column="did"       jdbcType="VARCHAR"   property="did"      />
+  </resultMap>
+
+  <!-- 根据分组id获取所有信息 -->
+  <select id="getDataByBid" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_site_equipment_relevance where bid in
+	   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  
+</mapper>

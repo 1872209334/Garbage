@@ -1,0 +1,139 @@
+page-alarmDetail {
+  .image_col div{
+    height:5rem;
+    border:1px solid #ebebeb;
+
+  }
+
+  .history_common_text{
+    font-size: 1.4rem;
+    color: #909399;
+    white-space: normal;
+    line-height: 1.8rem;
+  }
+  .historyDetail_common_text{
+    font-size: 1.5rem;
+    color: #888888;
+    margin: 1rem 1rem;
+  }
+
+  .historyDetail_common_text2{
+    font-size: 2rem;
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .historyDetail_common_text3{
+    font-size: 1.8rem;
+    color: #000;
+  }
+
+  .history_bian{
+    width: 1.6rem;
+    height:1.6rem;
+    border-radius: 1px;
+    background-color: #F5A50B;
+    color:#fff;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.6rem;
+    font-size: 10px;
+  }
+  .history_img{
+    width: 1.4rem;
+    vertical-align: middle;
+  }
+  .history_float_left,.history_float_right{
+    vertical-align: middle;
+  }
+  .history_float_right{
+  }
+
+  .historyDetail_box{
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    position: absolute;
+  }
+
+
+  .historyDetail_box>div{
+    width:9rem;
+    display: inline-block;
+  }
+
+  .history_item_header{
+    color: #303133;
+  }
+
+  .historyDetail_add_picture{
+    width: 33%;
+    height: 6rem;
+    background-color:#DCDFE6;
+    float: left;
+  /*  margin-right: 1rem;
+    margin-bottom: 1rem;*/
+    border-radius: 3px;
+    font-size: 6rem;
+    text-align: center;
+    line-height: 6rem;
+    color: #909399;
+    font-family: serif;
+  }
+
+
+  /*radio美化*/
+  .radio:after {
+    content: "\2713";
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    color: #fff;
+    border: 1px solid #909399;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-right: 5px;
+  }
+  .radio:checked:after {
+    content: "\2713";
+    border-color: #387EE8;
+    background-color: #387EE8;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .historyDetail_item{
+    width: auto;
+    margin: 1rem;
+    border-radius: 5px;
+  }
+
+  .item-ios.item-block .item-inner{
+    border: none;
+  }
+
+  .xiaoying{
+    display: inline-block;
+    border-radius: 20px;
+    padding: 0.6rem 1.8rem;
+    font-size: 15px;
+    color: #387EE8;
+    border: 1px solid #387EE8;
+    float: right;
+  }
+
+  .saveBtn{
+    width: 100%;
+    background-color: #387EE8;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    height: 4rem;
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcWarningListMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcWarningList">
+	  <result column="warning_no"         property="warning_no"        />
+      <result column="app_id"             property="app_id"     		/>
+	  <result column="admin_id"           property="admin_id"          />
+      <result column="warning_index"      property="warning_index"     />
+	  <result column="warning_time"       property="warning_time"      />
+      <result column="is_deal"           property="isDeal"     		/>
+	  <result column="defe_dispatch_time"      property="dispatch_time"     />
+	  <result column="deal_time"          property="deal_time"     />
+      <result column="etype"              property="etype"     		/>
+	  <result column="warning_type"       property="warning_type"      />
+      <result column="eid"        	      property="eid"      			/>
+	  <result column="address"            property="address"           />
+      <result column="app_name"    	      property="app_name"          />
+	  <result column="admin_name"         property="admin_name"        />
+	  <result column="node"     	      property="node"        		/>
+	  <result column="lng_bmap"       jdbcType="DOUBLE"    property="lng_bmap"     		/>
+	  <result column="lng_bmap"       jdbcType="DOUBLE"    property="lng_bmap"     	    />
+	  <result column="protocol_node"            property="protocol_node"     	    />
+	  <result column="site_code"            property="site_code"     	    />
+	  <result column="device_code"            property="device_code"     	    />
+      <result column="dispatch_time"            property="resetTime"     	    />
+      <result column="site_name"            property="siteName"     	    />
+      <result column="line_code"            property="lineCode"     	    />
+      <result column="addr"            property="addr"     	    />
+       <result column="efm_id"            property="efm_id"     	    />
+      <result column="huid"            property="huid"     	    />
+      <result column="hmobile"            property="hmobile"     	    />
+      <result column="equip_place"            property="equipPlace"     	    />
+	  <result column="type"            property="type"     	    />
+	   <result column="type"            property="type"     	    />
+	   <result column="tempration"            property="tempration" />
+	   <result column="niName"            property="niName" />
+	   
+	   <result column="account"            property="account" />
+	   <result column="appMobile"            property="appMobile" />
+	   <result column="specificator"            property="specificator" />
+	   <result column="defe_dispatch_time"            property="deal_time" />
+	   <result column="defe_remark"            property="dealRemark" />
+	    <result column="isReset"            property="isReset" />
+  </resultMap>
+  
+  <resultMap type="com.qf.model.fire.HixentArcAlarmDealFeedBack" id="dealFeedBackResultMap">
+      <result column="defe_id"         property="id"        />
+      <result column="defe_warn_id"             property="warnId"     		/>
+	  <result column="defe_app_id"           property="appUserId"          />
+      <result column="defe_dispatch_time"      property="dealTime"     />
+	  <result column="filePath"       property="imgUrl"      />
+      <result column="defe_remark"            property="dealRemark"     		/>
+	  <result column="defe_is_audit"      property="isAudit"     />
+	  <result column="warning_time"          property="warnTime"     />
+  	  <result column="mobile"      property="appUserPhone"     />
+	  <result column="account"          property="appUserAccount"     />
+  </resultMap>
+  <!-- 心跳包 -->
+  <resultMap type="com.qf.model.fire.HixentArcEfmBeat" id="efmBeatResultMap">
+   <result column="efm_id"      property="efmId"     />
+   <result column="log_time"          property="logTime"     />
+  </resultMap>
+  
+  <!-- 获取详细信息 -->
+  <select id="getOneByWid" parameterType="Integer" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where warning_no=${wid};
+  </select>
+
+  <!-- 根据设备id获取所有信息（未处理） -->
+  <select id="getByDeviceId" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where eid = #{eid,jdbcType=VARCHAR} and is_deal in (0,2) limit 2;
+  </select>
+  
+  
+  
+  
+  
+  <!-- 根据设备id和告警类型获取所有信息（未处理） -->
+  <select id="getByDeviceId2" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where eid = #{ID} and warning_type = '${wtype}' and is_deal in (0,2) ;
+  </select>
+  
+  <!-- 手机app火灾告警列表（未处理） -->
+  <select id="getAllByDeviceId" parameterType="String" resultMap="BaseResultMap">
+       <!-- 
+       select * from  hixent_arc_warning_list where warning_index=0 and is_deal=0 and eid in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+	   -->
+	   select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_system.hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2)
+  </select>
+  <select id="getPageByDeviceId" parameterType="String" resultMap="BaseResultMap">
+       <!-- //权限先拿掉
+       select * from  hixent_arc_warning_list where warning_index=0 and is_deal=0 and eid in
+	   <foreach item="item" index="index" collection="eidList" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+	   order by warning_no desc 
+	   limit ${limits}; -->
+	   select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_system.hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2)
+	   order by w.warning_no desc 
+	   limit ${limits};
+  </select>
+  
+   <select id="getAdminWarning" parameterType="String" resultMap="BaseResultMap">
+        select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2)
+	   <if test="time1 != null and time1 !=''">
+			  	and warning_time  >= '${time1}'
+	   </if>
+	   <if test="time2 != null and time2 !=''">
+			  	and '${time2}'  >= warning_time
+	   </if>
+	   order by w.warning_time desc ;
+  </select>
+  
+   <select id="getCommonWarning" parameterType="String" resultMap="BaseResultMap">
+        select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_system.hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2) and e.site_code in 
+	   <foreach item="item" index="index" collection="bid" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+	   <if test="time1 != null and time1 !=''">
+			  	and warning_time  >= '${time1}'
+	   </if>
+	   <if test="time2 != null and time2 !=''">
+			  	and '${time2}'  >= warning_time
+	   </if>
+	   order by w.warning_time desc ;
+  </select>
+  
+   <select id="getPageCommonWarning" parameterType="String" resultMap="BaseResultMap">
+        select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_system.hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2) and e.site_code in 
+	   <foreach item="item" index="index" collection="bid" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach> 
+	   <if test="time1 != null and time1 !=''">
+			  	and warning_time  >= '${time1}'
+	   </if>
+	   <if test="time2 != null and time2 !=''">
+			  	and '${time2}'  >= warning_time
+	   </if>
+	   order by w.warning_time desc
+	    limit ${limits};
+  </select>
+  
+  
+  
+  <select id="getPageAdminWarning" parameterType="String" resultMap="BaseResultMap">
+      select w.*,p.protocol_node as protocol_node,e.site_code as site_code,e.device_code as device_code
+	   FROM hixent_arc_system.hixent_arc_warning_list w
+	   LEFT JOIN hixent_arc_system.hixent_arc_protocol p on w.warning_type = p.protocol_name 
+	   LEFT JOIN hixent_arc_system.hixent_arc_efm_device e on w.efm_id = e.id
+	   where w.warning_index=0 and w.is_deal in (0,2) 
+	    <if test="time1 != null and time1 !='' and time1 != 0">
+			  	and warning_time  >= '${time1}'
+	   </if>
+	   <if test="time2 != null and time2 !='' and time2 != 0">
+			  	and '${time2}'  >= warning_time
+	   </if>
+	   order by w.warning_time desc 
+	   limit ${limits};
+  </select>
+  
+  <!-- 手机app设备故障告警列表(未处理) -->
+  <select id="getAllByDeviceId2" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where warning_index=1 and is_deal=0 and eid in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  <select id="getPageByDeviceId2" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where warning_index=1 and is_deal=0 and eid in
+	   <foreach item="item" index="index" collection="eidList" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+	   order by warning_no desc
+	   limit ${limits};
+  </select>
+  <!-- 手机app设备故障告警列表(已处理) -->
+  <select id="getAllByDeviceId4" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where warning_index=1 and is_deal=1 and eid in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  
+  <!-- 手机app设备异常历史记录列表（已处理） -->
+  <select id="getAllByDeviceId3" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where is_deal=1 and warning_time between ${time1} and ${time2} and eid in
+	   <foreach item="item" index="index" collection="eidList" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  <select id="getPageByDeviceId3" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_warning_list where is_deal=1 and warning_time between ${time1} and ${time2} and eid in
+	   <foreach item="item" index="index" collection="eidList" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+	   order by warning_no desc
+	   limit ${limits};
+  </select>
+  
+  
+  <!-- 插入数据 -->
+  <select id="insertTo" parameterType="string" resultMap="BaseResultMap" >
+      INSERT INTO hixent_arc_system.hixent_arc_warning_list (eid,warning_type,warning_time,address,lng_bmap,lat_bmap,warning_index) VALUES ('${ID}','${wType}',${wTime},'${address}',${latBmap},${lngBmap},${eType});
+  </select>
+  
+  <select id="dealWarningList" parameterType="string" resultMap="BaseResultMap" >
+      update hixent_arc_system.hixent_arc_warning_list set is_deal = 1,dispatch_time =${dtime} where warning_no = ${id};
+  </select>
+  
+   <!-- 报警日志 中控分页 -->
+  <select id="alarmLogForDevice" resultMap="BaseResultMap">
+  SELECT HAWL.eid,HAWL.etype,HAWL.warning_no,HAWL.warning_time,HAWL.is_deal,
+  HAS.site_name,HAS.site_code,HAP.protocol_node,HAED.device_code,HAED.niName,HAED.specificator,HAWL.isReset
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal IN (0,2) AND HAWL.etype=1 
+    <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+   </if>
+   <include refid="provinceAndArea"></include>
+   <if test="siteId!=0">
+    AND HAS.site_id=#{siteId}
+   </if>
+   <if test="deviceId!=null and deviceId!='' and deviceId!='0'.toString() ">
+    AND HAED.id=#{deviceId}
+   </if>
+   ORDER BY HAWL.warning_time DESC
+   
+   <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+   
+  </select>
+  
+   <!-- 报警日志 中控数量-->
+  <select id="alarmLogForDeviceCount" resultType="Integer">
+  SELECT COUNT(HAWL.warning_no)
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal IN (0,2) AND HAWL.etype=1 
+   <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+   </if>
+   <include refid="provinceAndArea"></include>
+   <if test="siteId!=0">
+    AND HAS.site_id=#{siteId}
+   </if>
+   <if test="deviceId!=null and deviceId!='' and deviceId!='0'.toString() ">
+    AND HAED.id=#{deviceId}
+   </if>
+  </select>
+  
+  <!-- 报警日志 终端分页 -->
+    <select id="alarmLogForEquip" resultMap="BaseResultMap">
+ SELECT HAWL.eid,HAWL.etype,HAWL.warning_no,HAWL.warning_time,HAS.site_name,HAWL.is_deal,
+ HAS.site_code,HAP.protocol_node,HAED.device_code,HAED.line_code,HAED.addr,HAEV.niName,HAEV.specificator  
+ ,GROUP_CONCAT(DISTINCT HAU.account ORDER BY appUser_id DESC ) huid
+,GROUP_CONCAT(DISTINCT HAU.mobile ORDER BY appUser_id DESC ) hmobile
+,HAED.type,HAED.equip_place,HAED.tempration,HAEV.niName,HAWL.isReset
+FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_equipment_info HAED ON HAWL.eid=HAED.id
+ LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAEV ON HAEV.id=HAED.efm_id
+ LEFT JOIN hixent_app_control_group HACP ON HACP.id=HAED.equip_group_id
+ LEFT JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HAED.equip_group_id
+ LEFT JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+ LEFT JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+ LEFT  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ WHERE HAWL.is_deal IN (0,2) AND HAWL.etype IN (0,2)
+    <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+   </if>
+   <include refid="provinceAndArea"></include>
+   <if test="siteId!=0">
+    AND HAS.site_id=#{siteId}
+   </if>
+   <if test="deviceId!=null and deviceId!='' and deviceId!='0'.toString()">
+    AND HAEV.id=#{deviceId}
+   </if>
+   <if test="type!=-1">
+  AND HAED.type=#{type}
+   </if>
+  
+   <if test="inquire!=null and inquire!=''">
+      AND HAED.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+    
+   </if>
+  GROUP BY HAWL.warning_no
+  ORDER BY HAWL.warning_time DESC
+   <if test="limits!=null and limits!=''">
+   limit ${limits}
+   
+   </if>
+  </select>
+  
+  <!-- 报警日志 终端数量 -->
+  <select id="alarmLogForEquipCount" resultType="Integer">
+   SELECT COUNT(*) FROM (SELECT COUNT(HAWL.warning_no)
+FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_equipment_info HAED ON HAWL.eid=HAED.id
+ LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAEV ON HAEV.id=HAED.efm_id
+ LEFT JOIN hixent_app_control_group HACP ON HACP.id=HAED.equip_group_id
+ LEFT JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HAED.equip_group_id
+ LEFT JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+ LEFT JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+ LEFT  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ WHERE HAWL.is_deal IN (0,2) AND HAWL.etype IN (0,2)
+   <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+   </if>
+   <include refid="provinceAndArea"></include>
+   <if test="siteId!=0">
+    AND HAS.site_id=#{siteId}
+   </if>
+   <if test="deviceId!=null and deviceId!='' and deviceId!='0'.toString() ">
+    AND HAEV.id=#{deviceId}
+   </if>
+   <if test="type!=-1">
+  AND HAED.type=#{type}
+   </if>
+  
+   <if test="inquire!=null and inquire!=''">
+      AND HAED.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+    
+   </if>
+  GROUP BY HAWL.warning_no )A
+  </select>
+  
+  <!-- 处理历史 中控分页 -->
+  <select id="alarmHistoryForDevice" resultMap="BaseResultMap">
+   SELECT HAWL.eid,HAWL.etype,HAWL.warning_no,HAWDL.defe_dispatch_time,HAWL.warning_time,
+  HAS.site_name,HAS.site_code,HAP.protocol_node,HAED.device_code,HAED.niName,HAU.account,HAU.mobile appMobile,HAED.specificator 
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+ JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+ JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal=1 AND HAWL.etype=1
+   <include refid="provinceAndArea"></include>
+   <if test="startTime!=0">
+    AND HAWL.dispatch_time&gt;#{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWL.dispatch_time&lt;#{endTime}
+   </if>
+   ORDER BY HAWL.warning_time DESC
+    <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+  </select>
+  <!-- 处理历史 中控数量-->
+   <select id="alarmHistoryForDeviceCount" resultType="Integer">
+  SELECT COUNT(HAWL.warning_no)
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+ JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+ JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal=1 AND HAWL.etype=1
+   <include refid="provinceAndArea"></include>
+  <if test="startTime!=0">
+    AND HAWL.dispatch_time &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWL.dispatch_time &lt;= #{endTime}
+   </if>
+  </select>
+  
+    <!-- 处理历史 终端分页 -->
+    <select id="alarmHistoryForEquip" resultMap="BaseResultMap">
+SELECT HAWL.eid,HAWL.etype,HAWL.warning_no,HAWL.dispatch_time,HAS.site_name,HAS.site_code,
+HAP.protocol_node,HAED.device_code,HAED.line_code,HAED.addr,HAEV.specificator  
+,GROUP_CONCAT(DISTINCT HAU.account ORDER BY appUser_id DESC ) huid
+,GROUP_CONCAT(DISTINCT HAU.mobile ORDER BY appUser_id DESC ) hmobile
+,HAED.type,HAED.equip_place,HAWL.app_name,HAWL.warning_time,HAWL.node,HAEV.niName,HAU.account,HAU.mobile appMobile
+FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+ JOIN hixent_arc_system.hixent_arc_equipment_info HAED ON HAWL.eid=HAED.id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAEV ON HAEV.id=HAED.efm_id
+JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+
+LEFT JOIN hixent_user.hixent_app_control_group HACP ON HACP.id=HAED.equip_group_id
+LEFT JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HAED.equip_group_id
+
+LEFT JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+LEFT JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ WHERE HAWL.is_deal=1 AND HAWL.etype=2 
+   <include refid="provinceAndArea"></include>
+   <if test="startTime!=0">
+    AND HAWL.dispatch_time &gt; #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWL.dispatch_time &lt; #{endTime}
+   </if>
+   <if test="type!=-1">
+  AND HAED.type=#{type}
+   </if>
+  
+   <if test="inquire!=null and inquire!=''">
+      AND (HAED.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+    
+   </if>
+  GROUP BY HAWL.warning_no
+  ORDER BY HAWL.warning_time DESC
+  <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+   
+  </select>
+  
+  <!-- 处理历史 终端数量 -->
+  <select id="alarmHistoryForEquipCount" resultType="Integer">
+   SELECT COUNT(*) FROM (SELECT COUNT(HAWL.eid)
+FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+ JOIN hixent_arc_system.hixent_arc_equipment_info HAED ON HAWL.eid=HAED.id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAEV ON HAEV.id=HAED.efm_id
+JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+
+LEFT JOIN hixent_user.hixent_app_control_group HACP ON HACP.id=HAED.equip_group_id
+LEFT JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HAED.equip_group_id
+
+LEFT JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+LEFT JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ WHERE HAWL.is_deal=1 AND HAWL.etype=2 
+   <include refid="provinceAndArea"></include>
+  <if test="startTime!=0">
+    AND HAWL.dispatch_time&gt;#{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWL.dispatch_time&lt;#{endTime}
+   </if>
+   <if test="type!=-1">
+  AND HAED.type=#{type}
+   </if>
+  
+   <if test="inquire!=null and inquire!=''">
+      AND (HAED.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+    
+   </if>
+  GROUP BY HAWL.warning_no )A
+  </select>
+  <!-- 处理反馈分页 -->
+  <select id="alarmDealFeedBack" resultMap="dealFeedBackResultMap">
+ SELECT HAWDF.*,HAWL.warning_time,HAP.account,HAP.mobile FROM hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+ JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.warning_no=HAWDF.defe_warn_id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+ JOIN hixent_arc_system.hixent_arc_site HAS ON HAED.site_code=HAS.site_code
+ JOIN hixent_app_user HAP ON HAP.id=HAWDF.defe_appUser_id
+ WHERE HAWDF.defe_id>0
+  <include refid="provinceAndArea"></include>
+   <if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt; #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt; #{endTime}
+   </if>
+   <if test="type!=-1">
+  AND HAWDF.defe_is_audit=#{type}
+   </if>
+   <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+  </select>
+    <!-- 处理反馈总数 -->
+  <select id="alarmDealFeedBackCount" resultType="Integer">
+ SELECT COUNT(*) FROM hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+ JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.warning_no=HAWDF.defe_warn_id
+ JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+ JOIN hixent_arc_system.hixent_arc_site HAS ON HAED.site_code=HAS.site_code
+ JOIN hixent_app_user HAP ON HAP.id=HAWDF.defe_appUser_id
+ WHERE HAWDF.defe_id>0
+  <include refid="provinceAndArea"></include>
+    <if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt; #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt; #{endTime}
+   </if>
+   <if test="type!=-1">
+  AND HAWDF.defe_is_audit=#{type}
+   </if>
+   <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+  
+  
+  
+  </select>
+  <!-- 反馈表审核状态更新 -->
+  <update id="updateDealFeedBack">
+   UPDATE hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+   SET HAWDF.defe_is_audit=2 WHERE HAWDF.defe_id=#{id} 
+  
+  </update>
+  
+  <!-- 报警表是否解决状态更新 -->
+  <update id="updateWarnlist">
+ UPDATE hixent_arc_system.hixent_arc_warning_list HAWL SET HAWL.is_deal=1 
+  WHERE HAWL.warning_no=(SELECT HAWDF.defe_warn_id FROM 
+ hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF WHERE HAWDF.defe_id=#{id})
+  </update>
+  
+  <!-- 查询所有心跳表 -->
+  <select id="dataList" resultType="string">
+ SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = 'hixent_arc_system' AND TABLE_NAME LIKE "hixent_efm_log_%";
+  <!--show tables like "hixent_efm_log_%"     -->
+  </select>
+  
+   <!-- 查询心跳表最后一条数据 -->
+  <select id="lastData" resultMap="efmBeatResultMap" statementType="STATEMENT">
+  SELECT * FROM ${tableName} WHERE id>0  order by id desc limit 1
+  </select>
+  
+  <!-- 报警表插入离线数据 -->
+  <insert id="offLineDevice">
+  INSERT INTO hixent_arc_system.hixent_arc_warning_list(warning_type,warning_index,warning_time,etype,efm_id) VALUES('udp_device_offline',2,#{time},1,#{deviceId})
+  </insert>
+  
+  <!-- 报警表是否派单-->
+  <update id="updateWarnTableForDispach">
+  UPDATE hixent_arc_system.hixent_arc_warning_list SET isDispatch = 1 WHERE warning_no=#{warnId}
+  </update>
+
+ <!-- 派单表插入数据-->
+ <insert id="addDispach">
+  INSERT INTO hixent_arc_system.hixent_arc_dispach_order(dis_warn_id,dis_admin_id,dis_appUser_id,dis_time) VALUES(#{warnId},#{adminId},#{appUserId},#{time});
+ </insert>
+  
+   <!--查询 派单ID-->
+  <select id="dispachId" resultType="Integer">
+  SELECT dis_id FROM hixent_arc_system.hixent_arc_dispach_order WHERE dis_warn_id=#{warnId}
+  </select>
+  
+  <!--删除报警表数据-->
+  <delete id="delWarnByWarnId">
+  DELETE FROM hixent_arc_system.hixent_arc_warning_list WHERE warning_no=#{warnId}
+  </delete>
+  
+ <!--删除报警表数据-->
+  <delete id="delDispachByDispachId">
+  DELETE FROM hixent_arc_system.hixent_arc_dispach_order WHERE dis_id=#{dispachId}
+  </delete> 
+  
+  <!--删除处理表数据-->
+  <delete id="delFeedbackByWarnId">
+  DELETE FROM hixent_arc_system.hixent_arc_warn_deal_feedback WHERE defe_warn_id=#{warnId}
+  </delete> 
+  
+  <!-- 查询报警信息 -->
+  <select id="getWarnInfo" resultMap="dealFeedBackResultMap">
+   SELECT HAWDF.*,HAWL.warning_time,HAP.account,HAP.mobile,HAPT.protocol_node,
+   GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+   FROM hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+ RIGHT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.warning_no=HAWDF.defe_warn_id
+ LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+ LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+ JOIN hixent_app_user HAP ON HAP.id=HAWDF.defe_appUser_id
+ JOIN hixent_arc_protocol HAPT ON HAPT.protocol_name=HAWL.warning_type
+ WHERE HAWDF.defe_warn_id=#{warnId}
+  </select>
+  
+  <!-- 报警历史 不分终端和中控 -->
+  <select id="alarmHistoryForAll" resultMap="BaseResultMap">
+  SELECT HAWL.eid,HAWL.etype,HAWL.warning_no,HAWDL.defe_dispatch_time,HAWL.warning_time,HAWL.dispatch_time,
+  HAS.site_name,HAS.site_code,HAP.protocol_node,HAED.device_code,HAED.niName,HAED.specificator, 
+  HAU.account,HAU.mobile appMobile,HAEI.line_code,HAEI.addr,HAWL.isReset
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+ LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+ LEFT JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+ LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+ LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+ LEFT JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code OR HAS.site_code=HAEI.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal=1 
+   <include refid="provinceAndArea"></include>
+   <if test="startTime!=0">
+    AND HAWDL.defe_dispatch_time &gt; #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDL.defe_dispatch_time &lt; #{endTime}
+   </if>
+   
+   ORDER BY HAWL.dispatch_time DESC
+   <if test="limits!=null and limits!=''">
+   limit ${limits}
+   </if>
+  </select>
+  
+    <!-- 报警历史总数 不分终端和中控 -->
+  <select id="alarmHistoryForAllCount" resultType="Integer">
+  SELECT COUNT(HAWL.warning_no)
+  FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDL ON HAWDL.defe_warn_id= HAWL.warning_no
+LEFT JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAWDL.defe_appUser_id
+LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+ LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+ LEFT  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code OR HAS.site_code=HAEI.site_code
+  JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+   WHERE HAWL.is_deal=1 
+   <include refid="provinceAndArea"></include>
+   <if test="startTime!=0">
+    AND HAWDL.defe_dispatch_time &gt; #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDL.defe_dispatch_time &lt; #{endTime}
+   </if>
+  </select>
+  
+  
+  <!-- 设备复位 -->
+  <update id="devicesReset">
+  UPDATE hixent_arc_system.hixent_arc_warning_list HAWL SET
+   HAWL.isReset=1,HAWL.is_deal=1,HAWL.dispatch_time=#{time} WHERE (HAWL.efm_id=#{deviceId} OR HAWL.eid=#{deviceId})  AND HAWL.is_deal IN (0,2)
+  </update>
+  
+  <!-- 警告数(有线) -->
+  <select id="getWarnCountByWarnIndex" resultType="Integer">
+  SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code 
+   WHERE HAWL.is_deal IN(0,2) AND HAWL.etype=1 
+   <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+  </if>
+  <include refid="provinceAndArea"></include>
+  </select>
+  
+   <select id="getWarnCountByWarnIndexWireless" resultType="Integer">
+  SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+  JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAWL.eid=HAEI.id
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+   WHERE HAWL.is_deal IN(0,2) 
+   <if test="warnIndex!=-1">
+   AND HAWL.warning_index=#{warnIndex}
+  </if>
+  <include refid="provinceAndArea"></include>
+  </select>
+  
+  <!-- 管理员拥有项目 -->
+  	<sql id="provinceAndArea">
+		<if test="provinceId!=0 ">
+			AND substring(HAS.site_code,1,2)=(SELECT HAPR.province_code
+			FROM
+			hixent_arc_province HAPR WHERE HAPR.id=#{provinceId})
+		</if>
+		<if test="areaId!=0 ">
+			AND substring(HAS.site_code,3,2)=(SELECT HAA.area_code FROM
+			hixent_arc_area
+			HAA WHERE HAA.id=#{areaId} AND HAA.pid=#{provinceId})
+		</if>
+		<if test="siteCordArr[0]!='0'.toString() ">
+			AND HAS.site_code IN
+			<foreach item="item" index="index" collection="siteCordArr"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+</mapper>

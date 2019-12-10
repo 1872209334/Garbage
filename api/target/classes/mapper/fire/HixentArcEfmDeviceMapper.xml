@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.HixentArcEfmDeviceMapper">
+	<resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcEfmDevice">
+		
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="site_code" property="site_code"
+			jdbcType="VARCHAR" />
+		<result column="device_code" property="device_code"
+			jdbcType="VARCHAR" />
+		<result column="device_ip" property="device_ip"
+			jdbcType="VARCHAR" />
+		<result column="device_port" property="device_port"
+			jdbcType="VARCHAR" />
+		<result column="manufacture_code" property="manufacture_code"
+			jdbcType="VARCHAR" />
+		<result column="category" property="category"
+			jdbcType="VARCHAR" />
+		<result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="serial_number" property="serial_number"
+			jdbcType="VARCHAR" />
+		<result column="longitute" property="longitute"
+			jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude"
+			jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="specificator" property="specificator"
+			jdbcType="VARCHAR" />
+		<result column="message_phone" property="message_phone"
+			jdbcType="VARCHAR" />
+		<result column="phone_number1" property="phone_number1"
+			jdbcType="VARCHAR" />
+		<result column="phone_number2" property="phone_number2"
+			jdbcType="VARCHAR" />
+		<result column="phone_number3" property="phone_number3"
+			jdbcType="VARCHAR" />
+		<result column="phone_number4" property="phone_number4"
+			jdbcType="VARCHAR" />
+		<result column="phone_number5" property="phone_number5"
+			jdbcType="VARCHAR" />
+		<result column="report_number" property="report_number"
+			jdbcType="VARCHAR" />
+		<result column="device_domain" property="device_domain"
+			jdbcType="VARCHAR" />
+		<result column="alternate_ip" property="alternate_ip"
+			jdbcType="VARCHAR" />
+		<result column="alternate_port" property="alternate_port"
+			jdbcType="VARCHAR" />
+		<result column="date_time" property="date_time"
+			jdbcType="VARCHAR" />
+		<result column="device_total" property="device_total"
+			jdbcType="INTEGER" />
+		<result column="device_bus1" property="device_bus1"
+			jdbcType="TINYINT" />
+		<result column="device_bus2" property="device_bus2"
+			jdbcType="TINYINT" />
+		<result column="device_bus3" property="device_bus3"
+			jdbcType="TINYINT" />
+		<result column="device_bus4" property="device_bus4"
+			jdbcType="TINYINT" />
+		<result column="state_bus1" property="state_bus1"
+			jdbcType="VARCHAR" />
+		<result column="state_bus2" property="state_bus2"
+			jdbcType="VARCHAR" />
+		<result column="state_bus3" property="state_bus3"
+			jdbcType="VARCHAR" />
+		<result column="state_bus4" property="state_bus4"
+			jdbcType="VARCHAR" />
+		<result column="device_info" property="device_info"
+			jdbcType="VARCHAR" />
+		<result column="fire_num" property="fire_num"
+			jdbcType="INTEGER" />
+		<result column="fire_current" property="fire_current"
+			jdbcType="INTEGER" />
+		<result column="fire_info" property="fire_info"
+			jdbcType="VARCHAR" />
+		<result column="broken_num" property="broken_num"
+			jdbcType="INTEGER" />
+		<result column="broken_current" property="broken_current"
+			jdbcType="INTEGER" />
+		<result column="broken_info" property="broken_info"
+			jdbcType="VARCHAR" />
+		<result column="other_num" property="other_num"
+			jdbcType="INTEGER" />
+		<result column="other_current" property="other_current"
+			jdbcType="INTEGER" />
+		<result column="other_info" property="other_info"
+			jdbcType="VARCHAR" />
+		<result column="power_cut_enable" property="power_cut_enable"
+			jdbcType="BIT" />
+		<result column="no_battery_enable" property="no_battery_enable"
+			jdbcType="BIT" />
+		<result column="low_voltage_enable"
+			property="low_voltage_enable" jdbcType="BIT" />
+		<result column="printer_offline_enable"
+			property="printer_offline_enable" jdbcType="BIT" />
+		<result column="printer_out_paper_enable"
+			property="printer_out_paper_enable" jdbcType="BIT" />
+		<result column="printer_communication_failure_enable"
+			property="printer_communication_failure_enable" jdbcType="BIT" />
+		<result column="communication_offline_enable"
+			property="communication_offline_enable" jdbcType="BIT" />
+		<result column="device_offline_enable"
+			property="device_offline_enable" jdbcType="BIT" />
+		<result column="bus1_offline_enable"
+			property="bus1_offline_enable" jdbcType="VARCHAR" />
+		<result column="bus2_offline_enable"
+			property="bus2_offline_enable" jdbcType="VARCHAR" />
+		<result column="bus3_offline_enable"
+			property="bus3_offline_enable" jdbcType="VARCHAR" />
+		<result column="bus4_offline_enable"
+			property="bus4_offline_enable" jdbcType="VARCHAR" />
+		<result column="bus1_fire_enable" property="bus1_fire_enable"
+			jdbcType="VARCHAR" />
+		<result column="bus2_fire_enable" property="bus2_fire_enable"
+			jdbcType="VARCHAR" />
+		<result column="bus3_fire_enable" property="bus3_fire_enable"
+			jdbcType="VARCHAR" />
+		<result column="bus4_fire_enable" property="bus4_fire_enable"
+			jdbcType="VARCHAR" />
+		<result column="bus1_temperature_enable"
+			property="bus1_temperature_enable" jdbcType="VARCHAR" />
+		<result column="bus2_temperature_enable"
+			property="bus2_temperature_enable" jdbcType="VARCHAR" />
+		<result column="bus3_temperature_enable"
+			property="bus3_temperature_enable" jdbcType="VARCHAR" />
+		<result column="bus4_temperature_enable"
+			property="bus4_temperature_enable" jdbcType="VARCHAR" />
+		<result column="power_cut_alarm" property="power_cut_alarm"
+			jdbcType="BIT" />
+		<result column="no_battery_alarm" property="no_battery_alarm"
+			jdbcType="BIT" />
+		<result column="low_voltage_alarm" property="low_voltage_alarm"
+			jdbcType="BIT" />
+		<result column="printer_offline_alarm"
+			property="printer_offline_alarm" jdbcType="BIT" />
+		<result column="printer_out_paper_alarm"
+			property="printer_out_paper_alarm" jdbcType="BIT" />
+		<result column="printer_communication_failure_alarm"
+			property="printer_communication_failure_alarm" jdbcType="BIT" />
+		<result column="communication_offline_alarm"
+			property="communication_offline_alarm" jdbcType="BIT" />
+		<result column="device_offline_alarm"
+			property="device_offline_alarm" jdbcType="BIT" />
+		<result column="outline_alarm" property="outline_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus1_offline_alarm"
+			property="bus1_offline_alarm" jdbcType="VARCHAR" />
+		<result column="bus2_offline_alarm"
+			property="bus2_offline_alarm" jdbcType="VARCHAR" />
+		<result column="bus3_offline_alarm"
+			property="bus3_offline_alarm" jdbcType="VARCHAR" />
+		<result column="bus4_offline_alarm"
+			property="bus4_offline_alarm" jdbcType="VARCHAR" />
+		<result column="fire_alarm" property="fire_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus1_fire_alarm" property="bus1_fire_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus2_fire_alarm" property="bus2_fire_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus3_fire_alarm" property="bus3_fire_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus4_fire_alarm" property="bus4_fire_alarm"
+			jdbcType="VARCHAR" />
+		<result column="temperature_alarm" property="temperature_alarm"
+			jdbcType="VARCHAR" />
+		<result column="bus1_temperature_alarm"
+			property="bus1_temperature_alarm" jdbcType="VARCHAR" />
+		<result column="bus2_temperature_alarm"
+			property="bus2_temperature_alarm" jdbcType="VARCHAR" />
+		<result column="bus3_temperature_alarm"
+			property="bus3_temperature_alarm" jdbcType="VARCHAR" />
+		<result column="bus4_temperature_alarm"
+			property="bus4_temperature_alarm" jdbcType="VARCHAR" />
+		<result column="fire_autoprint" property="fire_autoprint"
+			jdbcType="BIT" />
+		<result column="broken_autoprint" property="broken_autoprint"
+			jdbcType="BIT" />
+		<result column="other_autoprint" property="other_autoprint"
+			jdbcType="BIT" />
+		<result column="clear_alarm" property="clear_alarm"
+			jdbcType="TINYINT" />
+		<result column="clear_device_noise"
+			property="clear_device_noise" jdbcType="INTEGER" />
+		<result column="clear_broadcast_noise"
+			property="clear_broadcast_noise" jdbcType="TINYINT" />
+		<result column="device_mute" property="device_mute"
+			jdbcType="INTEGER" />
+		<result column="broadcast_mute" property="broadcast_mute"
+			jdbcType="TINYINT" />
+		<result column="reset_alarm" property="reset_alarm"
+			jdbcType="INTEGER" />
+		<result column="publish_date" property="publish_date"
+			jdbcType="TIMESTAMP" />
+		<result column="reset_broadcast_alarm"
+			property="reset_broadcast_alarm" jdbcType="TINYINT" />
+		<result column="device_place" property="device_place" />
+		<result column="niName" property="niName" />
+		<result column="is_online" property="is_online" />
+		<result column="build_name" property="buildName"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="site_name" property="siteName" />
+		<result column="offline_time" property="offLineTime" />
+		<result column="offline_enable" property="offlineEnable" />
+	</resultMap>
+	<!--项目映射 -->
+	<resultMap id="siteResultMap"
+		type="com.qf.model.fire.HixentArcSite">
+		<result column="site_id" jdbcType="INTEGER" property="id" />
+		<result column="site_place" jdbcType="VARCHAR"
+			property="sitePlace" />
+		<result column="site_name" jdbcType="VARCHAR"
+			property="siteName" />
+		<result column="site_code" jdbcType="VARCHAR"
+			property="siteCode" />
+		<result column="build_name" jdbcType="VARCHAR"
+			property="siteBuild" />
+		<result column="hId" jdbcType="INTEGER" property="siteBuildId" />
+	</resultMap>
+	<!--建筑映射 -->
+	<resultMap id="buildResultMap"
+		type="com.qf.model.fire.HixentArcBuild">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="build_name" jdbcType="VARCHAR"
+			property="buildName" />
+	</resultMap>
+	<!-- 列表 -->
+	<select id="getAllDeviceList" parameterType="String"
+		resultMap="BaseResultMap">
+		SELECT * FROM hixent_arc_system.hixent_arc_efm_device where site_code
+		in
+		<foreach item="item" index="index" collection="bid" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		<if test="siteCode != null and siteCode != ''"> and site_code = '${siteCode}'  </if>
+		<if test="deviceCode != null and deviceCode != ''"> and device_code = '${deviceCode}'  </if>
+		;
+	</select>
+	<!-- 超级管理员设备列表 -->
+	<select id="getAllAdminDeviceList" parameterType="String"
+		resultMap="BaseResultMap">
+		SELECT * FROM hixent_arc_system.hixent_arc_efm_device where 1
+		<if test="siteCode != null and siteCode != ''"> and site_code = '${siteCode}'  </if>
+		<if test="deviceCode != null and deviceCode != ''"> and device_code = '${deviceCode}'  </if>
+		;
+	</select>
+
+	<!-- 获取设备详情 -->
+	<select id="getEfmDeviceInfo" parameterType="String"
+		resultMap="BaseResultMap">
+		SELECT * FROM hixent_arc_system.hixent_arc_efm_device where
+		id=#{efmId}
+	</select>
+
+
+
+	<select id="getPageDeviceList" parameterType="String"
+		resultMap="BaseResultMap">
+		SELECT * FROM hixent_arc_system.hixent_arc_efm_device where site_code
+		in
+		<foreach item="item" index="index" collection="bid" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		<if test="siteCode != null and siteCode != ''"> and site_code = '${siteCode}'  </if>
+		<if test="deviceCode != null and deviceCode != ''"> and device_code = '${deviceCode}'  </if>
+		order by ${order}
+		limit ${limits};
+	</select>
+
+	<!-- 获取设备详细信息 -->
+	<select id="getOne" resultMap="BaseResultMap">
+		select * from
+		hixent_arc_system.hixent_arc_efm_device where id=#{id};
+	</select>
+
+	<!-- 获取设备详细信息 -->
+	<select id="getAllSiteList" resultMap="BaseResultMap">
+		select distinct site_code
+		from hixent_arc_system.hixent_arc_efm_device;
+	</select>
+	<!-- 获取站点详情 -->
+	<select id="getSiteInfo" resultMap="siteResultMap">
+		SELECT
+		has.*,hab.build_name,hab.id hId FROM
+		hixent_arc_system.hixent_arc_site
+		has JOIN
+		hixent_arc_system.hixent_arc_build hab on
+		hab.id=has.site_build_id
+		WHERE has.site_id=#{siteId}
+	</select>
+
+	<!-- 获取站点中控数量 -->
+	<select id="deviceCount" resultType="Integer">
+		SELECT COUNT(haei.id) FROM
+		hixent_arc_system.hixent_arc_site has
+		JOIN
+		hixent_arc_system.hixent_arc_equipment_info haei ON
+		haei.site_code=has.site_code WHERE has.site_id=#{siteId}
+	</select>
+	<!-- 站点终端设备数量 -->
+	<select id="equipCount" resultType="Integer">
+		SELECT COUNT(haei.id) FROM
+		hixent_arc_system.hixent_arc_site has
+		JOIN
+		hixent_arc_system.hixent_arc_efm_device haei ON
+		haei.site_code=has.site_code WHERE has.site_id=#{siteId}
+	</select>
+	<!-- 获取建筑列表 -->
+	<select id="getBuildList" resultMap="buildResultMap">
+		SELECT * FROM
+		hixent_arc_system.hixent_arc_build
+	</select>
+	<!-- 项目联动出中控 -->
+	<select id="getDeviceBySiteId" resultMap="BaseResultMap">
+		SELECT HAED.* FROM
+		hixent_arc_system.hixent_arc_efm_device HAED
+		JOIN
+		hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+		<where>
+			<if test="siteId!=null and siteId!='' and siteId!='0'.toString()">HAS.site_id=#{siteId}</if>
+		</where>
+	</select>
+
+	<!-- 获取中控 -->
+	<select id="getDeviceList" resultMap="BaseResultMap">
+		SELECT id,site_code,device_code,niName,latitude,longitute,specificator FROM
+		hixent_arc_system.hixent_arc_efm_device
+		
+		<where>
+			<if test="provinceId!=0">
+				substring(site_code,1,2)=(SELECT HAP.province_code FROM
+				hixent_arc_province HAP WHERE
+				HAP.id=#{provinceId})
+			</if>
+			<if test="areaId!=0">
+				AND substring(site_code,3,2)=(SELECT HAA.area_code FROM
+				hixent_arc_area
+				HAA WHERE HAA.id=#{areaId} AND HAA.pid=#{provinceId})
+			</if>
+			<if test="siteCordArr[0]!='0'.toString()">
+				AND site_code IN
+				<foreach item="item" index="index" collection="siteCordArr"
+					open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	<!-- 获取中控详情 -->
+	<select id="getdeviceInfo" resultMap="BaseResultMap">
+		SELECT
+		haed.*,HAS.site_name,HAB.build_name,HAT.tel
+		FROM
+		hixent_arc_system.hixent_arc_efm_device haed
+		JOIN
+		hixent_arc_system.hixent_arc_site HAS
+		ON
+		HAS.site_code=haed.site_code
+		LEFT JOIN
+		hixent_arc_system.hixent_arc_build HAB
+		ON
+		HAB.id=HAS.site_build_id
+		LEFT JOIN
+		hixent_arc_system.hixent_arc_tel HAT
+		ON
+		haed.id=HAT.unid
+		WHERE haed.id=#{deviceId}
+	</select>
+	<!-- 中控下设备数 -->
+	<select id="getEquipCount" resultType="Integer">
+		SELECT COUNT(*) FROM hixent_arc_system.hixent_arc_equipment_info HAEI
+		
+		WHERE HAEI.efm_id=#{deviceId}
+	</select>
+	<!-- 中控下某问题类型数 -->
+	<select id="getEquipTypeCountByDevice" resultType="Integer">
+		SELECT COUNT(*) FROM(SELECT HAWL.efm_id FROM hixent_arc_system.hixent_arc_warning_list HAWL
+		WHERE HAWL.efm_id=#{deviceId} AND HAWL.etype=2 AND HAWL.warning_index=#{warnIndex}
+        AND HAWL.is_deal=0 GROUP BY HAWL.eid,HAWL.warning_type)A ;
+	</select>
+	
+	<!-- 查询中控iD和离线时间 -->
+	<select id="getDeviceOfflineTime" resultMap="BaseResultMap">
+	SELECT HAED.id,HAED.offline_time,HAED.offline_enable  FROM hixent_arc_system.hixent_arc_efm_device HAED 
+	</select>
+	
+	<!-- 修改离线状态 -->
+	<update id="updateDeviceIsOnline">
+	UPDATE hixent_arc_system.hixent_arc_efm_device HAED SET HAED.is_online=#{isOnline} WHERE HAED.id=#{deviceId}
+	</update>
+</mapper>

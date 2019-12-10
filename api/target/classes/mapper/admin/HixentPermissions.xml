@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentPermissionsMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentPermissions">
+      <result column="menu_id"            jdbcType="INTEGER" 		property="menu_id"             />
+      <result column="parent_id"          jdbcType="INTEGER" 		property="parent_id"           />
+	  <result column="menu_icon"          jdbcType="VARCHAR" 		property="menu_icon"           />
+	  <result column="menu_url"           jdbcType="VARCHAR" 		property="menu_url"            />
+	  <result column="action_name"        jdbcType="VARCHAR" 		property="action_name"         />
+	  <result column="menu_name"          jdbcType="VARCHAR" 		property="menu_name"           /> 
+  </resultMap>
+
+  <!-- 角色列表 -->
+  <select id="getPermissionsAllList" parameterType="String" resultMap="BaseResultMap">
+  	  select * from hixent_fire_menu <if test="name != null"> where  menu_name like '%${name}%' or action_name like '%${name}%' </if>
+  	  order by set_order;
+  </select>
+  <select id="getPermissionsAllList2" parameterType="String" resultMap="BaseResultMap">
+  	  select * from hixent_fire_menu <if test="name != null"> where  menu_name = '${name}' or action_name = '${name}' </if>;
+  </select>
+  <select id="getPermissionsPageList" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_fire_menu 
+	  <if test="name != null"> where menu_name like '%${name}%' or action_name like '%${name}%' </if> 
+	  order by ${order} 
+	  limit ${limits};
+  </select>
+  
+  <!-- 添加 -->
+  <select id="insertPermissions" parameterType="String" resultMap="BaseResultMap">
+  	  INSERT INTO hixent_fire_menu (menu_icon,menu_url,parent_id,action_name,menu_name,set_order) VALUES ('${menuIcon}','${menuUrl}',${parentId},'${actionName}','${menuName}',${setOrder});
+  </select>
+  
+  <!-- 编辑 -->
+  <select id="updatePermissions" parameterType="String" resultMap="BaseResultMap">
+  	  update hixent_fire_menu set menu_icon = '${menuIcon}' , menu_url = '${menuUrl}' , parent_id = ${parentId} , action_name = '${actionName}' , menu_name = '${menuName}' , set_order = ${setOrder}  where menu_id = ${menuId};
+  </select>
+  
+  <!-- 批量删除 -->
+  <select id="deletePermissions" parameterType="String" resultMap="BaseResultMap">
+       delete from  hixent_fire_menu  where menu_id in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  
+</mapper>

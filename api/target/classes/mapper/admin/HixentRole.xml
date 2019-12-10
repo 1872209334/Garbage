@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentRoleMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentRole">
+      <result column="role_id"            jdbcType="INTEGER" 		property="role_id"             />
+      <result column="role_name"          jdbcType="VARCHAR" 		property="role_name"           />
+      <result column="menu_id_list"       jdbcType="VARCHAR" 		property="menu_id_list"        />    
+      <result column="role_desc"          jdbcType="VARCHAR" 		property="role_desc"           />  
+  </resultMap>
+
+  <!-- 角色列表 -->
+  <select id="getRoleAllList" parameterType="String" resultMap="BaseResultMap">
+  	  select * from hixent_fire_role  where role_id>0  <if test="name != null"> and role_name like '%${name}%' </if>;
+  </select>
+   <select id="getRoleAllList2" parameterType="String" resultMap="BaseResultMap">
+  	  select * from hixent_fire_role  where role_id>0  <if test="name != null"> and role_name = '${name}' </if>;
+  </select>
+  <select id="getRolePageList" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_fire_role
+	  where role_id>0
+	  <if test="name != null"> and role_name like '%${name}%' </if> 
+	  order by ${order} 
+	  limit ${limits};
+  </select>
+  
+  <!-- 角色信息 -->
+  <select id="selectRoleInfo" parameterType="String" resultMap="BaseResultMap">
+  	  select * from hixent_fire_role where role_id = ${roleId};
+  </select>
+  
+  <!-- 添加 -->
+  <select id="insertRole" parameterType="String" resultMap="BaseResultMap">
+  	  INSERT INTO hixent_fire_role (role_name,menu_id_list,role_desc) VALUES (#{role_name},#{menu_id_list},#{role_desc});
+  </select>
+  
+  <!-- 编辑 -->
+  <select id="updateRole" parameterType="String" resultMap="BaseResultMap">
+  	  update hixent_fire_role set role_name = '${role_name}' , menu_id_list = '${menu_id_list}' , role_desc = '${role_desc}' where role_id = ${roleId};
+  </select>
+  
+  <!-- 批量删除 -->
+  <select id="deleteRole" parameterType="String" resultMap="BaseResultMap">
+       delete from  hixent_fire_role where role_id in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+
+
+
+</mapper>

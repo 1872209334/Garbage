@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentDictionaryMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentDictionary">
+      <result column="did"   		   jdbcType="INTEGER" 		property="did"                />
+      <result column="system"          jdbcType="VARCHAR" 		property="system"             />
+      <result column="moudle"          jdbcType="VARCHAR" 		property="moudle"             />
+      <result column="typename"        jdbcType="VARCHAR" 		property="typename"           />
+      <result column="dkey"            jdbcType="VARCHAR" 		property="dkey"               />
+      <result column="dvalue"          jdbcType="VARCHAR" 		property="dvalue"             />
+  </resultMap>
+
+  <!-- 不含关键字查询 -->
+  <select id="selectAllData" parameterType="String" resultMap="BaseResultMap">
+	  select did,typename,dkey,dvalue from hixent_dictionary where is_delete=0 and typename=#{typename} ;
+  </select>
+  
+  <select id="selectGroupData" parameterType="String" resultMap="BaseResultMap">
+	  select did,typename,dkey,dvalue from hixent_dictionary where is_delete=0 group by typename ;
+  </select>
+  
+  <!-- 含关键字查询 -->
+  <select id="getSelectList" parameterType="String" resultMap="BaseResultMap">
+	  select did,typename,dkey,dvalue from hixent_dictionary
+	  where is_delete=0
+	  <if test="typename != null and typename !=''">   and typename like '%${typename}%' </if>
+	  <if test="dkey != null and dkey != ''"> 	       and dkey     like '%${dkey}%'     </if>
+	  <if test="dvalue != null and dvalue !=''"> 	   and dvalue   like '%${dvalue}%'   </if>
+  </select>
+  
+  <select id="getPageList" parameterType="String" resultMap="BaseResultMap">
+	  select did,typename,dkey,dvalue from hixent_dictionary
+	  where is_delete=0
+	  <if test="typename != null and typename !=''">   and typename like '%${typename}%' </if>
+	  <if test="dkey != null and dkey != ''"> 	       and dkey     like '%${dkey}%'     </if>
+	  <if test="dvalue != null and dvalue !=''"> 	   and dvalue   like '%${dvalue}%'   </if>
+      order by ${order}
+      limit ${limits};
+  </select>
+
+  <!-- 批量删除  -->
+  <select id="deleteDictionary" parameterType="String" resultMap="BaseResultMap">
+  	   update  hixent_dictionary set is_delete=1 where did in
+	   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+  </select>
+  
+</mapper>

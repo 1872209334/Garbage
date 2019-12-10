@@ -1,0 +1,107 @@
+/*设备信息*/
+OMCA_CMD_DEF(0x0002,1,1,"manufacture_code",0),                           /*设备厂商代码*/
+OMCA_CMD_DEF(0x0003,1,1,"category",0),                                   /*设备类别*/
+OMCA_CMD_DEF(0x0004,2,20,"model",0),                                     /*设备型号*/
+OMCA_CMD_DEF(0x0005,2,45,"serial_number",0),                             /*设备生产序列号*/
+OMCA_CMD_DEF(0x0007,2,20,"longitute",0),                                 /*经度*/
+OMCA_CMD_DEF(0x0008,2,20,"latitude",0),                                  /*纬度*/
+OMCA_CMD_DEF(0x000A,2,20,"version",0),                                   /*监控版本信息*/
+OMCA_CMD_DEF(0x0101,1,4,"site_code",0),                                  /*站点编号*/
+OMCA_CMD_DEF(0x0102,1,1,"device_code",0),                                /*设备编号*/
+OMCA_CMD_DEF(0x0103,2,45,"specificator",0),                              /*设备描述符*/
+OMCA_CMD_DEF(0x0110,2,20,"message_phone",0),                             /*短信服务中心号码*/
+OMCA_CMD_DEF(0x0111,2,20,"phone_number1",0),                             /*查询/设置电话号码1*/
+OMCA_CMD_DEF(0x0112,2,20,"phone_number2",0),                             /*查询/设置电话号码2*/
+OMCA_CMD_DEF(0x0113,2,20,"phone_number3",0),                             /*查询/设置电话号码3*/
+OMCA_CMD_DEF(0x0114,2,20,"phone_number4",0),                             /*查询/设置电话号码4*/
+OMCA_CMD_DEF(0x0115,2,20,"phone_number5",0),                             /*查询/设置电话号码5*/
+OMCA_CMD_DEF(0x0120,2,20,"report_number",0),                             /*上报号码*/
+OMCA_CMD_DEF(0x0130,3,4,"device_ip",0),                                  /*监控中心IP地址*/
+OMCA_CMD_DEF(0x0131,1,2,"device_port",0),                                /*监控中心IP地址端口号*/
+OMCA_CMD_DEF(0x0132,2,50,"device_domain",0),                             /*监控中心域名*/
+OMCA_CMD_DEF(0x0133,3,4,"alternate_ip",0),                               /*备用监控中心IP地址*/
+OMCA_CMD_DEF(0x0134,1,2,"alternate_port",0),                             /*备用监控中心IP地址端口*/
+OMCA_CMD_DEF(0x0141,1,1,"report_type",OMCA_DoCmd0x0141),                 /*上报类型*/
+OMCA_CMD_DEF(0x0150,1,7,"date_time",0),                                  /*日期、时间*/
+OMCA_CMD_DEF(0x0160,1,2,"device_total",0),                               /*设备总数*/
+OMCA_CMD_DEF(0x0161,1,1,"device_bus1",0),                                /*总线1设备个数*/
+OMCA_CMD_DEF(0x0162,1,1,"device_bus2",0),                                /*总线2设备个数*/
+OMCA_CMD_DEF(0x0163,1,1,"device_bus3",0),                                /*总线3设备个数*/
+OMCA_CMD_DEF(0x0164,1,1,"device_bus4",0),                                /*总线4设备个数*/
+OMCA_CMD_DEF(0x0165,2,32,"state_bus1",0),                                /*总线1设备状态*/
+OMCA_CMD_DEF(0x0166,2,32,"state_bus2",0),                                /*总线2设备状态*/
+OMCA_CMD_DEF(0x0167,2,32,"state_bus3",0),                                /*总线3设备状态*/
+OMCA_CMD_DEF(0x0168,2,32,"state_bus4",0),                                /*总线4设备状态*/
+OMCA_CMD_DEF(0x0169,2,252,"device_info",0),                              /*设备详细信息*/
+OMCA_CMD_DEF(0x0170,1,2,"fire_num",0),                                   /*火灾记录总条数*/
+OMCA_CMD_DEF(0x0171,1,2,"fire_current",0),                               /*火灾记录当前记忆个数*/
+OMCA_CMD_DEF(0x0172,2,102,"fire_info",0),                                /*火灾记录信息*/
+OMCA_CMD_DEF(0x0175,1,2,"broken_num",0),                                 /*故障记录总条数*/
+OMCA_CMD_DEF(0x0176,1,2,"broken_current",0),                             /*故障记录当前记忆个数*/
+OMCA_CMD_DEF(0x0177,2,102,"broken_info",0),                              /*故障记录信息*/
+OMCA_CMD_DEF(0x017A,1,2,"other_num",0),                                  /*其他记录总条数*/
+OMCA_CMD_DEF(0x017B,1,2,"other_current",0),                              /*其他记录当前记忆个数*/
+OMCA_CMD_DEF(0x017C,2,102,"other_info",0),                               /*其他记录信息*/
+/*告警使能*/
+OMCA_CMD_DEF(0x0200,3,4,"efm_alarm_enable",0),                           /*EFM6000告警使能*/
+/*
+OMCA_CMD_DEF(0x0200,1,1,"power_cut_enable",0), 主电源切断告警使能
+OMCA_CMD_DEF(0x0201,1,1,"no_battery_enable",0), 无电池告警使能
+OMCA_CMD_DEF(0x0202,1,1,"low_voltage_enable",0), 蓄电池电压低告警使能
+OMCA_CMD_DEF(0x0203,1,1,"printer_offline_enable",0), 打印机脱机告警使能
+OMCA_CMD_DEF(0x0204,1,1,"printer_out_paper_enable",0), 打印机缺纸告警使能
+OMCA_CMD_DEF(0x0205,1,1,"printer_communication_failure_enable",0), 打印机通讯故障告警使能
+OMCA_CMD_DEF(0x0206,1,1,"communication_offline_enable",0), 通讯板掉线告警使能
+OMCA_CMD_DEF(0x0207,1,1,"device_offline_enable",0), 设备掉线告警使能
+*/
+OMCA_CMD_DEF(0x0210,2,32,"offline_enable",0), /*总线1离线信息告警使能*/
+OMCA_CMD_DEF(0x0211,2,32,"offline_enable",0), /*总线2离线信息告警使能*/
+OMCA_CMD_DEF(0x0212,2,32,"offline_enable",0), /*总线3离线信息告警使能*/
+OMCA_CMD_DEF(0x0213,2,32,"offline_enable",0), /*总线4离线信息告警使能*/
+OMCA_CMD_DEF(0x0220,2,32,"fire_enable",0), /*总线1探测器电弧预警使能*/
+OMCA_CMD_DEF(0x0221,2,32,"fire_enable",0), /*总线2探测器电弧预警使能*/
+OMCA_CMD_DEF(0x0222,2,32,"fire_enable",0), /*总线3探测器电弧预警使能*/
+OMCA_CMD_DEF(0x0223,2,32,"fire_enable",0), /*总线4探测器电弧预警使能*/
+OMCA_CMD_DEF(0x0230,2,32,"temperature_enable",0), /*总线1探测器超温告警使能*/
+OMCA_CMD_DEF(0x0231,2,32,"temperature_enable",0), /*总线2探测器超温告警使能*/
+OMCA_CMD_DEF(0x0232,2,32,"temperature_enable",0), /*总线3探测器超温告警使能*/
+OMCA_CMD_DEF(0x0233,2,32,"temperature_enable",0), /*总线4探测器超温告警使能*/
+/*告警和状态*/
+OMCA_CMD_DEF(0x0300,2,4,"efm_alarm",0), /*EFM6000告警*/
+/*
+OMCA_CMD_DEF(0x0300,1,1,"power_cut_alarm",0), 主电源切断告警
+OMCA_CMD_DEF(0x0301,1,1,"no_battery_alarm",0), 无电池告警
+OMCA_CMD_DEF(0x0302,1,1,"low_voltage_alarm",0), 蓄电池电压低告警
+OMCA_CMD_DEF(0x0303,1,1,"printer_offline_alarm",0), 打印机脱机告警
+OMCA_CMD_DEF(0x0304,1,1,"printer_out_paper_alarm",0), 打印机缺纸告警
+OMCA_CMD_DEF(0x0305,1,1,"printer_communication_failure_alarm",0), 打印机通讯故障告警
+OMCA_CMD_DEF(0x0306,1,1,"communication_offline_alarm",0), 通讯板掉线告警
+OMCA_CMD_DEF(0x0307,1,1,"device_offline_alarm",0), 设备掉线告警
+*/
+OMCA_CMD_DEF(0x0310,1,3,"outline_alarm",0), /*离线告警*/
+OMCA_CMD_DEF(0x0311,2,32,"is_offline_alarm",0), /*总线1离线信息*/
+OMCA_CMD_DEF(0x0312,2,32,"is_offline_alarm",0), /*总线2离线信息*/
+OMCA_CMD_DEF(0x0313,2,32,"is_offline_alarm",0), /*总线3离线信息*/
+OMCA_CMD_DEF(0x0314,2,32,"is_offline_alarm",0), /*总线4离线信息*/
+OMCA_CMD_DEF(0x0320,1,3,"fire_alarm",0), /*电弧预警*/
+OMCA_CMD_DEF(0x0321,2,32,"is_fire_alarm",0), /*总线1探测器电弧预警*/
+OMCA_CMD_DEF(0x0322,2,32,"is_fire_alarm",0), /*总线2探测器电弧预警*/
+OMCA_CMD_DEF(0x0323,2,32,"is_fire_alarm",0), /*总线3探测器电弧预警*/
+OMCA_CMD_DEF(0x0324,2,32,"is_fire_alarm",0), /*总线4探测器电弧预警*/
+OMCA_CMD_DEF(0x0330,1,3,"temperature_alarm",0), /*超温告警*/
+OMCA_CMD_DEF(0x0331,2,32,"is_temperature_alarm",0), /*总线1探测器超温告警*/
+OMCA_CMD_DEF(0x0332,2,32,"is_temperature_alarm",0), /*总线2探测器超温告警*/
+OMCA_CMD_DEF(0x0333,2,32,"is_temperature_alarm",0), /*总线3探测器超温告警*/
+OMCA_CMD_DEF(0x0334,2,32,"is_temperature_alarm",0), /*总线4探测器超温告警*/
+/*设置参数*/
+OMCA_CMD_DEF(0x0410,1,1,"fire_autoprint",0), /*火灾自动打印*/
+OMCA_CMD_DEF(0x0411,1,1,"broken_autoprint",0), /*故障自动打印*/
+OMCA_CMD_DEF(0x0412,1,1,"other_autoprint",0), /*其他自动打印*/
+OMCA_CMD_DEF(0x0440,1,1,"clear_alarm",0), /*告警消除*/
+OMCA_CMD_DEF(0x0441,1,2,"clear_device_noise",0), /*设备消音*/
+OMCA_CMD_DEF(0x0442,1,1,"clear_broadcast_noise",0), /*广播消音*/
+OMCA_CMD_DEF(0x0443,1,2,"device_mute",0), /*设备静音*/
+OMCA_CMD_DEF(0x0444,1,1,"broadcast_mute",0), /*广播静音*/
+OMCA_CMD_DEF(0x0445,1,2,"reset_alarm",0), /*告警复位*/
+OMCA_CMD_DEF(0x0446,1,1,"reset_broadcast_alarm",0), /*告警广播复位*/
+/*实时采样数据*/

@@ -1,0 +1,49 @@
+<ion-header no-border>
+  <ion-navbar color="arc" style="height:4.5rem;">
+    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->
+              <!--(click)="goBack()"></ion-icon>-->
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #fff;">
+  <div style="margin-top: 2rem;font-size: 16px;text-align: center" *ngIf="brokenList.length == 0">暂无故障设备</div>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="brokenList.length != 0">
+    <div *ngFor="let item of alarmList;let i = index">
+      <ion-card (click)="brokenDetail()" style="border-radius: 10px;margin: 20px;width: calc(100% - 40px)">
+        <ion-card-header style="border-bottom: 1px solid #eee;background-color:#eee;color:red;">设备号：{{item.device_id}}</ion-card-header>
+        <ion-card-content style="padding-top: 16px;padding-bottom: 10px">
+          <p>{{item.alarm_time}}</p>
+          <p style="margin-top: 8px">{{item.alarm_type}}</p>
+          <p style="margin-top: 8px">{{item.alarm_position}}</p>
+
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col style="text-align: right">
+              <button ion-button icon-start small class="clear_btn" (click)="$event.stopPropagation();clearAlarm()">
+                <span style="font-size:14px;">消音</span>
+              </button>
+            </ion-col>
+          </ion-row>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多数据...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div *ngIf="isMore" class="text-align no-more">-No more-</div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header no-border>
+  <ion-navbar color="arc">
+    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->
+              <!--(click)="goBack()"></ion-icon>-->
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-bounce padding>
+  <ion-item>
+    <ion-input type="text" placeholder="用户名" [(ngModel)]="registerInput.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="password" placeholder="密码" [(ngModel)]="registerInput.password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" placeholder="管理员账户" [(ngModel)]="registerInput.adminAccount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="手机号" [(ngModel)]="registerInput.mobile"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="验证码" [(ngModel)]="registerInput.code"></ion-input>
+    <ion-icon item-end>
+      <button [disabled]=state style="position: relative;z-index: 100;padding-left: 1rem !important;" class="verify_btn" (click)="getVerifyCode()">{{getCodeText}}</button>
+    </ion-icon>
+  </ion-item>
+  <button ion-button class="arc_btn" style="width: 100%;margin-top: 2.5rem;padding: 0;background-color: #2982E5" (click)="register()">注册</button>
+</ion-content>

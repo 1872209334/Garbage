@@ -1,0 +1,99 @@
+<ion-header no-border>
+  <div class="list_box">
+    <ion-navbar>
+      <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+    <div class="common_select">
+      <div (click)="headerSelect1()">{{header1}}<label class="common_select_icon"></label></div>
+      <div (click)="headerSelect2()">{{header2}}<label class="common_select_icon"></label></div>
+      <div (click)="headerSelect3()">{{header3}}<label class="common_select_icon"></label></div>
+    </div>
+    <div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow1}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems1"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected1(item)">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow2}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems2"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected2(item)">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow3}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems3"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected3(item)">
+            {{ item.siteName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="history_time">
+      <ion-row class="history_time_row">
+        <div class="history_time_left">
+          <label>开始时间</label>
+          <!--<ion-input id="date01" type="date" [(ngModel)]="startTime" (ionChange)="search()" min="" max="" placeholder="选择日期" style="font-size:12px;width: 11rem;line-height: 2.5rem;position: relative;left: -1.2rem;" ></ion-input>-->
+          <ion-datetime id="date01" displayFormat="YYYY-MM-DD" [(ngModel)]="startTime" placeholder="选择日期" (ionChange)="search()" cancelText="取消" doneText="确定"></ion-datetime>
+        </div>
+        <div class="history_time_center">
+          <label>至</label>
+        </div>
+        <div class="history_time_right">
+          <label>结束时间</label>
+          <ion-datetime id="date02" displayFormat="YYYY-MM-DD" [(ngModel)]="endTime" placeholder="选择日期" (ionChange)="search()" cancelText="取消" doneText="确定"></ion-datetime>
+          <!--<ion-input id="date02" type="date" [(ngModel)]="endTime" (ionChange)="search()" min="" max="" placeholder="选择日期" style="font-size:12px;width: 11rem;line-height: 2.5rem;position: relative;left: -1.2rem"></ion-input>-->
+        </div>
+      </ion-row>
+    </div>
+
+  </div>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item-group class="history_list">
+    <div style="margin-bottom: 0.2rem" *ngFor="let item of historyList;let i = index">
+      <ion-item (click)="historyDetail(item)">
+        <div>
+          <span class="history_bian">编</span>
+          <span class="history_common_text3">NO.{{item.warnId}}</span>
+        </div>
+        <div>
+          <div class="history_float_left">
+            <img class="history_img" src="../../assets/imgs/icon_location.png">
+            <span class="history_common_text">{{item.message}}</span>
+          </div>
+          <div class="history_float_right">
+            <img class='history_img' src="../../assets/imgs/icon_time.png">
+            <span class="history_common_text">{{item.dealTime}}</span>
+          </div>
+        </div>
+        <div class="history_common_text history_common_space">原因：{{item.warnName}}</div>
+        <ion-row>
+          <!--<ion-col>
+            <ion-icon style="float: right;color:#ccc" name="ios-arrow-forward"></ion-icon>
+          </ion-col>-->
+        </ion-row>
+      </ion-item>
+    </div>
+  </ion-item-group>
+  <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多数据...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div *ngIf="isMore" class="text-align no-more">-No more-</div>
+</ion-content>

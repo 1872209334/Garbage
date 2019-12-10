@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentMessageMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentMessage">
+      <result column="id"   		   jdbcType="INTEGER" 		property="id"                 />
+      <result column="from_id"   	   jdbcType="INTEGER" 		property="from_id"             />
+	  <result column="to_id"   		   jdbcType="INTEGER" 		property="to_id"               />
+	  <result column="state"   		   jdbcType="INTEGER" 		property="state"              />
+      <result column="title"           jdbcType="VARCHAR" 		property="title"              />
+      <result column="content"         jdbcType="VARCHAR" 		property="content"            />
+      <result column="from_name"        jdbcType="VARCHAR" 		property="from_name"           />
+      <result column="from_mobile"      jdbcType="VARCHAR" 		property="from_mobile"         />
+      <result column="to_mobile"        jdbcType="VARCHAR" 		property="to_mobile"           />
+      <result column="add_date"         jdbcType="VARCHAR" 		property="add_date"            />
+      <result column="update_date"      jdbcType="VARCHAR" 		property="update_date"         />
+      <result column="send_delete"      jdbcType="VARCHAR" 		property="send_delete"         />
+      <result column="receive_delete"   jdbcType="VARCHAR" 		property="receive_delete"      />
+  </resultMap>
+  
+  
+  
+  <!-- 含关键字查询 -->
+  <select id="getSelectList" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_message
+	  where receive_delete=0  and to_id = ${id}
+	  <if test="username != null and username !=''">   and from_name    like '%${username}%' </if>
+	  <if test="mobile != null and mobile != ''"> 	   and from_mobile  like '%${mobile}%'   </if>
+	  <if test="state != null"> 	and state = ${state}   </if>
+  </select>
+  
+  <select id="getPageList" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_message
+	  where receive_delete=0 and to_id = ${id}
+	  <if test="username != null and username !=''">   and from_name   like '%${username}%' </if>
+	  <if test="mobile != null and mobile != ''"> 	   and from_mobile like '%${mobile}%'   </if>
+	  <if test="state != null"> 	and state = ${state}   </if>
+      order by ${order}
+      limit ${limits};
+  </select>
+  
+  <select id="getSelectList2" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_message
+	  where send_delete=0  and from_id = ${id}
+	  <if test="mobile != null and mobile != ''">  and to_mobile   like '%${mobile}%'  </if>
+	  <if test="state != null"> and state = ${state} </if>
+  </select>
+  
+  <select id="getPageList2" parameterType="String" resultMap="BaseResultMap">
+	  select * from hixent_message
+	  where send_delete=0 and from_id = ${id}
+	  <if test="mobile != null and mobile != ''">  and to_mobile  like '%${mobile}%' </if>
+	  <if test="state != null">  and state = ${state}  </if>
+      order by ${order}
+      limit ${limits};
+  </select>
+  
+  <!-- 删除 -->
+  <select id="deleteSendMessage" parameterType="String" resultMap="BaseResultMap">
+	   update  hixent_message set send_delete = 1 where id in
+	   <foreach item="item" index="index" collection="midArray" open="(" separator="," close=")">
+	       #{item}
+	   </foreach>;
+  </select>
+  <select id="deleteReceiveMessage" parameterType="String" resultMap="BaseResultMap">
+	   update  hixent_message set receive_delete = 1 where id in
+	   <foreach item="item" index="index" collection="midArray" open="(" separator="," close=")">
+	       #{item}
+	   </foreach>;
+  </select>
+  
+  
+  
+</mapper>

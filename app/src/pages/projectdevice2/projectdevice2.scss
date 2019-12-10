@@ -1,0 +1,69 @@
+page-projectdevice2 {
+  .content{
+    background: #F5F7FA;
+  }
+
+  .project_text_size{
+    font-size: 1.6rem;
+  }
+
+  .project_text_size1{
+    font-size: 1.8rem;
+  }
+
+  .project_text_color{
+    color: #606266;
+  }
+
+  .project_text_color1{
+    color: #303133;
+  }
+
+  .project_text_color2{
+    color: #909399;
+  }
+
+  .project_text_color3{
+    color: #387EE8;
+  }
+
+  .project_text_color4{
+    color: #909399;
+  }
+
+  .project_text_color5{
+    color: #F56C6C;
+  }
+
+  .project_box{
+    background: #fff;
+    padding: 1.5rem 1rem;
+  }
+
+  .project_box_flex{
+    display: flex;
+  }
+
+  .project_flex_child{
+    flex: 1;
+  }
+
+  .project_float_right{
+    float: right;
+  }
+
+  .project_item_img{
+    width: 3rem;
+    display: inline-block;
+  }
+
+  .project_box_border{
+      border-bottom: 1px solid #CDD0D8;
+  }
+
+  .project_text_msg{
+    width: calc(100% - 10rem);
+    display: inline-block;
+    vertical-align: top
+  }
+}

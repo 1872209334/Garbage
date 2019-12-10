@@ -1,0 +1,33 @@
+<!--
+  Generated template for the Register4Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>注册完成</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <div style="margin-left:16px;margin-top:30px;width:100%;font-size:32px;" > 输入管理员手机号 <br/>
+    <span style="margin-left:0px;margin-top:100px;width:100%;font-size:16px;color:#909399" > 请输入正确的管理员手机号 </span>
+  </div>
+
+  <ion-item style="margin-left:0px;margin-top:62px;">
+    <ion-label style="font-size:18px;" >+86</ion-label>
+    <ion-input style="font-size:18px;" [(ngModel)]="registerInput.username" type="number" placeholder="请输入管理员手机号"></ion-input>
+  </ion-item>
+
+  <!--
+  <button  ion-button class="arc_btn" style="margin-left:20%;width: 60%;margin-top: 2.5rem;padding: 0;background-color: #2982E5" (click)="Nextregister()">下一步，输入管理员手机号</button>
+  -->
+  <button  ion-button class="login_btn" ion-button round (click)="Nextregister()">
+    注册完成，前往登录
+  </button>
+
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header no-border>
+  <ion-navbar color="arc">
+    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->
+              <!--(click)="goBack()"></ion-icon>-->
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background-color: #F5F5F5;">
+  <ion-card style="border-radius: 10px;padding-bottom: 40px;">
+    <ion-card-content>
+      <ion-item-group class="table_detail">
+        <ion-item>设备号：</ion-item>
+        <ion-item>故障类型：</ion-item>
+        <ion-item>时间：</ion-item>
+        <ion-item>位置：</ion-item>
+        <ion-item>
+          <ion-label>处理情况：</ion-label>
+          <ion-input type="text" value="" placeholder="请输入"  [(ngModel)]="userInput.handle" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>备注：</ion-label>
+          <ion-input type="text" value="" placeholder="请输入"  [(ngModel)]="userInput.note" ></ion-input>
+        </ion-item>
+      </ion-item-group>
+      <button ion-button class="arc_btn" style="padding: 0;width: 90%;margin-top: 3rem;position: relative;left: 4.5%" (click)="save()" >保存</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

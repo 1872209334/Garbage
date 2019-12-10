@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.HixentArcDeviceAlarmMapper" >
+  
+  <select id="selWarnId" resultType="Integer">
+  SELECT HASL.warning_time FROM  hixent_arc_system.hixent_arc_warning_list HASL WHERE HASL.efm_id=#{deviceId}
+   AND HASL.etype='1' AND HASL.is_deal IN (0,2) AND HASL.warning_type=#{warmType}
+  </select>
+  <!-- 故障 -->
+  <insert id="addWarn">
+  INSERT INTO hixent_arc_system.hixent_arc_warning_list(warning_time,warning_index,warning_type,is_deal,etype,efm_id) VALUES(#{time},1,#{warmType},0,1,#{deviceId})
+  </insert>
+ <!-- 离线 -->
+  <insert id="addOffLine">
+  INSERT INTO hixent_arc_system.hixent_arc_warning_list(warning_time,warning_index,warning_type,is_deal,etype,efm_id) VALUES(#{time},2,#{warmType},0,1,#{deviceId})
+  </insert>
+ 
+   <update id="updateDeviceInfo">
+    UPDATE hixent_arc_system.hixent_arc_efm_device HAED SET 
+      HAED.power_cut_alarm= substring(#{warn},8,1),
+      HAED.no_battery_alarm= substring(#{warn},7,1),
+      HAED.low_voltage_alarm= substring(#{warn},6,1),
+      HAED.printer_offline_alarm= substring(#{warn},5,1),
+      HAED.printer_out_paper_alarm= substring(#{warn},4,1),
+      HAED.printer_communication_failure_alarm= substring(#{warn},3,1),
+      HAED.communication_offline_alarm= substring(#{warn},2,1),
+      HAED.device_offline_alarm= substring(#{warn},1,1) 
+      WHERE HAED.id=#{deviceId}
+   </update>
+   
+   <update id="updateDeviceEnable">
+    UPDATE hixent_arc_system.hixent_arc_efm_device HAED SET 
+      HAED.power_cut_enable= substring(#{enable},8,1),
+      HAED.no_battery_enable= substring(#{enable},7,1),
+      HAED.low_voltage_enable= substring(#{enable},6,1),
+      HAED.printer_offline_enable= substring(#{enable},5,1),
+      HAED.printer_out_paper_enable= substring(#{enable},4,1),
+      HAED.printer_communication_failure_enable= substring(#{enable},3,1),
+      HAED.communication_offline_enable= substring(#{enable},2,1),
+      HAED.device_offline_enable= substring(#{enable},1,1) 
+      WHERE HAED.id=#{deviceId}
+   </update>
+   
+   <!-- 查询中文报警类型 -->
+   <select id="warnType" resultType="String">
+   SELECT HAP.protocol_node FROM hixent_arc_protocol HAP WHERE HAP.protocol_name=#{warnType}
+   </select>
+   
+   <!-- 终端报警插入数据 -->
+   <insert id="addEquipWarn">
+   INSERT INTO hixent_arc_system.hixent_arc_warning_list
+   (warning_time,warning_index,warning_type,is_deal,etype,efm_id,eid)
+    VALUES(#{time},#{warnIndex},#{warmType},0,#{eType},#{deviceId},#{equipId})
+   </insert>
+   
+   <!-- 删除报警表数据 -->
+   <delete id="delWarnByDeviceId">
+   DELETE HAWL FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+   WHERE HAWL.efm_id = #{deviceId} AND HAWL.is_deal IN (0,2) 
+   AND HAWL.warning_type= #{warnType} AND HAWL.etype=1
+   </delete>
+   
+   <!-- 删除反馈表数据 -->
+   <delete id="delFeedBackByWarnId">
+   DELETE FROM hixent_arc_system.hixent_arc_warn_deal_feedback 
+   WHERE defe_warn_id = #{warnId}
+   </delete>
+   
+   <!-- 查询设备所在的项目所有管理员 -->
+   <select id="getAdminByEquipId" resultType="String">
+SELECT GROUP_CONCAT(HU.uid) FROM hixent_user.hixent_user HU WHERE HU.bid LIKE CONCAT('%',  (
+  SELECT HAS.site_code  FROM hixent_arc_system.hixent_arc_equipment_info HAEI 
+   JOIN  hixent_arc_system.hixent_arc_site HAS ON HAEI.site_code=HAS.site_code
+   WHERE HAEI.id=#{eid}) ,'%') OR HU.bid ='0'
+   </select>
+   
+      <!-- 查询设备所在的项目所有管理员 -->
+   <select id="getAdminByDeviceId" resultType="String">
+SELECT GROUP_CONCAT(HU.uid) FROM hixent_user.hixent_user HU WHERE HU.bid LIKE CONCAT('%',  (
+  SELECT HAS.site_code  FROM hixent_arc_system.hixent_arc_efm_device HAED 
+   JOIN  hixent_arc_system.hixent_arc_site HAS ON HAED.site_code=HAS.site_code
+   WHERE HAED.id=#{efmId}),'%') OR HU.bid ='0'
+   </select>
+   
+   <!-- 查询终端设备是否已存在报警 -->
+   <select id="selWarnIdByEid" resultType="Integer">
+   SELECT HASL.warning_time FROM  hixent_arc_system.hixent_arc_warning_list HASL WHERE HASL.eid=#{eid}
+   AND HASL.etype IN (0,2) AND HASL.is_deal IN (0,2) AND HASL.warning_type=#{warmType}
+   </select>
+   
+   <!-- 终端使能 -->
+   <update id="updateEquipEnable">
+   UPDATE hixent_arc_system.hixent_arc_equipment_info  SET ${enable}=#{valueEnable} WHERE id=#{eid}
+   </update>
+ </mapper>

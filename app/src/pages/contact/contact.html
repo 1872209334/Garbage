@@ -1,0 +1,17 @@
+<ion-content no-bounce scroll="false" style="background-color: #F5F5F5;">
+  <div class="me_background">
+    <div class="avatar"></div>
+    <p class="nickname">{{userInfo.username}}</p>
+  </div>
+  <ion-card style="border-radius: 10px;margin-top: 2rem;box-shadow: 0 0 0;border:1px solid #ececec;">
+    <ion-card-content style="padding-bottom: 30px;">
+      <ion-item-group>
+        <ion-item style="border-bottom: 1px solid #ececec;padding-left: 12px !important;"><span>所属管理员：</span><span style="float: right">admin</span></ion-item>
+        <ion-item style="border-bottom: 1px solid #ececec;padding-left: 12px !important;"><span>手机号：</span><span style="float: right"></span></ion-item>
+        <button ion-item style="border-bottom: 1px solid #ececec;text-indent: 1rem" (click)="changePwd()">修改密码</button>
+        <button ion-item style="border-bottom: 1px solid #ececec;text-indent: 1rem" (click)="checkVersion()">检查更新</button>
+      </ion-item-group>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button class="login_out_btn" (click)="login_out()" outline>退出登录</button>
+</ion-content>

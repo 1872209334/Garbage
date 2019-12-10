@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentPermissionsRoleMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentPermissionsRole">
+      <result column="role_id"            jdbcType="INTEGER" 		property="role_id"             />
+      <result column="role_name"          jdbcType="VARCHAR" 		property="role_name"           />
+      <result column="menu_id_list"       jdbcType="VARCHAR" 		property="menu_id_list"        />    
+
+      <result column="menu_id"            jdbcType="INTEGER" 		property="menu_id"             />
+      <result column="parent_id"          jdbcType="INTEGER" 		property="parent_id"           />
+	  <result column="menu_icon"          jdbcType="VARCHAR" 		property="menu_icon"           />
+	  <result column="menu_url"           jdbcType="VARCHAR" 		property="menu_url"            />
+	  <result column="action_name"        jdbcType="VARCHAR" 		property="action_name"         />
+	  <result column="menu_name"          jdbcType="VARCHAR" 		property="menu_name"           />
+  </resultMap>
+  
+  
+  <!-- 智能消防 -->
+  
+  <!-- 根据用户uid检索用户信息和用户角色 -->
+  <select id="selectForData" parameterType="String" resultMap="BaseResultMap">
+  	   select r.role_id,r.role_name,r.menu_id_list from hixent_user u 
+	   left join hixent_fire_role r
+	   on u.fire_role=r.role_id
+	   where  u.uid = #{uid};
+  </select>
+  
+  <!-- 根据menu_id搜索权限菜单信息 -->
+  <select id="findActionNameByMenuId" parameterType="String" resultMap="BaseResultMap">
+  	   select menu_id,parent_id,menu_icon,menu_url,action_name,menu_name from hixent_fire_menu where  menu_id in
+	   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>
+	   order by set_order asc;
+  </select>
+  
+  <!-- 获取所有智能消防权限 -->
+  <select id="selectAllData" parameterType="String" resultMap="BaseResultMap">
+      select menu_id,parent_id,menu_icon,menu_url,action_name,menu_name from hixent_fire_menu  order by set_order asc;
+  </select>
+  
+  <!-- 获取三级权限 -->
+  <select id="getThirdPermissions" resultMap="BaseResultMap">
+  SELECT menu_id,action_name,menu_name,menu_url FROM  hixent_fire_menu HRM WHERE HRM.isThirdMenu=1
+  </select>
+  
+  <!-- 获取三级权限 -->
+  <select id="getThirdPermissionsBybidId" resultMap="BaseResultMap">
+  SELECT menu_id,action_name,menu_name,menu_url FROM  hixent_fire_menu HRM 
+  WHERE HRM.isThirdMenu=1 AND menu_id in
+  <foreach item="item" index="index" collection="menuId" open="(" separator="," close=")">
+	   	   #{item}
+ </foreach>
+  </select>
+</mapper>

@@ -1,0 +1,41 @@
+.register-page input[type="button"]{
+  margin-top: 2.5rem;
+}
+
+.register-content span,.register-content button,.register-content input{
+  font-family: YueYuan !important;
+}
+
+.register-content .select-text,.register-content .select-md .select-icon .select-icon-inner,.register-content .item-select .label-md{
+  font-family: YueYuan !important;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.register-content .goback{
+  font-size: 1.4rem !important;
+  color:#333;
+  padding: 3.5rem;
+  top: 0;
+}
+
+.getCode{
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: -1rem;
+  font-size:1.4rem;
+  width: 40% !important;
+  background: #f5ec90 !important;
+  color: #b38327;
+  border-radius: 5rem !important;
+}
+
+.verify_btn{
+  font-size:15px;
+  float:right;
+  padding:0.8rem 1rem;
+  background-color: #2982E5;
+  color:#fff;
+  border-radius: 5px;
+}

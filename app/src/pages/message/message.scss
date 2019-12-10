@@ -1,0 +1,105 @@
+page-message {
+  .content{
+    background-color: #F5F7FA;
+  }
+  .toolbar-ios-arc .toolbar-background-ios{
+    background:white;
+  }
+  .toolbar-ios-arc .toolbar-title-ios{
+    color: #000;
+  }
+  .message_header_img{
+    position: relative;
+    margin-top: 0.3rem;
+    float: right;
+    width:2rem;
+    margin-right: 20px;
+  }
+  .list-ios{
+    margin: 0;
+  }
+  .message_num{
+    width: 17px;
+    height: 17px;
+    float: right;
+    border-radius: 1rem;
+    background-color: #F56C6C;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    line-height: 17px;
+  }
+
+  .message_img{
+    position: absolute;
+    height: 100%;
+    margin-left: 15px;
+    display: inline-flex;
+  }
+
+  .message_text{
+    padding-left: 5rem;
+  }
+
+  .message_no{
+    margin-top: 2rem;
+    font-size: 16px;
+    text-align: center;
+    display: none;
+  }
+
+  .list-ios > .item-block:first-child{
+    border-top: 1px solid #CDD0D8;
+  }
+
+  .list-ios .item-block .item-inner,.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+    border-bottom: 1px solid #CDD0D8;
+  }
+
+  .message_box{
+    width: 100% !important;
+    height: calc(100% - 7rem) !important;
+    background: #fff;
+    margin-top: 1rem !important;
+  }
+
+  .message_btn_groups{
+    display: flex;
+  }
+  .message_btn{
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  .message_btn p{
+    text-align: center;
+  }
+
+  .message_btn>div>div{
+    width: 4rem !important;
+    height: 4rem !important;
+    margin: auto;
+    background: linear-gradient(to right bottom,#A1C4FD, #387EE8);
+    border-radius: 2px;
+    color: white;
+    line-height: 4rem;
+  }
+
+  .message_btn .message_num{
+    position: absolute !important;
+    right: -7.5px !important;
+    top:-7.5px !important;
+  }
+
+  .message_btn p{
+    margin-top: 0.5rem !important;
+    font-size: 1.6rem !important;
+    text-align: center !important;
+    color: #000;
+  }
+
+  .message_text_center{
+    /*position: relative !important;
+    left: 0.8rem !important;*/
+  }
+}

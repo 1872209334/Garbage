@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>修改手机号</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce scroll="false" style="background-color: #F5F5F5;">
+
+  <ion-item>
+    <ion-label>手机号</ion-label>
+    <ion-input style="width: 80%"  (ionChange)="changeState()"  [(ngModel)]="changeMobileInput.phone" type="number" placeholder="请输入手机号"></ion-input>
+
+  </ion-item>
+  <ion-label class="user_text_color3"  (click)="changeMobileCode()">{{getCodeText}}</ion-label>
+  <ion-item>
+    <ion-label>验证码</ion-label>
+    <ion-input [(ngModel)]="changeMobileInput.code"  (ionChange)="changeState()" type="text" placeholder="请输入验证码"></ion-input>
+  </ion-item>
+
+  <div style="margin-top: 3rem;width:80%;height:1.6rem;margin-left:auto;margin-right:auto">
+    <button [ngStyle]="{'background-color':isEdit == true?'#488aff':'#A4C1EB'}" class="login_btn" ion-button round>
+      <span class="button-inner" (click)="changeMobile()">确定修改</span>
+    </button>
+  </div>
+
+</ion-content>

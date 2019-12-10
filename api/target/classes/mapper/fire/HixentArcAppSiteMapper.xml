@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.app.HixentArcAppSiteMapper">
+
+	<resultMap type="com.qf.model.fire.HixentArcSite" id="siteResultMap">
+
+		<result column="site_id" property="siteId" />
+		<result column="site_code" property="siteCode" />
+		<result column="site_name" property="siteName" />
+		<result column="site_place" property="sitePlace" />
+
+	</resultMap>
+
+	<resultMap type="com.qf.model.fire.HixentArcAppDeviceAndEquipInfo"
+		id="deviceAndEquipResultMap">
+
+		<result column="id" property="id" />
+		<result column="specificator" property="specificator" />
+		<result column="device_code" property="deviceCode" />
+		<result column="niName" property="niName" />
+		<result column="device_place" property="place" />
+		<result column="warnIndex" property="warnIndex" />
+
+		<result column="message" property="message" />
+		<result column="equip_place" property="place" />
+		<result column="addr" property="addr" />
+		<result column="line_code" property="lineCode" />
+
+		<result column="site_name" property="siteName" />
+		<result column="site_code" property="siteCode" />
+		<result column="node" property="node" />
+		
+        <result column="tem0" property="tem0" />	
+		<result column="tem1" property="tem1" />	
+		<result column="tem2" property="tem2" />	
+		<result column="tem3" property="tem3" />	
+		<result column="tem4" property="tem4" />	
+		
+		<result column="leakageCurrent" property="leakageCurrent" />
+		<result column="ACurrent" property="aCurrent" />
+		<result column="BCurrent" property="bCurrent" />
+		<result column="CCurrent" property="cCurrent" />	
+		
+		<result column="AVoltage" property="aVoltage" />
+		<result column="BVoltage" property="bVoltage" />
+		<result column="CVoltage" property="cVoltage" />	
+
+	</resultMap>
+	<!-- 项目详情 -->
+	<select id="getSiteInfo" resultMap="siteResultMap">
+		SELECT site_id,site_code,site_name,site_place FROM
+		hixent_arc_system.hixent_arc_site
+		WHERE site_code=#{siteCode}
+	</select>
+
+	<!-- 项目列表 -->
+	<select id="getSiteList" resultMap="siteResultMap">
+		SELECT site_id,site_code,site_name,site_place FROM
+		hixent_arc_system.hixent_arc_site HAS
+		JOIN hixent_app_control_group HACG ON HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId}
+		GROUP BY HAS.site_id
+
+	</select>
+
+	<!-- 中控列表 -->
+	<select id="getDeviceList" resultMap="deviceAndEquipResultMap">
+		SELECT * FROM(SELECT
+		HAED.id,HAED.specificator,HAED.device_code,HAS.site_code,HAS.site_name,HAED.niName,HAED.device_place
+		,GROUP_CONCAT(DISTINCT HAWL.warning_index) warnIndex FROM
+		hixent_arc_system.hixent_arc_efm_device HAED
+		JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON
+		HAED.id=HAEI.efm_id
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.efm_id=HAED.id AND HAWL.etype=1 AND HAWL.is_deal IN(0,2)
+		WHERE HAU.id=#{appUserId}
+		<if test="siteCode!=null and siteCode!=''">
+			AND HAS.site_code=#{siteCode}
+		</if>
+		<if test="inquire!=null and inquire!=''">
+			AND (HAED.id LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+			OR HAED.device_code LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+			OR HAED.niName LIKE CONCAT(CONCAT('%', #{inquire}),'%'))
+		</if>
+		GROUP BY HAED.id)A WHERE 1=1
+		<if test="warnIndex==-1">
+			AND isNull(A.warnIndex)
+		</if>
+		<if test="warnIndex!=-1 and warnIndex!=-2">
+			AND A.warnIndex LIKE CONCAT(CONCAT('%', #{warnIndex}),'%')
+		</if>
+		limit ${limits}
+	</select>
+
+	<!-- 中控列表数量 -->
+	<select id="getDeviceListCount" resultType="Integer">
+		SELECT COUNT(*) FROM(SELECT
+		HAED.id,HAED.specificator,HAED.device_code,HAS.site_code,HAS.site_name,HAED.niName,HAED.device_place
+		,GROUP_CONCAT(DISTINCT HAWL.warning_index) warnIndex FROM
+		hixent_arc_system.hixent_arc_efm_device HAED
+		JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON
+		HAED.id=HAEI.efm_id
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.efm_id=HAED.id AND HAWL.etype=1 AND HAWL.is_deal IN(0,2)
+		WHERE HAU.id=#{appUserId}
+		<if test="siteCode!=null and siteCode!=''">
+			AND HAS.site_code=#{siteCode}
+		</if>
+		<if test="inquire!=null and inquire!=''">
+			AND (HAED.id LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+			OR HAED.device_code LIKE CONCAT(CONCAT('%', #{inquire}),'%')
+			OR HAED.niName LIKE CONCAT(CONCAT('%', #{inquire}),'%'))
+		</if>
+		GROUP BY HAED.id)A WHERE 1=1
+		<if test="warnIndex==-1">
+			AND isNull(A.warnIndex)
+		</if>
+		<if test="warnIndex!=-1 and warnIndex!=-2">
+			AND A.warnIndex LIKE CONCAT(CONCAT('%', #{warnIndex}),'%')
+		</if>
+
+	</select>
+
+	<!-- 终端列表 -->
+	<select id="getEquipList" resultMap="deviceAndEquipResultMap">
+		SELECT * FROM(SELECT
+		HAEI.id,HAEI.message,HAEI.addr,HAS.site_code,HAS.site_name,HAEI.line_code,HAEI.equip_place,
+		HAEI.tem0,HAEI.tem1,HAEI.tem2,HAEI.tem3,HAEI.tem4,HAEI.AVoltage,HAEI.BVoltage,HAEI.CVoltage,
+		HAEI.BCurrent,HAEI.CCurrent,HAEI.ACurrent,
+		GROUP_CONCAT(DISTINCT HAWL.warning_index) warnIndex
+		FROM hixent_arc_system.hixent_arc_equipment_info HAEI
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.eid=HAEI.id AND HAWL.etype IN(0,2) AND HAWL.is_deal IN (0,2)
+		WHERE HAU.id=#{appUserId}
+		<if test="siteCode!=null and siteCode!=''">
+			AND HAS.site_code=#{siteCode}
+		</if>
+		<if test="equipType!=-1">
+			AND HAEI.type=#{equipType}
+		</if>
+
+		<if test="isMqttEquip!=-1">
+			AND HAEI.device_type=#{isMqttEquip}
+		</if>
+		<if test="inquire!=null and inquire!=''">
+			AND (HAEI.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%'))
+		</if>
+
+		GROUP BY HAEI.id)A WHERE 1=1
+		<if test="warnIndex==-1">
+			AND isNull(A.warnIndex)
+		</if>
+		<if test="warnIndex!=-1 and warnIndex!=-2">
+			AND A.warnIndex LIKE CONCAT(CONCAT('%', #{warnIndex}),'%')
+		</if>
+		limit ${limits}
+	</select>
+
+	<!-- 终端列表数量 -->
+	<select id="getEquipListCount" resultType="Integer">
+		SELECT COUNT(*) FROM(SELECT
+		HAEI.id,HAEI.message,HAEI.addr,HAS.site_code,HAS.site_name,HAEI.line_code,HAEI.equip_place,GROUP_CONCAT(DISTINCT
+		HAWL.warning_index) warnIndex
+		FROM hixent_arc_system.hixent_arc_equipment_info HAEI
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.eid=HAEI.id AND HAWL.etype IN(0,2) AND HAWL.is_deal IN (0,2)
+		WHERE HAU.id=#{appUserId}
+		<if test="siteCode!=null and siteCode!=''">
+			AND HAS.site_code=#{siteCode}
+		</if>
+		<if test="equipType!=-1">
+			AND HAEI.type=#{equipType}
+		</if>
+
+		<if test="isMqttEquip!=-1">
+			AND HAEI.device_type=#{isMqttEquip}
+		</if>
+		<if test="inquire!=null and inquire!=''">
+			AND (HAEI.addr LIKE CONCAT(CONCAT('%', #{inquire}),'%'))
+		</if>
+
+		GROUP BY HAEI.id)A WHERE 1=1
+		<if test="warnIndex==-1">
+			AND isNull(A.warnIndex)
+		</if>
+		<if test="warnIndex!=-1 and warnIndex!=-2">
+			AND A.warnIndex LIKE CONCAT(CONCAT('%', #{warnIndex}),'%')
+		</if>
+
+	</select>
+
+	<!-- 中控详情 -->
+	<select id="getDeviceInfo" resultMap="deviceAndEquipResultMap">
+		SELECT
+		HAED.id,HAED.specificator,HAED.device_code,HAED.device_place,HAED.niName,HAS.site_name,HAS.site_code,
+		GROUP_CONCAT(DISTINCT HAP.protocol_node)node
+		FROM hixent_arc_system.hixent_arc_efm_device HAED
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.efm_id=HAED.id AND HAWL.etype=1 AND HAWL.is_deal IN (0,2)
+		LEFT JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+		WHERE HAED.id=#{deviceId}
+		GROUP BY HAED.id
+	</select>
+
+	<!-- 终端详情 -->
+	<select id="getEquipInfo" resultMap="deviceAndEquipResultMap">
+		SELECT
+		HAEI.id,HAEI.addr,HAEI.line_code,HAEI.message,HAEI.equip_place,HAS.site_name,HAS.site_code,
+		HAEI.tem0,HAEI.tem1,HAEI.tem2,HAEI.tem3,HAEI.tem4,HAEI.AVoltage,HAEI.BVoltage,HAEI.CVoltage,
+		HAEI.BCurrent,HAEI.CCurrent,HAEI.ACurrent,
+		GROUP_CONCAT(DISTINCT HAP.protocol_node)node FROM
+		hixent_arc_system.hixent_arc_equipment_info HAEI
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON
+		HAWL.eid=HAEI.id AND HAWL.is_deal IN (0,2)
+		LEFT JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+		WHERE HAEI.id=#{equipId}
+		GROUP BY HAEI.id
+
+	</select>
+	
+	<!-- 修改项目 -->
+	<update id="update" parameterType="com.qf.model.fire.HixentArcSite">
+		update hixent_arc_system.hixent_arc_site 
+		<set>
+			<if test="siteCode != null">`site_code` = #{siteCode}, </if>
+			<if test="siteName != null">`site_name` = #{siteName}, </if>
+			<if test="sitePlace != null">`site_place` = #{sitePlace}, </if>
+			<if test="siteBuildId != null">`site_build_id` = #{siteBuildId}, </if>
+			<if test="longitute != null">`longitute` = #{longitute}, </if>
+			<if test="latitude != null">`latitude` = #{latitude}, </if>
+			<if test="mapNum != null">`map_num` = #{mapNum}, </if>
+			<if test="logoFileName != null">`logo_file_name` = #{logoFileName}, </if>
+			<if test="logoFileUrl != null">`logo_file_url` = #{logoFileUrl}, </if>
+			<if test="logoRelativeFileUrl != null">`logo_relative_file_url` = #{logoRelativeFileUrl}, </if>
+			<if test="backFileName != null">`back_file_name` = #{backFileName}, </if>
+			<if test="backFileUrl != null">`back_file_url` = #{backFileUrl}, </if>
+			<if test="backRelativeFileUrl != null">`back_relative_file_url` = #{backRelativeFileUrl}</if>
+		</set>
+		where site_id = #{siteId}
+	</update>
+	
+	<!-- 通过站点编号，获取站点数据 -->
+	<select id="getSite" resultType="com.qf.model.fire.HixentArcSite">
+		SELECT
+			`site_id` as siteId,
+			`site_code` as siteCode,
+			`site_name` as siteName,
+			`site_place` as sitePlace,
+			`site_build_id` as siteBuildId,
+			`longitute` as longitute,
+			`latitude` as latitude,
+			`map_num` as mapNum,
+			`logo_file_name` as logoFileName,
+			`logo_file_url` as logoFileUrl,
+			`logo_relative_file_url` as logoRelativeFileUrl,
+			`back_file_name` as backFileName,
+			`back_file_url` as backFileUrl,
+			`back_relative_file_url` as backRelativeFileUrl
+		FROM
+			hixent_arc_system.hixent_arc_site
+		WHERE
+			site_code = #{value}
+	</select>
+	
+	<!-- 通过id，获取站点数据 -->
+	<select id="getSiteById" resultType="com.qf.model.fire.HixentArcSite">
+		SELECT
+			`site_id` as siteId,
+			`site_code` as siteCode,
+			`site_name` as siteName,
+			`site_place` as sitePlace,
+			`site_build_id` as siteBuildId,
+			`longitute` as longitute,
+			`latitude` as latitude,
+			`map_num` as mapNum,
+			`logo_file_name` as logoFileName,
+			`logo_file_url` as logoFileUrl,
+			`logo_relative_file_url` as logoRelativeFileUrl,
+			`back_file_name` as backFileName,
+			`back_file_url` as backFileUrl,
+			`back_relative_file_url` as backRelativeFileUrl
+		FROM
+			hixent_arc_system.hixent_arc_site
+		WHERE
+			site_id = #{value}
+	</select>
+</mapper>

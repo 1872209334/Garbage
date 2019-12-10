@@ -1,0 +1,520 @@
+Building file: /home/wjr/project/platform/server/../common/logger.c
+Invoking: gcc C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"logger.d" -MT"logger.d" -o "logger.o" "/home/wjr/project/platform/server/../common/logger.c" -I/home/wjr/project/platform/server/../3rd_party/libevent/include -I/home/wjr/project/platform/server/../common -I/home/wjr/project/platform/server/../curl-7.62.0/include -I/usr/include/mysql -DHAVE_GETOPT_LONG
+Finished building: /home/wjr/project/platform/server/../common/logger.c
+ 
+Building file: /home/wjr/project/platform/server/../common/thread.c
+Invoking: gcc C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"thread.d" -MT"thread.d" -o "thread.o" "/home/wjr/project/platform/server/../common/thread.c" -I/home/wjr/project/platform/server/../3rd_party/libevent/include -I/home/wjr/project/platform/server/../common -I/home/wjr/project/platform/server/../curl-7.62.0/include -I/usr/include/mysql -DHAVE_GETOPT_LONG
+Finished building: /home/wjr/project/platform/server/../common/thread.c
+ 
+Building file: /home/wjr/project/platform/server/../server/server.c
+Invoking: gcc C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"server.d" -MT"server.d" -o "server.o" "/home/wjr/project/platform/server/../server/server.c" -I/home/wjr/project/platform/server/../3rd_party/libevent/include -I/home/wjr/project/platform/server/../common -I/home/wjr/project/platform/server/../curl-7.62.0/include -I/usr/include/mysql -DHAVE_GETOPT_LONG
+Finished building: /home/wjr/project/platform/server/../server/server.c
+ 
+Building file: /home/wjr/project/platform/server/../server/analy.c
+Invoking: gcc C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"analy.d" -MT"analy.d" -o "analy.o" "/home/wjr/project/platform/server/../server/analy.c" -I/home/wjr/project/platform/server/../3rd_party/libevent/include -I/home/wjr/project/platform/server/../common -I/home/wjr/project/platform/server/../curl-7.62.0/include -I/usr/include/mysql -DHAVE_GETOPT_LONG
+/home/wjr/project/platform/server/../server/analy.c:25:6: 错误：与‘analy_message’类型冲突
+ u8_t analy_message(struct message_inform *inform, u8_t *buf, u16_t len)
+      ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:80:6: 附注：‘analy_message’的上一个声明在此
+ void analy_message(struct message_inform *inform, u8_t *buf, u16_t size);
+      ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘analy_message’中:
+/home/wjr/project/platform/server/../server/analy.c:97:4: 警告：传递‘OMC_McpaInput’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+    OMC_McpaInput(buf,len, &inform);
+    ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:85:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMC_McpaInput(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:29:8: 警告：未使用的变量‘copyBuf’ [-Wunused-variable]
+  u8_t *copyBuf;
+        ^
+/home/wjr/project/platform/server/../server/analy.c:28:8: 警告：变量‘copyLen’被设定但未被使用 [-Wunused-but-set-variable]
+  u16_t copyLen;
+        ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘HDP_CrcVef’中:
+/home/wjr/project/platform/server/../server/analy.c:189:2: 警告：隐式声明函数‘ustrcalcrc’ [-Wimplicit-function-declaration]
+  crcval = ustrcalcrc(pcmd + 1, cmdlen - 4);
+  ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘OMC_McpaInput’中:
+/home/wjr/project/platform/server/../server/analy.c:247:10: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  mcpaBuf = *buf;
+          ^
+/home/wjr/project/platform/server/../server/analy.c:266:5: 警告：传递‘OMCPA_CmdReplyToOmc’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+     OMCPA_CmdReplyToOmc(mcpaBuf, mcpaLen, &inform);
+     ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:87:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMCPA_CmdReplyToOmc(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:276:4: 警告：传递‘OMCPA_CmdReplyToOmc’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+    OMCPA_CmdReplyToOmc(mcpaBuf, mcpaLen, &inform);
+    ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:87:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMCPA_CmdReplyToOmc(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:287:4: 警告：传递‘OMCPA_CmdReplyToOmc’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+    OMCPA_CmdReplyToOmc(mcpaBuf, mcpaLen, &inform);
+    ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:87:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMCPA_CmdReplyToOmc(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:293:4: 警告：传递‘OMCPA_CmdReplyToOmc’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+    OMCPA_CmdReplyToOmc(mcpaBuf, mcpaLen, &inform);
+    ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:87:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMCPA_CmdReplyToOmc(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:299:4: 警告：传递‘OMCPA_CmdReplyToOmc’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+    OMCPA_CmdReplyToOmc(mcpaBuf, mcpaLen, &inform);
+    ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:87:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ u8_t OMCPA_CmdReplyToOmc(u8_t *buf, u16_t len, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:327:6: 警告：传递‘createSite’的第 3 个参数时在不兼容的指针类型间转换 [默认启用]
+      createSite(mcpaBuf, mcpaLen, &inform);
+      ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.h:91:6: 附注：需要类型‘struct message_inform *’，但实参的类型为‘struct message_inform **’
+ void createSite(u8_t *pcmd, u16_t cmdlen, struct message_inform *inform);
+      ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘OMCPA_CmdReplyToOmc’中:
+/home/wjr/project/platform/server/../server/analy.c:394:2: 错误：无效的初始值设定
+  char siteNo[] = buf[3] + buf[4] + buf[5] + buf[6];
+  ^
+/home/wjr/project/platform/server/../server/analy.c:395:2: 错误：无效的初始值设定
+  char devNo[] = buf[7];
+  ^
+/home/wjr/project/platform/server/../server/analy.c:396:7: 错误：在‘ip’中缺少数组大小
+  char ip[];
+       ^
+/home/wjr/project/platform/server/../server/analy.c:398:2: 警告：隐式声明函数‘rt_malloc’ [-Wimplicit-function-declaration]
+  ptmp = rt_malloc(OMCPA_PACKAGE_MAX_LEN);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:398:7: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  ptmp = rt_malloc(OMCPA_PACKAGE_MAX_LEN);
+       ^
+/home/wjr/project/platform/server/../server/analy.c:399:14: 错误：‘NULL’未声明(在此函数内第一次使用)
+  if (ptmp == NULL) {
+              ^
+/home/wjr/project/platform/server/../server/analy.c:399:14: 附注：每个未声明的标识符在其出现的函数内只报告一次
+/home/wjr/project/platform/server/../server/analy.c:399:11: 警告：比较不相关的指针时缺少类型转换 [默认启用]
+  if (ptmp == NULL) {
+           ^
+/home/wjr/project/platform/server/../server/analy.c:402:11: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  replyBuf = *buf;
+           ^
+/home/wjr/project/platform/server/../server/analy.c:409:28: 错误：‘uint8’未声明(在此函数内第一次使用)
+  replyBuf[replylen - 3] = (uint8)crcval;
+                            ^
+/home/wjr/project/platform/server/../server/analy.c:409:25: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+  replyBuf[replylen - 3] = (uint8)crcval;
+                         ^
+/home/wjr/project/platform/server/../server/analy.c:409:34: 错误：expected ‘;’ before ‘crcval’
+  replyBuf[replylen - 3] = (uint8)crcval;
+                                  ^
+/home/wjr/project/platform/server/../server/analy.c:410:34: 错误：called object is not a function or function pointer
+  replyBuf[replylen - 2] = (uint8)(crcval >> 8);
+                                  ^
+/home/wjr/project/platform/server/../server/analy.c:410:25: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+  replyBuf[replylen - 2] = (uint8)(crcval >> 8);
+                         ^
+/home/wjr/project/platform/server/../server/analy.c:415:8: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+   *buf = ptmp;
+        ^
+/home/wjr/project/platform/server/../server/analy.c:418:2: 错误：未知的类型名‘MYSQL’
+  MYSQL mysql;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:419:2: 错误：未知的类型名‘MYSQL_RES’
+  MYSQL_RES *res;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:420:2: 错误：未知的类型名‘MYSQL_ROW’
+  MYSQL_ROW row; char *query; int flag, t;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:425:2: 警告：隐式声明函数‘mysql_init’ [-Wimplicit-function-declaration]
+  mysql_init(&mysql);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:427:2: 警告：隐式声明函数‘mysql_real_connect’ [-Wimplicit-function-declaration]
+  if (!mysql_real_connect(&mysql, server, user, password, database, 3306, NULL, 0)) {
+  ^
+/home/wjr/project/platform/server/../server/analy.c:428:3: 警告：隐式声明函数‘printf’ [-Wimplicit-function-declaration]
+   printf("Failed to connect to Mysql!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:428:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+/home/wjr/project/platform/server/../server/analy.c:431:71: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = " + siteNo + " and device_code = " + devNo;
+                                                                       ^
+/home/wjr/project/platform/server/../server/analy.c:431:80: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = " + siteNo + " and device_code = " + devNo;
+                                                                                ^
+/home/wjr/project/platform/server/../server/analy.c:431:104: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = " + siteNo + " and device_code = " + devNo;
+                                                                                                        ^
+/home/wjr/project/platform/server/../server/analy.c:432:2: 警告：隐式声明函数‘mysql_real_query’ [-Wimplicit-function-declaration]
+  flag = mysql_real_query(&mysql, query, (unsigned int)strlen(query));
+  ^
+/home/wjr/project/platform/server/../server/analy.c:432:2: 警告：隐式声明函数‘strlen’ [-Wimplicit-function-declaration]
+/home/wjr/project/platform/server/../server/analy.c:432:55: 警告：隐式声明与内建函数‘strlen’不兼容 [默认启用]
+  flag = mysql_real_query(&mysql, query, (unsigned int)strlen(query));
+                                                       ^
+/home/wjr/project/platform/server/../server/analy.c:434:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Query failed!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:438:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("[%s] made...\n", query);
+   ^
+/home/wjr/project/platform/server/../server/analy.c:440:2: 警告：隐式声明函数‘mysql_store_result’ [-Wimplicit-function-declaration]
+  res = mysql_store_result(&mysql);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:440:6: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  res = mysql_store_result(&mysql);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:441:2: 警告：隐式声明函数‘mysql_fetch_row’ [-Wimplicit-function-declaration]
+  row = mysql_fetch_row(res);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:442:10: 错误：subscripted value is neither array nor pointer nor vector
+  ip = row[16];
+          ^
+/home/wjr/project/platform/server/../server/analy.c:442:5: 错误：将‘char *’赋值给‘char[1]’时类型不兼容
+  ip = row[16];
+     ^
+/home/wjr/project/platform/server/../server/analy.c:442:2: 警告：语句不起作用 [-Wunused-value]
+  ip = row[16];
+  ^
+/home/wjr/project/platform/server/../server/analy.c:444:2: 警告：隐式声明函数‘sendto’ [-Wimplicit-function-declaration]
+  sendto(inform->sd, replyBuf, sizeof(replyBuf), 0, inet_addr(ip), sizeof(ip));
+  ^
+/home/wjr/project/platform/server/../server/analy.c:444:2: 警告：隐式声明函数‘inet_addr’ [-Wimplicit-function-declaration]
+/home/wjr/project/platform/server/../server/analy.c:420:40: 警告：未使用的变量‘t’ [-Wunused-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+                                        ^
+/home/wjr/project/platform/server/../server/analy.c:420:12: 警告：变量‘row’被设定但未被使用 [-Wunused-but-set-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+            ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘OMC_McpaPduAnaly’中:
+/home/wjr/project/platform/server/../server/analy.c:493:30: 错误：‘uint16’未声明(在此函数内第一次使用)
+   cmdid = pcmd[13 + cnt] | ((uint16)(pcmd[14 + cnt]) << 8);
+                              ^
+/home/wjr/project/platform/server/../server/analy.c:493:37: 错误：called object is not a function or function pointer
+   cmdid = pcmd[13 + cnt] | ((uint16)(pcmd[14 + cnt]) << 8);
+                                     ^
+/home/wjr/project/platform/server/../server/analy.c:493:54: 错误：双目运算符 << 操作数(‘char *’和‘int’)无效
+   cmdid = pcmd[13 + cnt] | ((uint16)(pcmd[14 + cnt]) << 8);
+                                                      ^
+/home/wjr/project/platform/server/../server/analy.c:493:26: 错误：双目运算符 | 操作数(‘int’和‘char *’)无效
+   cmdid = pcmd[13 + cnt] | ((uint16)(pcmd[14 + cnt]) << 8);
+                          ^
+/home/wjr/project/platform/server/../server/analy.c:493:9: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+   cmdid = pcmd[13 + cnt] | ((uint16)(pcmd[14 + cnt]) << 8);
+         ^
+In file included from /home/wjr/project/platform/server/../server/analy.c:1:0:
+/home/wjr/project/platform/server/../server/analy.c:495:28: 错误：‘OMCATable’未声明(在此函数内第一次使用)
+   for (i = 0; i<OS_COUNTOF(OMCATable); i++) {
+                            ^
+/home/wjr/project/platform/server/../server/analy.h:45:31: 附注：in definition of macro ‘OS_COUNTOF’
+ #define OS_COUNTOF(a) (sizeof(a) / sizeof(a[0]))
+                               ^
+/home/wjr/project/platform/server/../server/analy.h:45:34: 错误：双目运算符 / 操作数(‘char *’和‘long unsigned int’)无效
+ #define OS_COUNTOF(a) (sizeof(a) / sizeof(a[0]))
+                                  ^
+/home/wjr/project/platform/server/../server/analy.c:495:17: 附注：in expansion of macro ‘OS_COUNTOF’
+   for (i = 0; i<OS_COUNTOF(OMCATable); i++) {
+                 ^
+/home/wjr/project/platform/server/../server/analy.c:495:16: 警告：比较指针和整数 [默认启用]
+   for (i = 0; i<OS_COUNTOF(OMCATable); i++) {
+                ^
+/home/wjr/project/platform/server/../server/analy.c:496:20: 错误：在非结构或联合中请求成员‘CmdId’
+    if (OMCATable[i].CmdId == cmdid) {
+                    ^
+/home/wjr/project/platform/server/../server/analy.c:496:27: 警告：比较指针和整数 [默认启用]
+    if (OMCATable[i].CmdId == cmdid) {
+                           ^
+/home/wjr/project/platform/server/../server/analy.c:497:21: 错误：在非结构或联合中请求成员‘PduLen’
+     if (OMCATable[i].PduLen != pdulen) {
+                     ^
+/home/wjr/project/platform/server/../server/analy.c:497:29: 警告：比较指针和整数 [默认启用]
+     if (OMCATable[i].PduLen != pdulen) {
+                             ^
+/home/wjr/project/platform/server/../server/analy.c:498:6: 警告：隐式声明函数‘mda_log’ [-Wimplicit-function-declaration]
+      mda_log(LG_ERR, "command=0x%X Command body length is invalid", cmdid);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:498:14: 错误：‘LG_ERR’未声明(在此函数内第一次使用)
+      mda_log(LG_ERR, "command=0x%X Command body length is invalid", cmdid);
+              ^
+/home/wjr/project/platform/server/../server/analy.c:501:21: 错误：在非结构或联合中请求成员‘DoSpecial’
+     if (OMCATable[i].DoSpecial) {
+                     ^
+/home/wjr/project/platform/server/../server/analy.c:502:27: 错误：在非结构或联合中请求成员‘DoSpecial’
+      result = OMCATable[i].DoSpecial(cmdflg, i, pcmd + 16 + cnt);
+                           ^
+/home/wjr/project/platform/server/../server/analy.c:502:37: 错误：called object is not a function or function pointer
+      result = OMCATable[i].DoSpecial(cmdflg, i, pcmd + 16 + cnt);
+                                     ^
+/home/wjr/project/platform/server/../server/analy.c:502:13: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+      result = OMCATable[i].DoSpecial(cmdflg, i, pcmd + 16 + cnt);
+             ^
+/home/wjr/project/platform/server/../server/analy.c: 在文件作用域：
+/home/wjr/project/platform/server/../server/analy.c:522:1: 错误：未知的类型名‘s8_t’
+ s8_t OMCPA_ReplyCmdDeal(u8_t *pcmd, u16_t ulen)
+ ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘OMCPA_ReplyCmdDeal’中:
+/home/wjr/project/platform/server/../server/analy.c:524:9: 错误：‘HDP_DONE_OK’未声明(在此函数内第一次使用)
+  return HDP_DONE_OK;
+         ^
+/home/wjr/project/platform/server/../server/analy.c:524:2: 警告：返回时将指针赋给整数，未作类型转换 [默认启用]
+  return HDP_DONE_OK;
+  ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘sendAlarm’中:
+/home/wjr/project/platform/server/../server/analy.c:571:2: 错误：未知的类型名‘CURL’
+  CURL *curl;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:572:2: 错误：未知的类型名‘CURLcode’
+  CURLcode res;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:574:2: 错误：expected ‘,’ or ‘;’ before ‘curl’
+  curl = curl_easy_init();
+  ^
+/home/wjr/project/platform/server/../server/analy.c:577:3: 警告：隐式声明函数‘curl_easy_setopt’ [-Wimplicit-function-declaration]
+   curl_easy_setopt(curl, CURLOPT_URL, "http://192.168.1.102/fjStreetLight/index.php/Service/test/test");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:577:26: 错误：‘CURLOPT_URL’未声明(在此函数内第一次使用)
+   curl_easy_setopt(curl, CURLOPT_URL, "http://192.168.1.102/fjStreetLight/index.php/Service/test/test");
+                          ^
+/home/wjr/project/platform/server/../server/analy.c:578:26: 错误：‘CURLOPT_POST’未声明(在此函数内第一次使用)
+   curl_easy_setopt(curl, CURLOPT_POST, 1);
+                          ^
+/home/wjr/project/platform/server/../server/analy.c:579:26: 错误：‘CURLOPT_POSTFIELDS’未声明(在此函数内第一次使用)
+   curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data);
+                          ^
+/home/wjr/project/platform/server/../server/analy.c:580:3: 警告：隐式声明函数‘curl_easy_perform’ [-Wimplicit-function-declaration]
+   res = curl_easy_perform(curl);
+   ^
+/home/wjr/project/platform/server/../server/analy.c:581:3: 警告：隐式声明函数‘curl_easy_cleanup’ [-Wimplicit-function-declaration]
+   curl_easy_cleanup(curl);
+   ^
+/home/wjr/project/platform/server/../server/analy.c:584:2: 错误：未知的类型名‘MYSQL’
+  MYSQL mysql;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:585:2: 错误：未知的类型名‘MYSQL_RES’
+  MYSQL_RES *res;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:585:13: 错误：与‘res’类型冲突
+  MYSQL_RES *res;
+             ^
+/home/wjr/project/platform/server/../server/analy.c:572:11: 附注：‘res’的上一个声明在此
+  CURLcode res;
+           ^
+/home/wjr/project/platform/server/../server/analy.c:586:2: 错误：未知的类型名‘MYSQL_ROW’
+  MYSQL_ROW row; char *query; int flag, t;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:593:74: 错误：‘NULL’未声明(在此函数内第一次使用)
+  if (!mysql_real_connect(&mysql, server, user, password, database, 3306, NULL, 0)){
+                                                                          ^
+/home/wjr/project/platform/server/../server/analy.c:594:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Failed to connect to Mysql!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:595:3: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+   return 0;
+   ^
+/home/wjr/project/platform/server/../server/analy.c:598:55: 警告：隐式声明与内建函数‘strlen’不兼容 [默认启用]
+  flag = mysql_real_query(&mysql, query, (unsigned int)strlen(query));
+                                                       ^
+/home/wjr/project/platform/server/../server/analy.c:600:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Insert data failure!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:601:3: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+   return 0;
+   ^
+/home/wjr/project/platform/server/../server/analy.c:604:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Insert data success!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:607:2: 警告：隐式声明函数‘mysql_close’ [-Wimplicit-function-declaration]
+  mysql_close(&mysql);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:608:2: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+  return 0;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:586:40: 警告：未使用的变量‘t’ [-Wunused-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+                                        ^
+/home/wjr/project/platform/server/../server/analy.c:586:12: 警告：未使用的变量‘row’ [-Wunused-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+            ^
+/home/wjr/project/platform/server/../server/analy.c:585:13: 警告：未使用的变量‘res’ [-Wunused-variable]
+  MYSQL_RES *res;
+             ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘createSite’中:
+/home/wjr/project/platform/server/../server/analy.c:613:2: 错误：无效的初始值设定
+  char siteNo[] = pcmd[3] + pcmd[4] + pcmd[5] + pcmd[6];
+  ^
+/home/wjr/project/platform/server/../server/analy.c:614:2: 错误：无效的初始值设定
+  char devNo[] = pcmd[7];
+  ^
+/home/wjr/project/platform/server/../server/analy.c:615:2: 错误：无效的初始值设定
+  char clientIp[] = inform->ip;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:617:2: 错误：未知的类型名‘MYSQL’
+  MYSQL mysql;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:618:2: 错误：未知的类型名‘MYSQL_RES’
+  MYSQL_RES *res;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:619:2: 错误：未知的类型名‘MYSQL_ROW’
+  MYSQL_ROW row; char *query; int flag, t;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:626:74: 错误：‘NULL’未声明(在此函数内第一次使用)
+  if (!mysql_real_connect(&mysql, server, user, password, database, 3306, NULL, 0)) {
+                                                                          ^
+/home/wjr/project/platform/server/../server/analy.c:627:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Failed to connect to Mysql!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:628:3: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+   return 0;
+   ^
+/home/wjr/project/platform/server/../server/analy.c:630:70: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = "+ siteNo + " and device_code = "+ devNo;
+                                                                      ^
+/home/wjr/project/platform/server/../server/analy.c:630:79: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = "+ siteNo + " and device_code = "+ devNo;
+                                                                               ^
+/home/wjr/project/platform/server/../server/analy.c:630:102: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+  query = "select * from hixent_arc_equipment_info where site_code = "+ siteNo + " and device_code = "+ devNo;
+                                                                                                      ^
+/home/wjr/project/platform/server/../server/analy.c:631:55: 警告：隐式声明与内建函数‘strlen’不兼容 [默认启用]
+  flag = mysql_real_query(&mysql, query, (unsigned int)strlen(query));
+                                                       ^
+/home/wjr/project/platform/server/../server/analy.c:633:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("Query failed!\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:634:3: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+   return 0;
+   ^
+/home/wjr/project/platform/server/../server/analy.c:637:3: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+   printf("[%s] made...\n", query);
+   ^
+/home/wjr/project/platform/server/../server/analy.c:639:6: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  res = mysql_store_result(&mysql);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:640:2: 警告：隐式声明函数‘mysql_num_rows’ [-Wimplicit-function-declaration]
+  num = mysql_num_rows(res);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:642:95: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                               ^
+/home/wjr/project/platform/server/../server/analy.c:642:103: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                                       ^
+/home/wjr/project/platform/server/../server/analy.c:642:111: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                                               ^
+/home/wjr/project/platform/server/../server/analy.c:642:120: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                                                        ^
+/home/wjr/project/platform/server/../server/analy.c:642:126: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                                                              ^
+/home/wjr/project/platform/server/../server/analy.c:642:136: 错误：双目运算符 + 操作数(‘char *’和‘char *’)无效
+   query = "insert into hixent_arc_equipment_info (device_code,site_code,device_ip) values ('" + devNo + "','" + siteNo +"','"+ clientIp+"')";
+                                                                                                                                        ^
+/home/wjr/project/platform/server/../server/analy.c:645:4: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+    printf("Insert data failure!\n");
+    ^
+/home/wjr/project/platform/server/../server/analy.c:646:4: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+    return 0;
+    ^
+/home/wjr/project/platform/server/../server/analy.c:649:4: 警告：隐式声明与内建函数‘printf’不兼容 [默认启用]
+    printf("Insert data success!\n");
+    ^
+/home/wjr/project/platform/server/../server/analy.c:659:2: 警告：隐式声明函数‘mysql_free_result’ [-Wimplicit-function-declaration]
+  mysql_free_result(res);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:661:2: 警告：在无返回值的函数中，‘return’带返回值 [默认启用]
+  return 0;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:619:40: 警告：未使用的变量‘t’ [-Wunused-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+                                        ^
+/home/wjr/project/platform/server/../server/analy.c:619:12: 警告：未使用的变量‘row’ [-Wunused-variable]
+  MYSQL_ROW row; char *query; int flag, t;
+            ^
+/home/wjr/project/platform/server/../server/analy.c: 在函数‘OMC_MCPB_Input’中:
+/home/wjr/project/platform/server/../server/analy.c:689:3: 警告：隐式声明函数‘app_log’ [-Wimplicit-function-declaration]
+   app_log(LG_ERR, "MDPUN: -D- pCmd len err \r\n");
+   ^
+/home/wjr/project/platform/server/../server/analy.c:689:11: 错误：‘LG_ERR’未声明(在此函数内第一次使用)
+   app_log(LG_ERR, "MDPUN: -D- pCmd len err \r\n");
+           ^
+/home/wjr/project/platform/server/../server/analy.c:693:2: 警告：隐式声明函数‘HDP_McpbLenVef’ [-Wimplicit-function-declaration]
+  if (HDP_McpbLenVef(buf, len) != OMC_DONE_OK) {
+  ^
+/home/wjr/project/platform/server/../server/analy.c:701:10: 警告：赋值时将整数赋给指针，未作类型转换 [默认启用]
+  mcpbBuf = *buf;
+          ^
+/home/wjr/project/platform/server/../server/analy.c:709:2: 错误：‘cmdlen’未声明(在此函数内第一次使用)
+  cmdlen -= 17;
+  ^
+/home/wjr/project/platform/server/../server/analy.c:709:2: 警告：语句不起作用 [-Wunused-value]
+/home/wjr/project/platform/server/../server/analy.c:720:33: 错误：‘uint16’未声明(在此函数内第一次使用)
+   cmdid = mcpbBuf[16 + cnt] | ((uint16)(mcpbBuf[17 + cnt]) << 8);
+                                 ^
+/home/wjr/project/platform/server/../server/analy.c:720:40: 错误：called object is not a function or function pointer
+   cmdid = mcpbBuf[16 + cnt] | ((uint16)(mcpbBuf[17 + cnt]) << 8);
+                                        ^
+/home/wjr/project/platform/server/../server/analy.c:720:60: 错误：双目运算符 << 操作数(‘char *’和‘int’)无效
+   cmdid = mcpbBuf[16 + cnt] | ((uint16)(mcpbBuf[17 + cnt]) << 8);
+                                                            ^
+/home/wjr/project/platform/server/../server/analy.c:720:29: 错误：双目运算符 | 操作数(‘int’和‘char *’)无效
+   cmdid = mcpbBuf[16 + cnt] | ((uint16)(mcpbBuf[17 + cnt]) << 8);
+                             ^
+/home/wjr/project/platform/server/../server/analy.c:720:9: 警告：赋值时将指针赋给整数，未作类型转换 [默认启用]
+   cmdid = mcpbBuf[16 + cnt] | ((uint16)(mcpbBuf[17 + cnt]) << 8);
+         ^
+/home/wjr/project/platform/server/../server/analy.c:727:27: 错误：‘OMCB_CMD_MAX’未声明(在此函数内第一次使用)
+   for (index = 0; index < OMCB_CMD_MAX; index++) {
+                           ^
+/home/wjr/project/platform/server/../server/analy.c:727:25: 警告：比较指针和整数 [默认启用]
+   for (index = 0; index < OMCB_CMD_MAX; index++) {
+                         ^
+/home/wjr/project/platform/server/../server/analy.c:729:8: 错误：‘OMCB_Table’未声明(在此函数内第一次使用)
+    if (OMCB_Table[index].CmdId == cmdid) {
+        ^
+/home/wjr/project/platform/server/../server/analy.c:729:25: 错误：在非结构或联合中请求成员‘CmdId’
+    if (OMCB_Table[index].CmdId == cmdid) {
+                         ^
+/home/wjr/project/platform/server/../server/analy.c:729:32: 警告：比较指针和整数 [默认启用]
+    if (OMCB_Table[index].CmdId == cmdid) {
+                                ^
+/home/wjr/project/platform/server/../server/analy.c:730:26: 错误：在非结构或联合中请求成员‘DoSpecial’
+     if (OMCB_Table[index].DoSpecial != NULL) {
+                          ^
+/home/wjr/project/platform/server/../server/analy.c:730:40: 错误：‘NULL’未声明(在此函数内第一次使用)
+     if (OMCB_Table[index].DoSpecial != NULL) {
+                                        ^
+/home/wjr/project/platform/server/../server/analy.c:731:23: 错误：在非结构或联合中请求成员‘DoSpecial’
+      OMCB_Table[index].DoSpecial(cmdflg, index, pcmd + 14 + cnt);
+                       ^
+/home/wjr/project/platform/server/../server/analy.c:731:49: 错误：‘pcmd’未声明(在此函数内第一次使用)
+      OMCB_Table[index].DoSpecial(cmdflg, index, pcmd + 14 + cnt);
+                                                 ^
+/home/wjr/project/platform/server/../server/analy.c:731:33: 错误：called object is not a function or function pointer
+      OMCB_Table[index].DoSpecial(cmdflg, index, pcmd + 14 + cnt);
+                                 ^
+/home/wjr/project/platform/server/../server/analy.c:731:6: 警告：语句不起作用 [-Wunused-value]
+      OMCB_Table[index].DoSpecial(cmdflg, index, pcmd + 14 + cnt);
+      ^
+/home/wjr/project/platform/server/../server/analy.c:741:2: 警告：隐式声明函数‘OMC_CmdReplyToOmc’ [-Wimplicit-function-declaration]
+  OMC_CmdReplyToOmc(mcpbBuf, mcpbLen);
+  ^
+/home/wjr/project/platform/server/../server/analy.c:676:7: 警告：未使用的变量‘result’ [-Wunused-variable]
+  u8_t result;
+       ^
+make: *** [analy.o] 错误 1

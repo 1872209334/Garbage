@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.HixentArcIndexMapper">
+	<resultMap type="com.qf.model.fire.HixentArcBuild"
+		id="buildResult">
+		<result column="build_name" property="buildName" />
+		<result column="equipCount" property="equipCount" />
+	</resultMap>
+	<resultMap type="com.qf.model.admin.HixentArea"
+		id="areaResult">
+		<result column="area" property="areaName" />
+		<result column="equipCount" property="areaCount" />
+	</resultMap>
+	<resultMap type="com.qf.model.admin.HixentProvince"
+		id="provinceResult">
+		<result column="province" property="provinceName" />
+		<result column="equipCount" property="provinceCount" />
+	</resultMap>
+	<select id="siteCount" resultType="Integer">
+		SELECT COUNT(*) FROM hixent_arc_system.hixent_arc_site HAS WHERE HAS.site_id>0
+		<include refid="provinceAndArea"></include>
+
+	</select>
+	
+   <!-- 终端数 -->
+	<select id="equipCount" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI 
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		WHERE 1=1
+		 <if test="type!=-1">
+		 AND HAEI.type=#{type}
+		 </if>
+		<include refid="provinceAndArea"></include>
+
+	</select>
+	
+    <!-- 中控数 -->
+	<select id="deviceCount" resultType="Integer">
+		SELECT COUNT(*) FROM hixent_arc_system.`hixent_arc_efm_device` HAED
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+		 WHERE
+		1=1
+		<include refid="provinceAndArea"></include>
+
+	</select>
+	
+   <!-- 电弧探测器 -->
+	<select id="arcCountOfEquip" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE HAEI.type=0
+		<include refid="provinceAndArea"></include>
+
+	</select>
+  <!-- 组合式探测器-->
+	<select id="currentCountOfEquip" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE HAEI.type=1
+		<include refid="provinceAndArea"></include>
+
+	</select>
+
+	<select id="equipCountOffLine" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE HAEI.status=1
+		<include refid="provinceAndArea"></include>
+
+	</select>
+   <!-- 中控离线数 -->
+	<select id="deviceCountOfEquipOffLine" resultType="Integer">
+		SELECT COUNT(*) FROM hixent_arc_system.`hixent_arc_efm_device` WHERE
+		is_online=0
+	</select>
+    <!-- 电弧探测器离线数 -->
+	<select id="arcCountOfEquipOffLine" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE HAEI.status=1 AND HAEI.type=0
+		<include refid="provinceAndArea"></include>
+
+	</select>
+   <!-- 组合式探测器离线数 -->
+	<select id="currentCountOfEquipOffLine" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE HAEI.status=1 AND HAEI.type=1
+		<include refid="provinceAndArea"></include>
+
+	</select>
+
+	<select id="equipCountAlarm" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI WHERE (HAEI.temp_alarm_en>0 OR HAEI.arc_alarm_en=1 OR
+		HAEI.alive_en=1)
+		<include refid="provinceAndArea"></include>
+
+	</select>
+
+	<!-- 终端设备在线数 -->
+	<select id="equipCountOnLine" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		 WHERE HAEI.status=0
+		<include refid="provinceAndArea"></include>
+
+	</select>
+   <!-- 按建筑分组查询数量 -->
+	<select id="buildCount" resultMap="buildResult">
+	SELECT * FROM ( 
+       SELECT HAB.build_name,COUNT(HAEI.id) equipCount  FROM
+       hixent_arc_system.hixent_arc_build HAB LEFT JOIN 
+       hixent_arc_system.hixent_arc_site HAS ON HAB.id=HAS.site_build_id
+	   LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON 
+	   HAS.site_code=HAEI.site_code  
+	   <include refid="provinceAndArea"></include>
+	   WHERE HAB.id>0
+	  
+      GROUP BY HAB.id )A ORDER BY equipCount DESC
+		
+	</select>
+   <!-- 按省份分组查询数量 -->
+	<select id="provinceCount" resultMap="provinceResult">
+	SELECT * FROM (
+       SELECT HAP.province,COUNT(HAEI.id) equipCount  FROM  
+       hixent_user.hixent_arc_province HAP LEFT JOIN  hixent_arc_system.hixent_arc_equipment_info HAEI  
+       ON HAP.province_code=substring(HAEI.site_code ,1,2) GROUP BY HAP.id )A ORDER BY equipCount DESC
+	</select>
+    <!-- 按地区分组查询数量 --> 
+    <select id="areaCount" resultMap="areaResult">
+	SELECT * FROM (
+       SELECT HAA.area,COUNT(HAEI.id) equipCount FROM hixent_user.hixent_arc_area HAA 
+       LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON 
+       HAA.area_code=substring(HAEI.site_code ,3,2)
+       <if test="siteCordArr[0]!='0'.toString()">
+			AND HAEI.site_code IN
+			<foreach item="item" index="index" collection="siteCordArr"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		 </if>
+        WHERE HAA.pid= #{provinceId}
+           
+         
+      GROUP BY HAA.id)A ORDER BY equipCount DESC
+		
+	</select>
+	<!-- 终端设备故障数 -->
+	<select id="equipEffectCount" resultType="Integer">
+		SELECT COUNT(id) FROM hixent_arc_system.`hixent_arc_equipment_info`
+		HAEI JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+		 WHERE is_effect=1
+		<include refid="provinceAndArea"></include>
+
+	</select>
+	
+	<!-- 头部报警总数(中控)-->
+	<select id="headAlarmCount" resultType="Integer">
+	SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	 JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+	 JOIN  hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code 
+	WHERE HAWL.is_deal IN (0,2) AND HAWL.etype =1
+	<include refid="provinceAndArea"></include>
+	</select>
+	
+	<!-- 头部报警总数(终端)-->
+	<select id="headAlarmCountWireLess" resultType="Integer">
+	SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	  JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAWL.eid=HAEI.id
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+   WHERE HAWL.is_deal IN(0,2) 
+	<include refid="provinceAndArea"></include>
+	</select>
+	
+	<!-- 中控某问题类型数量 -->
+	<select id="deviceCountOfEquipAlarm" resultType="Integer">
+		SELECT COUNT(*) FROM (SELECT HAWL.warning_no FROM 
+		hixent_arc_system.hixent_arc_warning_list HAWL 
+		JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+        WHERE HAWL.etype=1 AND HAWL.is_deal IN (0,2)
+          <if test="warnIndex!=-1">
+         AND HAWL.warning_index = #{warnIndex}
+         </if>
+        
+        <include refid="provinceAndArea"></include>
+        GROUP BY HAWL.efm_id
+        )A
+	</select>
+   <!--电弧探测器某问题类型数量 -->
+	<select id="arcCountOfEquipAlarm" resultType="Integer">
+		SELECT COUNT(*) FROM (SELECT HAWL.warning_no
+		FROM
+		hixent_arc_system.hixent_arc_warning_list HAWL
+		JOIN
+		hixent_arc_system.hixent_arc_equipment_info HAEI
+		ON HAEI.id = HAWL.eid
+		JOIN hixent_arc_system.hixent_arc_site HAS
+		ON HAS.site_code = HAEI.site_code
+        WHERE HAWL.etype IN (0,2) AND HAWL.is_deal IN (0,2) AND HAEI.type=0 
+          <if test="warnIndex!=-1">
+         AND HAWL.warning_index = #{warnIndex}
+         </if>
+       
+		<include refid="provinceAndArea"></include>
+		 GROUP BY HAWL.eid
+      )A
+	</select>
+   <!--组合式探测器某问题类型数量 -->
+	<select id="currentCountOfEquipAlarm" resultType="Integer">
+		SELECT COUNT(*) FROM (SELECT HAWL.warning_no FROM 
+		hixent_arc_system.hixent_arc_warning_list HAWL JOIN 
+		hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+        WHERE HAWL.etype IN (0,2) AND HAWL.is_deal IN (0,2) AND HAEI.type=1 
+          <if test="warnIndex!=-1">
+         AND HAWL.warning_index = #{warnIndex}
+         </if>
+       
+		<include refid="provinceAndArea"></include>
+		 GROUP BY HAWL.eid
+      )A
+	</select>
+	
+	
+	<sql id="provinceAndArea">
+		<if test="provinceId!=0">
+			AND substring(HAS.site_code,1,2)=(SELECT HAP.province_code
+			FROM
+			hixent_arc_province HAP WHERE HAP.id=#{provinceId})
+		</if>
+		<if test="areaId!=0">
+			AND substring(HAS.site_code,3,2)=(SELECT HAA.area_code FROM
+			hixent_arc_area
+			HAA WHERE HAA.id=#{areaId} AND HAA.pid=#{provinceId})
+		</if>
+		<if test="siteCordArr[0]!='0'.toString()">
+			AND HAS.site_code IN
+			<foreach item="item" index="index" collection="siteCordArr"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+</mapper>

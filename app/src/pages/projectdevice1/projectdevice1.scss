@@ -1,0 +1,252 @@
+page-projectdevice1 {
+  .content{
+    background: #586983;
+  }
+  .project_header{
+    display: inline-block;
+    //height: 2.3rem;
+    background: #387EE8;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1.6rem;
+    //line-height: 2.3rem;
+    padding: 0.5rem 1.2rem;
+  }
+  .project_header>div{
+    width: 0;
+    height: 0;
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    color: #fff;
+    pointer-events: none;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 1rem;
+  }
+  .select-ios .select-placeholder{
+    color: #fff;
+  }
+  .select-ios .select-icon .select-icon-inner{
+    color: #fff;
+    top:55%;
+  }
+  .project_select_item,.item-divider-ios{
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .project_text1{
+
+  }
+  .project_text1.select-ios .select-placeholder,.select-text{
+    color: #387EE8;
+    display: inline-block;
+  }
+  .project_select.select-ios .select-icon {
+    position: relative;
+    float: right;
+    right: 4rem;
+  }
+  .project_text1.select-ios .select-icon .select-icon-inner{
+    color: #C7C7CC;
+    top:55%;
+  }
+  .devicerow{
+    width: 100%;
+    box-shadow: 0 0 0 !important;
+    background-color: #fff;
+  }
+
+  .home_h1_part{
+    width: 100%;
+    display: inline-block;
+    min-height:calc(100% - 20rem);
+    background-color: #F5F7FA;
+    padding:1rem;
+  }
+  .card-ios{
+    margin: 0.5rem 0 0 0;
+  }
+  .project_search{
+    display: block;
+    background: #586983;
+    padding: 0.5rem 4.4%;
+  }
+  .search_btn{
+    background-color: rgba(255,255,255,0.4);
+    width: 100%;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .loginoutbtn1{
+    border-radius: 4px;
+    margin:12px;
+    width:calc(24%);
+    background-color: #FFFFFF;
+    color: black;
+    padding: 0;
+    height: 3rem;
+    font-size: 13px;
+    left:70%;
+    top:-5rem;
+  }
+
+  .parent {
+    background: url('yourimage') no-repeat;
+    width: 100px;
+    height: 30px;
+    overflow: hidden;
+    color: #387EE8;
+  }
+
+  select {
+    width:   70px;
+    height:  37px;
+    padding: 0 0 0 10px;
+    text-align-last: center;
+    border-radius:30%;
+  }
+
+  .home_h1_color{
+    width: 100%;
+    height:18rem;
+    position: relative;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-color: #586983;
+  }
+
+  .project_change_btn{
+    float: right;
+    top: -3rem;
+    background: #fff;
+    color:#303133;
+    right: 1rem;
+    //height: 2.3rem;
+    border-radius: 4rem;
+    text-align: center;
+    line-height: 2.3rem;
+    font-size: 1.4rem;
+    position: relative;
+    padding: 0.2rem 1.2rem;
+  }
+
+  .project_header_msg{
+    display: flex;
+    width: 100%;
+    text-align: center;
+  }
+
+  .project_msg_item>div{
+    display: inline-block;
+  }
+
+  .project_msg_item{
+    flex: 1;
+  }
+
+  .project_msg_text1{
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .project_msg_text2{
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 2px;
+  }
+
+  .project_select{
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+  }
+
+  .project_box{
+    position: relative;
+    top:2rem;
+    margin-left:16px;
+    color:white;
+    margin-top:10px;
+    width:100%;
+    font-size:20px;
+  }
+
+  .project_box_text{
+    position: relative;
+    margin-left:0px;
+    color:#bbbbbb;
+    margin-top:20px;
+    width:100%;
+    font-size:13px;
+  }
+
+  .project_item_text{
+    font-size: 1.6rem;
+    height: 3rem;
+  }
+  .project_item_text p{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .project_item_img{
+    width: 3rem;
+    display: inline-block;
+    float: right;
+    position: relative;
+    top: -0.5rem;
+  }
+
+  .project_item_title{
+    color: #303133;
+    font-size: 2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    position: absolute;
+  }
+
+  .project_address{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    position: absolute;
+    text-align: right;
+    padding-right: 1rem;
+  }
+
+  .project_item_color1{
+    color: #387EE8;
+  }
+
+  .project_item_color2{
+    color: #909399;
+  }
+
+  .project_item_color3{
+    color: #F56C6C;
+  }
+
+  .project_float_right{
+    float: right;
+  }
+  .project_margin{
+    margin-top: 0.3rem;
+  }
+
+  .grid{
+    padding: 0.5rem 1rem;
+  }
+
+  ion-refresher{
+    position: relative;
+  }
+
+  ion-card{
+    border: none;
+  }
+}

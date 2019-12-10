@@ -1,0 +1,31 @@
+page-model {
+    text-align:center;
+    .scroll-content{
+        background-color: var(--background-color);
+    }
+}
+
+
+#registersuccess{
+    margin-top: 30%;
+    background: url("../assets/imgs/success_logo.png") round;
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 6rem;
+    //background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+}
+.model-p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+
+.login-page-model{
+    margin: 0 auto;
+    color: #ffeb8f;
+    font-size: 1.2rem;
+}

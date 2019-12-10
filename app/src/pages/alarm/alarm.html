@@ -1,0 +1,102 @@
+<ion-header no-border>
+  <div class="list_box">
+    <ion-navbar>
+      <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+    <div class="common_select">
+      <div (click)="headerSelect1()">{{header1}}<label class="common_select_icon"></label></div>
+      <!-- <div (click)="headerSelect2()">{{header2}}<label class="common_select_icon"></label></div>-->
+      <div (click)="headerSelect3()">{{header3}}<label class="common_select_icon"></label></div>
+    </div>
+    <div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow1}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems1"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected1(item)">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow2}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems2"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected2(item)">
+            {{ item.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="common_select_box" [ngClass]="{'common_select_show':selectShow3}" (click)="selectClose()">
+        <ul class="common_select_ul">
+          <li class="common_select_item" *ngFor="let item of headerItems3"
+              [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected3(item)">
+            {{ item.siteName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ion-header>
+<ion-content>
+  <!--<div style="margin-top: 2rem;font-size: 16px;text-align: center" *ngIf="warningList.length == 0">暂无报警设备</div>-->
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="下拉刷新"
+      refreshingSpinner="circles"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-item-group class="history_list">
+    <div style="margin-bottom: 0.2rem" *ngFor="let item of deviceList;let i = index">
+      <ion-item>
+        <div>
+          <span class="history_bian">编</span>
+          <span *ngIf="warmType==-1" class="history_common_text3">NO.{{item.deviceCode}}</span>
+          <span *ngIf="warmType==0" class="history_common_text3">NO.{{item.deviceCode2}}</span>
+          <span *ngIf="warmType==1" class="history_common_text3">NO.{{item.deviceCode}}</span>
+          <div class="do_warm" (click)="alarmDetail(item)">立即处理</div>
+        </div>
+        <div>
+          <div class="history_float_left">
+            <img class="history_img" src="../../assets/imgs/icon_location.png">
+            <span class="history_common_text">{{item.place}}</span>
+          </div>
+          <div class="history_float_right">
+            <img class='history_img' src="../../assets/imgs/icon_time.png">
+            <span class="history_common_text">{{item.warnTime}}</span>
+          </div>
+        </div>
+        <div class="history_common_text history_common_space">原因：{{item.warnName}}</div>
+      </ion-item>
+    </div>
+    <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多数据...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div *ngIf="!isMore && total > pageParam.page_size" class="text-align no-more">-No more-</div>
+  </ion-item-group>
+  <!--<div *ngIf="warningList.length != 0">-->
+  <!--<div *ngFor="let item of warningList;let i = index">-->
+  <!--<ion-card (click)="alarmDetail()" style="border-radius: 10px;margin: 20px;width: calc(100% - 40px)">-->
+  <!--<ion-card-header *ngIf="item.eid" style="color:red;background-color: #eee">终端号：{{item.eid}}</ion-card-header>-->
+  <!--<ion-card-header *ngIf="!item.eid" style="color:red;background-color: #eee">主机号：{{item.siteCode}}{{item.deviceCode}}</ion-card-header>-->
+  <!--<ion-card-content style="padding-top: 16px;padding-bottom: 5px;">-->
+  <!--<p>{{timestampToTime(item.warningTime)}}</p>-->
+  <!--<p style="margin-top: 8px;"><span style="margin-right: 6rem">{{item.protocolNode}}</span></p>-->
+  <!--<p style="margin-top: 8px;">{{item.address}}</p>-->
+  <!--<ion-row>-->
+  <!--<ion-col></ion-col>-->
+  <!--<ion-col style="text-align: right">-->
+  <!--<button ion-button icon-start small class="clear_btn" (click)="$event.stopPropagation();clearAlarm(item.etype,item.eid,item.siteCode,item.deviceCode)">-->
+  <!--<span style="font-size:14px;">消音</span>-->
+  <!--</button>-->
+  <!--</ion-col>-->
+  <!--</ion-row>-->
+  <!--</ion-card-content>-->
+  <!--</ion-card>-->
+  <!--</div>-->
+
+  <!--</div>-->
+</ion-content>

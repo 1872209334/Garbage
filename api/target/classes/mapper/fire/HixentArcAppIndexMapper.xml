@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.qf.mapper.fire.app.HixentArcAppIndexMapper">
+	<resultMap type="com.qf.model.fire.HixentArcAppMapSite"
+		id="mapDataResult">
+		<result column="site_code" property="siteCode" />
+		<result column="site_id" property="id" />
+		<result column="site_name" property="siteName" />
+		<result column="lat_bmap" property="latBmap" />
+		<result column="lng_bmap" property="lngBmap" />
+		<result column="latitude" property="latitude" />
+		<result column="longitute" property="longitute" />
+		<result column="warning_no" property="warnNo" />
+		<result column="site_place" property="place" />
+	</resultMap>
+	
+
+	<!-- app用户项目数 -->
+	<select id="siteCount" resultType="Integer">
+		SELECT COUNT(A.CN) FROM(SELECT
+		COUNT(HAS.site_id) CN FROM hixent_arc_system.hixent_arc_equipment_info
+		HAEI
+		RIGHT JOIN hixent_app_control_group HACG ON
+		HACG.id=HAEI.equip_group_id
+		JOIN hixent_arc_system.hixent_arc_site HAS
+		ON
+		HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL
+		ON
+		HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON
+		HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId}
+		GROUP BY
+		HAS.site_code)A
+	</select>
+
+	<!-- app用户中控数 -->
+	<select id="deviceCount" resultType="Integer">
+		SELECT COUNT(A.CN)
+		FROM(SELECT COUNT(HAS.site_id) CN FROM
+		hixent_arc_system.hixent_arc_equipment_info HAEI
+		JOIN
+		hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAEI.efm_id
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN
+		hixent_arc_system.hixent_arc_site HAS ON
+		HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL ON
+		HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON
+		HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId}
+		GROUP BY
+		HAS.site_code)A;
+
+	</select>
+
+	<!--某一类型终端设备数 -->
+	<select id="typeOfEquipCount" resultType="Integer">
+		SELECT COUNT(A.CN)
+		FROM(SELECT COUNT(HAEI.id)CN FROM
+		hixent_arc_system.hixent_arc_equipment_info HAEI
+		JOIN
+		hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN
+		hixent_arc_system.hixent_arc_site HAS ON
+		HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL ON
+		HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON
+		HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId}
+		<if test="type!=-1">
+			AND HAEI.type=#{type}
+		</if>
+		GROUP BY HAEI.id)A;
+
+	</select>
+
+
+
+
+	<!-- 中控某问题类型数量 -->
+	<select id="deviceCountOfAlarm" resultType="Integer">
+		SELECT COUNT(*)
+		FROM (SELECT HAWL.warning_no FROM
+		hixent_arc_system.hixent_arc_warning_list HAWL
+		JOIN
+		hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+		JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON
+		HAED.id=HAEI.efm_id
+		JOIN hixent_app_control_group HACG ON
+		HACG.id=HAEI.equip_group_id
+		JOIN hixent_arc_system.hixent_arc_site HAS
+		ON
+		HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL
+		ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON
+		HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId} AND HAWL.etype=1 AND
+		HAWL.is_deal IN (0,2)
+		<if test="warnIndex!=-1">
+			AND HAWL.warning_index = #{warnIndex}
+		</if>
+
+		GROUP BY HAWL.efm_id
+		)A
+	</select>
+
+	<!--某一类型某一报警类型终端设备数 -->
+	<select id="arcCountOfEquipAlarm" resultType="Integer">
+		SELECT COUNT(*) FROM (SELECT HAWL.warning_no FROM
+		hixent_arc_system.hixent_arc_warning_list HAWL 
+		JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+		JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+		JOIN hixent_arc_system.hixent_arc_site HAS ON HACG.group_site_id=HAS.site_id
+		JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+		JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+		WHERE HAU.id=#{appUserId} AND HAWL.etype IN (0,2) AND HAWL.is_deal IN (0,2)
+		
+		<if test="warnIndex!=-1">
+			AND HAWL.warning_index = #{warnIndex}
+		</if>
+		<if test="type!=-1">
+			AND HAEI.type=#{type}
+		</if>
+
+		GROUP BY HAWL.eid
+		)A
+	</select>
+   
+   <!-- 已处理某一报警类型 -->
+   <select id="dealAlarmCount" resultType="Integer">
+   
+     SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+     JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWL.warning_no=HAWDF.defe_warn_id
+     LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAWL.eid=HAEI.id
+     LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+     WHERE HAWL.is_deal=1 AND HAWDF.defe_appUser_id=#{appUserId}
+      <if test="siteCode!=null and siteCode!=''">
+      AND  (HAEI.site_code=#{siteCode} OR HAED.site_code=#{siteCode})
+       </if>
+     <if test="warnIndex!=-1">
+			AND HAWL.warning_index = #{warnIndex}
+	 </if>
+	 
+   </select>
+   
+   <!-- 未处理终端报警数 -->
+   <select id="unDealAlarmEquipCount" resultType="Integer">
+   SELECT COUNT(HAWL.warning_no) FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+   JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAWL.eid=HAEI.id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+   JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+   JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+   JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+   WHERE HAWL.is_deal IN(0,2) AND HAU.id=#{appUserId} 
+   AND HAWL.etype IN (0,2)
+   <if test="siteCode!=null and siteCode!=''">
+       AND HAEI.site_code=#{siteCode} 
+       </if>
+   </select>
+   
+   <!-- 未处理中控报警数 -->
+   <select id="unDealAlarmDeviceCount" resultType="Integer">
+   SELECT COUNT(*) FROM(SELECT HAWL.warning_no FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+   JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAWL.efm_id=HAED.id
+   JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAED.id=HAEI.efm_id
+   JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+   JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+   JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+   JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+   WHERE HAWL.is_deal IN(0,2) AND HAU.id=#{appUserId}  AND HAWL.etype =1 
+   <if test="siteCode!=null and siteCode!=''">
+       AND HAEI.site_code=#{siteCode} 
+    </if>
+   GROUP BY warning_no)A
+   
+   </select>
+   
+   <!-- app地图显示 -->
+   <select id="mapData" resultMap="mapDataResult">
+   SELECT HAS.site_code,HAS.site_id,HAS.site_name,HAS.site_place,
+   HAEI.lat_bmap,HAEI.lng_bmap,HAED.latitude,HAED.longitute,HAWL.warning_no   
+	FROM hixent_arc_system.hixent_arc_equipment_info HAEI 
+	LEFT JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAEI.efm_id
+	JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+	JOIN hixent_user.hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+	JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+	JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+	LEFT JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.eid=HAEI.id OR HAWL.efm_id=HAED.id
+	WHERE HAU.id=#{appUserId}
+	GROUP BY HAS.site_code
+   </select>
+   
+   
+   <!-- 项目下的终端设备数 -->
+   <select id="getEquipCountBySiteCode" resultType="Integer">
+ SELECT COUNT(*) FROM( SELECT HAEI.id FROM hixent_arc_system.hixent_arc_site HAS
+  JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAS.site_code=HAEI.site_code
+  JOIN hixent_user.hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+  JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+  JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+  WHERE HAS.site_code=#{siteCode} AND HAU.id=#{appUserId}
+   GROUP BY HAEI.id)A
+   </select>
+   
+    <!-- 项目下的中控设备数 -->
+   <select id="getDeviceCountBySiteCode" resultType="Integer">
+   SELECT COUNT(*) FROM(SELECT HAED.id FROM hixent_arc_system.hixent_arc_site HAS
+   JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.site_code=HAS.site_code
+   JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAED.id=HAEI.efm_id
+   JOIN hixent_user.hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+  JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+  JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+   WHERE HAS.site_code=#{siteCode} AND HAU.id=#{appUserId}
+   GROUP BY HAED.id)A
+   </select>
+    <!-- 项目下的中控某类型问题数 -->
+   <select id="getDeviceWarnCountBySiteCode" resultType="Integer">
+   SELECT COUNT(*) FROM( SELECT HAWL.warning_no FROM hixent_arc_system.hixent_arc_site HAS
+   JOIN hixent_arc_system.hixent_arc_efm_device HAED ON HAED.site_code=HAS.site_code
+   JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAED.id=HAEI.efm_id
+   JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.efm_id=HAED.id
+   JOIN hixent_user.hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+  JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+  JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+   WHERE HAS.site_code=#{siteCode} AND HAU.id=#{appUserId}
+    AND HAWL.etype=1 AND HAWL.is_deal IN (0,2) 
+   AND HAWL.warning_index=#{warnIndex}
+   GROUP BY HAWL.warning_no)A
+   </select>
+   <!-- 项目下的终端某类型问题数 -->
+   <select id="getEquipWarnCountBySiteCode" resultType="Integer">
+   SELECT COUNT(*) FROM( SELECT HAWL.warning_no FROM hixent_arc_system.hixent_arc_site HAS
+   JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.site_code=HAS.site_code
+   JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.eid=HAEI.id
+   JOIN hixent_user.hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+  JOIN hixent_user.hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+  JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+   WHERE HAS.site_code=#{siteCode} AND HAU.id=#{appUserId}
+    AND HAWL.etype IN(0,2) AND HAWL.is_deal IN (0,2) 
+   AND HAWL.warning_index=#{warnIndex}
+   GROUP BY HAWL.warning_no)A
+   </select>
+</mapper>

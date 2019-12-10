@@ -1,0 +1,10 @@
+{
+  "android": {
+    "release": {
+      "keystore": "lys.keystore",
+      "alias": "lys",
+      "storePassword": "lys123",
+      "password": "lys123"
+    }
+  }
+}

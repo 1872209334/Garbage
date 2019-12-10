@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentUserMapper">
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentUser">
+      <result column="id"         jdbcType="INTEGER" property="id" 			/>
+      <result column="bid"        jdbcType="VARCHAR" property="bid"  	    />
+      <result column="uid"        jdbcType="VARCHAR" property="uid" 		/>
+      <result column="account"    jdbcType="VARCHAR" property="account" 	/>
+      <result column="password"   jdbcType="VARCHAR" property="password" 	/>
+      <result column="img_url"    jdbcType="VARCHAR" property="img_url"     />
+      <result column="salt"       jdbcType="VARCHAR" property="salt" 		/>
+      <result column="cid"        jdbcType="INTEGER" property="cid" 		/>
+      <result column="created_at" jdbcType="DATE"    property="createdAt" 	/>
+      <result column="updated_at" jdbcType="DATE"    property="updatedAt"	/>
+      <result column="area_id" jdbcType="INTEGER"    property="areaId"	/>
+      <result column="remark" jdbcType="VARCHAR"    property="remark"	/>
+      <result column="province_id" jdbcType="INTEGER"    property="provinceId"/>
+      <result column="area" jdbcType="VARCHAR"    property="areaName"/>
+       <result column="province" jdbcType="VARCHAR"    property="provinceName"/>
+       <result column="role_type" jdbcType="INTEGER"    property="roleType"/>
+  </resultMap>
+  <!-- 地区映射 -->
+  <resultMap type="com.qf.model.admin.HixentArea" id="areaResultMap">
+      <result column="id"               property="areaId" 			/>
+      <result column="pid"              property="parId"  	    />
+      <result column="area"             property="areaName" 		/>
+      <result column="area_code"        property="areaCord" 	/>
+  </resultMap> 
+   <!--省份映射 -->
+  <resultMap type="com.qf.model.admin.HixentProvince" id="provinceResultMap">
+      <result column="id"               property="provinceId" 			/>
+      <result column="province"              property="provinceName"  	    />
+      <result column="province_code"             property="provinceCord" 		/>
+    <!--角色映射 --> 
+  </resultMap> 
+   <resultMap id="roleResultMap" type="com.qf.model.admin.HixentRole">
+      <result column="role_id"            jdbcType="INTEGER" 		property="role_id"             />
+      <result column="role_name"          jdbcType="VARCHAR" 		property="role_name"           />
+      <result column="menu_id_list"       jdbcType="VARCHAR" 		property="menu_id_list"        />
+       <result column="role_type"       jdbcType="INTEGER" 		property="role_type"        />    
+  </resultMap>
+  
+   <!--项目映射 --> 
+   <resultMap id="siteResultMap" type="com.qf.model.admin.HixentSite">
+      <result column="site_id"         jdbcType="INTEGER" 		property="siteId" />
+      <result column="site_place"      jdbcType="VARCHAR" 		property="sitePlace"/>
+      <result column="site_name"       jdbcType="VARCHAR" 		property="siteName"/>  
+      <result column="site_code"       jdbcType="VARCHAR" 		property="siteCord"/>
+      <result column="site_build_id"   jdbcType="INTEGER"  		property="siteBuildId"/>
+      <result column="build_name"      jdbcType="VARCHAR" 		property="buildName"/>
+      <result column="longitute"       jdbcType="VARCHAR" 		property="longitute"/>
+      <result column="latitude"        jdbcType="VARCHAR" 		property="latitude"/>
+      <result column="map_num"         jdbcType="INTEGER" 		property="mapNum"/>
+      <result column="logo_file_name"      jdbcType="VARCHAR" 		property="logoFileName"/>
+      <result column="logo_file_url"      jdbcType="VARCHAR" 		property="logoFileUrl"/>
+      <result column="logo_relative_file_url"      jdbcType="VARCHAR" 		property="logoRelativeFileUrl"/>
+      <result column="back_file_name"      jdbcType="VARCHAR" 		property="backFileName"/>
+      <result column="back_file_url"      jdbcType="VARCHAR" 		property="backFileUrl"/>
+      <result column="back_relative_file_url"      jdbcType="VARCHAR" 		property="backRelativeFileUrl"/>             
+  </resultMap>
+  
+  <!-- 列表 -->
+  <select id="getUserAllList" parameterType="String" resultMap="BaseResultMap">
+  	  select HU.*,HAA.area,HAP.province from hixent_user HU
+  	   LEFT JOIN hixent_arc_area HAA ON HAA.id=HU.area_id
+	 LEFT JOIN hixent_arc_province HAP ON HAP.id=HU.province_id
+	 LEFT JOIN hixent_fire_role HFR ON HFR.role_id=HU.fire_role
+	 WHERE HU.id > 0
+  	   <if test="roleType!=0">
+  	   and (HU.pid =#{id})
+  	  </if>
+  	<if test="roleType==0">
+  	 and (HFR.role_type IN (0,1))
+  	  </if>
+  	  <if test="name != null"> 
+  	  and (HU.account like CONCAT('%',#{name},'%')  or HU.mobile like CONCAT('%',#{name},'%'))
+  	  </if>
+  </select>
+  <select id="getUserPageList" parameterType="String" resultMap="BaseResultMap">
+  	  select HU.*,HAA.area,HAP.province  from hixent_user  HU
+  	   LEFT JOIN hixent_arc_area HAA ON HAA.id=HU.area_id
+	 LEFT JOIN hixent_arc_province HAP ON HAP.id=HU.province_id
+	 LEFT JOIN hixent_fire_role HFR ON HFR.role_id=HU.fire_role
+	 WHERE HU.id > 0
+  	  <if test="roleType!=0">
+  	 and (HU.pid =#{id})
+  	  </if>
+  	   <if test="roleType==0">
+  	 and (HFR.role_type IN (0,1))
+  	  </if>
+  	  <if test="name != null"> 
+  	  and (HU.account like CONCAT('%',#{name},'%')  or HU.mobile like CONCAT('%',#{name},'%') )
+  	  </if>
+	  order by HU.created_at asc
+	  limit ${limits};
+  </select>
+   
+   <select id="getUserPageCount" resultType="Integer">
+    select count(id)  from hixent_user where id>0
+     <if test="roleType!=0">
+  	 and (id=#{id} or pid =#{id})
+  	  </if>
+  	  <if test="name != null"> 
+  	  and (account like CONCAT('%',#{name},'%')  or mobile like CONCAT('%',#{name},'%') )
+  	  </if>
+	 
+   </select>
+  <!--根据用户名获取用户信息-->
+  
+  <select id="selectByUsername" parameterType="String" resultMap="BaseResultMap">
+      select *  from hixent_user hu join hixent_fire_role hfr on hfr.role_id=hu.fire_role 
+      where  account = #{uername};
+  </select>
+  
+  <select id="selectBySystem" parameterType="String" resultMap="BaseResultMap">
+      select * from hixent_user hu join hixent_fire_role hfr on hfr.role_id=hu.fire_role where id>0;
+  </select>
+  
+  <select id="getUserinfoByMobile" parameterType="String" resultMap="BaseResultMap">
+      select * from hixent_user hu join hixent_fire_role hfr on hfr.role_id=hu.fire_role where mobile = #{mobile};
+  </select>
+  
+  <select id="selectByUserId" parameterType="String" resultMap="BaseResultMap">
+      select *  from hixent_user hu join hixent_fire_role hfr on hfr.role_id=hu.fire_role where uid = #{uid};
+  </select>
+  
+  <select id="getAdminById" parameterType="Integer" resultMap="BaseResultMap">
+      select *  from hixent_user hu join hixent_fire_role hfr on hfr.role_id=hu.fire_role where id = #{id};
+  </select>
+  
+  <select id="updateToken" parameterType="String" resultMap="BaseResultMap">
+       update hixent_user  SET access_token = #{access_token} where uid = #{uid};
+  </select>
+  
+  <!-- 批量删除 -->
+  <select id="deleteUser" parameterType="Integer" resultMap="BaseResultMap">
+       delete from  hixent_user  where id in
+	   <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  
+  <!-- 添加 -->
+  <insert id="insertUser">
+   INSERT INTO hixent_user (`uid`,`account`,`password`,`mobile`,`salt`,`cid`,`fire_role`,`created_at`,`updated_at`,`bid`,`province_id`,`area_id`,`remark`,`pid`) VALUES (#{uid},#{account},#{password},#{mobile},#{salt},#{cid},#{fireRole},#{ctime},#{utime},#{bid},#{provinceId},#{areaId},#{remark},#{pid});
+  </insert>
+ 
+  <!-- 编辑 -->
+  <update id="updateUser">
+  	  update hixent_user set account=#{account},mobile=#{mobile},fire_role=#{fireRole},
+  	  updated_at=#{utime},bid=#{bid},area_id=#{areaId},province_id=#{provinceId},remark=#{remark} where id = #{id};
+  </update>
+  
+  <!-- 修改密码 -->
+  <select id="updateUserPassWord" parameterType="String" resultMap="BaseResultMap">
+       update hixent_user set password = '${password}' where id = ${id};
+  </select>
+   <!-- 获取省份 -->
+  <select id="getPrinvince"  resultMap="provinceResultMap">
+       SELECT * FROM hixent_arc_province <where><if test="privinceId!=0">hixent_arc_province.id=#{privinceId}</if></where>
+  </select>
+   <!-- 获取市区 -->
+  <select id="getCity"  resultMap="areaResultMap">
+       SELECT * FROM hixent_arc_area HAA WHERE HAA.pid=#{privinceId}
+  </select>
+   <!-- 获取角色-->
+  <select id="getRole"  resultMap="roleResultMap">
+       SELECT * FROM hixent_fire_role HFR 
+       WHERE 
+       <if test="roleType!=0">
+       HFR.role_type &gt; #{roleType}
+       </if>
+       <if test="roleType==0">HFR.role_type IN (0,1)
+       </if>
+  </select>
+   <!-- 获取项目列表-->
+   <select id="getSite" resultMap="siteResultMap">
+	  SELECT
+			*
+		FROM
+			hixent_arc_system.hixent_arc_site HAS
+		LEFT JOIN hixent_arc_system.hixent_arc_build HAB ON HAS.site_build_id = HAB.id
+   <where>
+   	<if test="provinceId!=0">
+   		substring(HAS.site_code,1,2)=(SELECT HAP.province_code FROM hixent_arc_province HAP WHERE HAP.id=#{provinceId})
+   	</if>
+   	<if test="areaId!=0">
+    	AND substring(HAS.site_code,3,2)=(SELECT HAA.area_code FROM hixent_arc_area HAA WHERE HAA.id=#{areaId} AND HAA.pid=#{provinceId})
+    </if>
+    <if test="siteCordArr[0]!='0'.toString()">
+     	AND HAS.site_code IN
+      <foreach item="item" index="index" collection="siteCordArr" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach> 
+    </if>
+    </where>
+   </select>
+   
+   <!-- 获取市区通过地区ID -->
+  <select id="getCityByAreaId"  resultMap="areaResultMap">
+       SELECT * FROM hixent_arc_area HAA WHERE HAA.id=#{areaId}
+  </select>
+   <!-- 获取角色类型 -->
+  <select id="getRoleType"  resultType="Integer">
+        SELECT HFR.role_type FROM hixent_fire_role HFR WHERE HFR.role_id = #{roleId}
+  </select>
+   <!-- 查询管理员详细信息 -->
+  <select id="getAdminInfo">
+  SELECT HU.*,HAA.area,HAP.province,HFR.role_name FROM hixent_user HU
+ LEFT JOIN hixent_arc_area HAA ON HAA.id=HU.area_id
+ LEFT JOIN hixent_arc_province HAP ON HAP.id=HU.province_id
+ LEFT JOIN hixent_fire_role HFR ON HFR.role_id=HU.fire_role
+ WHERE HU.id=#{id}
+  </select>
+  <!-- 获取项目list -->
+  <select id="getsiteList" resultMap="siteResultMap">
+  SELECT * FROM hixent_arc_system.hixent_arc_site HAS 
+  WHERE HAS.site_code IN 
+    <foreach item="item" index="index" collection="siteCordArr" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach> 
+  </select>
+  
+  
+  
+</mapper>

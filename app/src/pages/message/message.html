@@ -1,0 +1,48 @@
+<ion-header no-border>
+  <ion-navbar color="arc" style="height:4.5rem">
+    <ion-title style="font-size: 18px !important;">{{title}}</ion-title>
+    <img class="message_header_img" src="../../assets/imgs/nav_icon_user_black@3x.png"  (click)="showInfo1()">
+    <!--<img class="message_header_img" src="../../assets/imgs/nav_icon_alarm_black@3x.png"(click)="showDevice()">-->
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <button class="common_item_btn" ion-item (click)="goHistory()">
+      <div class="message_img"><img style="height: 1.8rem" src="../../assets/imgs/alarm_list_icon_history.png"></div>
+      <h2 class="message_text">历史记录
+        <!--<span class="message_num">1</span>-->
+      </h2>
+    </button>
+  </ion-list>
+  <div class="message_box">
+    <ul class="message_btn_groups">
+      <li class="message_btn" (click)="goAlarm(-1,'中控')">
+        <div>
+            <div style="position: relative">
+              <span class="message_text_center">中控</span>
+              <span class="message_num" *ngIf="efmAlarmCount > 0">{{efmAlarmCount}}</span>
+            </div>
+            <p>中控</p>
+        </div>
+      </li>
+      <li class="message_btn" (click)="goAlarm(0,'电弧探测器')">
+        <div>
+            <div style="position: relative">
+              <span class="message_text_center">电弧</span>
+              <span class="message_num" *ngIf="equipCount0 > 0">{{equipCount0}}</span>
+            </div>
+            <p>电弧探测器</p>
+        </div>
+      </li>
+      <li class="message_btn" (click)="goAlarm(1,'组合式探测器')">
+        <div>
+            <div style="position: relative">
+              <span class="message_text_center">组合</span>
+              <span class="message_num" *ngIf="equipCount1 > 0">{{equipCount1}}</span>
+            </div>
+            <p>组合式探测器</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-content>

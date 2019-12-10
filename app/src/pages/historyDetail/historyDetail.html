@@ -1,0 +1,48 @@
+<ion-header>
+  <!--<div class="common_header">
+    <ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"
+              (click)="goBack()"></ion-icon>
+    <ion-title class="common_title">{{title}}</ion-title>
+  </div>-->
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="common_bg">
+  <ion-item class="historyDetail_item">
+    <div>
+      <span class="history_bian">编</span>
+      <span class="history_item_header">NO.{{navParam.warnId}}</span>
+    </div>
+    <div>
+      <div class="history_float_left">
+        <img class="history_img" src="../../assets/imgs/icon_location.png">
+        <span class="history_common_text">{{navParam.message}}</span>
+      </div>
+      <div class="history_float_right">
+        <img class='history_img'src="../../assets/imgs/icon_time.png">
+        <span class="history_common_text">{{navParam.dealTime}}</span>
+      </div>
+    </div>
+    <div class="history_common_text">原因：{{navParam.warnName}}</div>
+  </ion-item>
+  <div>
+    <!--<p class="historyDetail_common_text">处理情况</p>-->
+    <!--<div class="historyDetail_box">-->
+      <!--<div>-->
+        <!--<input type="radio" name="radio" class="radio" id="radio1" checked disabled />-->
+        <!--<label for="radio1" class="historyDetail_common_text3">已处理</label>-->
+      <!--</div>-->
+      <!--<div>-->
+        <!--<input type="radio" name="radio" class="radio" id="radio2" disabled />-->
+        <!--<label for="radio2" class="historyDetail_common_text3">未处理</label>-->
+      <!--</div>-->
+    <!--</div>-->
+    <p class="historyDetail_common_text">处理情况照片</p>
+    <div class="historyDetail_box" *ngIf="navParam.filePath">
+      <div class="historyDetail_add_picture" *ngFor="let item of fileList">
+        <img [src]="item">
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,75 @@
+.ion-ios-home-icon,
+.ion-ios-home-icon-outline,
+.ion-md-home-icon,
+.ion-md-home-icon-outline{
+  //content: url("../../assets/imgs/home.png");
+  content: url("../../assets/imgs/tab_icon_home_nor@3x.png");
+}
+
+.tabs-md .tab-button[aria-selected=true] .ion-md-home-icon,
+.tabs-ios .tab-button[aria-selected=true] .ion-ios-home-icon{
+  //content: url("../../assets/imgs/home-selected.png");
+  content: url("../../assets/imgs/tab_icon_home_sel@3x.png");
+}
+
+.ion-ios-maps-icon,
+.ion-ios-maps-icon-outline,
+.ion-md-maps-icon,
+.ion-md-maps-icon-outline{
+  //content: url("../../assets/imgs/map.png");
+  content: url("../../assets/imgs/tab_icon_project_nor@3x.png");
+}
+
+.tabs-md .tab-button[aria-selected=true] .ion-md-maps-icon,
+.tabs-ios .tab-button[aria-selected=true] .ion-ios-maps-icon
+{
+  //content: url("../../assets/imgs/map-select.png");
+  content: url("../../assets/imgs/tab_icon_project_sel@3x.png");
+}
+
+.ion-ios-message-icon,
+.ion-ios-message-icon-outline,
+.ion-md-message-icon,
+.ion-md-message-icon-outline{
+  //content: url("../../assets/imgs/message.png");
+  content: url("../../assets/imgs/tab_icon_alarm_nor@3x.png");
+}
+
+.tabs-md .tab-button[aria-selected=true] .ion-md-message-icon,
+.tabs-ios .tab-button[aria-selected=true] .ion-ios-message-icon{
+  //content: url("../../assets/imgs/message-select.png");
+  content: url("../../assets/imgs/tab_icon_alarm_sel@3x.png");
+}
+
+.ion-ios-contact-icon,
+.ion-ios-contact-icon-outline,
+.ion-md-contact-icon,
+.ion-md-contact-icon-outline{
+  //content: url("../../assets/imgs/contact.png");
+  content: url("../../assets/imgs/tab_icon_map_nor@3x.png");
+}
+
+.tabs-md .tab-button[aria-selected=true] .ion-md-contact-icon,
+.tabs-ios .tab-button[aria-selected=true] .ion-ios-contact-icon
+{
+  //content: url("../../assets/imgs/contact-select.png");
+  content: url("../../assets/imgs/tab_icon_map_sel@3x.png");
+}
+.tabs-ios .tab-button{
+  color: #B2B6BF;
+}
+
+.tabbar{
+  height: 6rem;
+}
+.tabs-md .tab-button-icon,
+.tabs-ios .tab-button-icon{
+  width: 0.8rem !important;
+  height: auto !important;
+  margin: 0!important;
+}
+.tabs-ios .tab-button-icon {
+  min-width: 25px;
+}
+
+

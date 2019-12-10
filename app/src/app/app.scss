@@ -1,0 +1,234 @@
+@import "mobile.reset";
+.toast{
+  position: relative;
+  top: -10rem;
+  text-align: center;
+  width: 50%;
+  font-size: 17px;
+  left: 25%;
+}
+.toast-message{
+  font-size: 16px !important;
+}
+.back_btn{
+  font-size:3rem;
+  padding:15px;
+  /*color:#fff*/
+  position: absolute;
+  left:0;
+  color: #606266;
+  z-index: 100;
+}
+.back-button{
+  padding-left: 5px !important;
+}
+.clear_btn{
+  padding: 0;
+  width: 7rem;
+  height: 3.5rem;
+  border-radius: 10px;
+}
+.table_detail ion-item{
+  border-bottom: 1px solid #ececec;
+}
+ion-card{
+  box-shadow: 4px 4px 30px #ececec !important;
+  -webkit-box-shadow:4px 4px 30px #ececec !important;
+  border: 1px solid #ececec;
+}
+.loading{
+  width: 4rem;
+  height: 4rem;
+  background: url("../assets/imgs/loading.gif") round;
+}
+.loading-ios .loading-wrapper{
+  padding: 0;
+  background-color: rgba(0,0,0,0);
+}
+.confirmYes{
+  background-color:#2982E5 !important;
+  border: 1px solid #2982E5 !important;
+  color:#fff !important;
+}
+.arc_btn{
+  background-color:#2982E6 !important;
+  border-radius:20px !important;
+  height:46px;
+  font-size: 16px;
+  padding-right: 0;
+}
+
+.login_btn{
+  margin:1.5rem 6% 0 6%;
+  width:88%;
+  text-align:center;
+  padding:2.5rem 0;
+  font-size: 17px;
+}
+
+.tabbar{
+  /* border-top: 0 !important;*/
+  /* background-color: #ECECEC !important;*/
+  border-top:1px solid #DDDDDD;
+  background-color: #fff !important;
+  box-shadow: 0 0 15px #ECECEC !important;
+}
+.header{
+  border-bottom: 0 !important;
+}
+.input .input-wrapper{
+  border-bottom: 1px solid #ececec;
+}
+.alert-button-group .alert-button:nth-child(2) .button-inner{
+  background-color: #2982E5 !important;
+  color:#fff !important;
+}
+.title .toolbar-title{
+  font-size: 18px !important;
+  font-weight: normal;
+}
+.custom-popover .popover-content{
+  width: 99% !important;
+  color: white;
+};
+
+.common_bg.content{
+  background-color: #F5F7FA;
+}
+.common_header{
+  height: 4.5rem;
+  border-bottom: 1px solid #CDD0D8;
+  text-align: center;
+  line-height: 4.5rem;
+  background-color: #fff;
+}
+
+.common_title{
+  font-size: 2rem;
+  color: #303133;
+}
+
+/*header*/
+.common_header{
+  height:4.5rem;
+}
+.toolbar-ios-arc .toolbar-background-ios{
+  background: #fff;
+}
+.toolbar-ios-arc .toolbar-title-ios{
+  color: #303133;
+}
+.common_header_img{
+  position: relative;
+  margin-top: 0.3rem;
+  float: right;
+  width:2rem;
+  margin-right: 20px;
+  float: right;
+  right: 0;
+}
+.toolbar-background-ios{
+  background-color: #fff;
+}
+
+.bar-button-default-ios{
+  color: #606266;
+}
+
+.header-ios .toolbar-background-ios{
+  border-bottom: 1px solid #CDD0D8;
+}
+
+.common_item_btn{
+  height: 6rem;
+  line-height: 6rem;
+  vertical-align: middle;
+}
+
+.common_select_box{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 10000;
+  display: none;
+}
+
+.common_select_item{
+  width: 100%;
+  height: 4rem;
+  background-color: #fff;
+  text-align: center;
+  font-size: 1.8rem;
+  padding: 1rem;
+}
+
+.common_select_show{
+  display: block;
+}
+
+.common_selected_color{
+  color: #387EE8;
+}
+
+.common_select_bottom{
+  position: absolute;
+  width: 100%;
+  bottom: 10rem;
+  background: #fff;
+  padding: 1rem;
+  max-height: 60%;
+  overflow: scroll;
+}
+
+.common_select_bottom p{
+  font-size: 1.6rem;
+  color: #000;
+}
+
+.common_select_ul{
+  padding-bottom: 1rem;
+  background: #fff;
+}
+
+.ion-page.show-page{
+  background: rgba(0,0,0,0.4);
+}
+
+.common_select{
+  display: flex;
+}
+
+.common_select>div{
+  flex: 1;
+  text-align: center;
+  color: #387EE8;
+  padding: 1.3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1.8rem;
+}
+
+.common_select_icon{
+  width: 0;
+  height: 0;
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  color: #C7C7CC;
+  pointer-events: none;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 0.6rem;
+  margin-left: 0.5rem;
+}
+
+.no-more{
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.tabs-ios .tabbar {
+  border-top: 0.55px solid #dddddd !important;
+}

@@ -1,0 +1,1276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e0475736-689e-44a6-bffe-1229fc28fc8e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/web/web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttCustomerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttCustomerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttProducerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttProducerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/admin/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/admin/ExcelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireAlarmListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireAlarmListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireControlGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireControlGroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireDelDeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireDelDeviceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/common/PublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/controller/common/PublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEfmDeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEfmDeviceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEquipmentInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEquipmentInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcEfmDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcEfmDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcControllGroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcControllGroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcIndexService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcIndexService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/qf/service/mqtt/MqttCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/qf/service/mqtt/MqttCustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/mapper/admin/HixentLogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/mapper/admin/HixentLogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcEfmDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcEfmDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcIndexMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcIndexMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcWarningListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcWarningListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/arc.jar" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/arc.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/arc.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/arc.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/common/filter/ApiFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/common/filter/ApiFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttCustomerConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttCustomerConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttCustomerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttCustomerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttProducerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/common/mqtt/MqttProducerConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/common/systemLog/SystemLogConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/common/systemLog/SystemLogConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ApiUserListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ApiUserListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ApiUserSaveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ApiUserSaveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ExcelController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/admin/ExcelController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppCommonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppCommonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserIndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserIndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserSiteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserSiteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserWarnController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/ApiAppUserWarnController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/AppPublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/app/AppPublicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireAlarmListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireAlarmListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireControlGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireControlGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireDelDeviceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireDelDeviceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireIndexMapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireIndexMapController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireMqttEquipController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireMqttEquipController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireSaveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/api/fire/ApiFireSaveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/JpushController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/JpushController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/MqttAppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/MqttAppController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/MqttController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/MqttController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/PublicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/PublicController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/SocketAdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/SocketAdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/SocketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/controller/common/SocketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/admin/HixentAppUserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/admin/HixentAppUserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcDeviceAlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcDeviceAlarmMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcEquipmentInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcEquipmentInfoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcIndexMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcIndexMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcWarningListMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/HixentArcWarningListMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppIndexMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppIndexMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppSiteMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppSiteMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppWarnMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/mapper/fire/app/HixentArcAppWarnMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/admin/HixentAppUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/admin/HixentAppUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/admin/HixentSite.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/admin/HixentSite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcAppDeviceAndEquipInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcAppDeviceAndEquipInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcAppDeviceAndEquipWarn.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcAppDeviceAndEquipWarn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcControlGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcControlGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEfmDevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEfmDevice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEquipmentInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEquipmentInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEquipmentInfoMqtt.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcEquipmentInfoMqtt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcSite.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcSite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcWarningList.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/HixentArcWarningList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentDeviceSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentDeviceSave.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditDeviceInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditDeviceInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditEquipInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditEquipInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditSiteNiName.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidHixentEditSiteNiName.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidMqttIssuingInstructions.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/model/fire/valid/ValidMqttIssuingInstructions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/admin/CommonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/admin/CommonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/admin/HixentUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/admin/HixentUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserIndexService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserIndexService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserSiteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserSiteService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserWarnService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/app/HixentAppUserWarnService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcAlarmLogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcAlarmLogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcControllGroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcControllGroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcDeviceAlarmService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcDeviceAlarmService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcEquipmentInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcEquipmentInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcIndexService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/fire/HixentArcIndexService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/mqtt/MqttCustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/mqtt/MqttCustomerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/service/mqtt/MqttProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/service/mqtt/MqttProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/util/AliyunOSSUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/util/AliyunOSSUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/util/AliyunSmsUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/util/AliyunSmsUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/util/ReturnUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/util/ReturnUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/com/qf/util/ToolUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/com/qf/util/ToolUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentAppUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentAppUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentLogMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentLogMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/admin/HixentUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppIndexMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppIndexMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppSiteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppSiteMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppWarnMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcAppWarnMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcControllGroupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcControllGroupMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcDeviceWarnMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcDeviceWarnMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcEfmDeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcEfmDeviceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcEquipmentInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcEquipmentInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcIndexMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcIndexMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcWarningListMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/mapper/fire/HixentArcWarningListMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/classes/top/snailclimb/common/constants/AliyunOSSConfigConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/classes/top/snailclimb/common/constants/AliyunOSSConfigConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platform/3rd_party/redis/hiredis/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/platform/3rd_party/redis/hiredis/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/common/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/common/constant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/common/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/common/http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/common/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/common/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/common/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/common/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlaLogDev.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlaLogDev.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlarmLog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlarmLog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FauLogDev.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FauLogDev.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FaultLog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FaultLog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/OffLogDev.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/OffLogDev.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/Off_LineLog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/AlarmManagement/Off_LineLog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/LargeSizePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/LargeSizePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/Login_Kys.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/Login_Kys.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/CenterControlInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/CenterControlInformation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/DeviceDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/DeviceDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttDeviceList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttDeviceList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttInformation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/TerminalInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/ProjectManagement/TerminalInformation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/UserManagement/ControlPersonnel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/UserManagement/ControlPersonnel.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/UserManagement/EditManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/UserManagement/EditManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/UserManagement/JurisdictionManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/UserManagement/JurisdictionManagement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/components/page/UserManagement/Manage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/page/UserManagement/Manage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/resource/img/login_bg_1_30.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/resource/img/login_bg_1_30.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/resource/img/logo5.png" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/resource/img/logo5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/router.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/api/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="svntest" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireAlarmListController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4060">
+              <caret line="173" column="50" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/NewDevice.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12768">
+              <caret line="456" column="44" selection-start-line="456" selection-start-column="44" selection-end-line="456" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#0;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#3249#3255#0" expanded="true" />
+                <element signature="e#3255#3261#0" expanded="true" />
+                <element signature="e#3292#3298#0" expanded="true" />
+                <element signature="e#3305#3311#0" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#el-form-item#0;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-select#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcZipperInfoServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3668">
+              <caret line="143" selection-start-line="143" selection-end-line="143" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2716">
+              <caret line="97" column="24" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisCacheManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="868">
+              <caret line="40" column="1" selection-end-line="40" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttCustomerConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2716">
+              <caret line="121" column="43" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcZipperInfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1204">
+              <caret line="50" column="47" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>selectAlarmLog</find>
+      <find>projectId</find>
+      <find>/excelForWarnLogByNewParam</find>
+      <find>selectOffLineLog</find>
+      <find>excelForOffLineLogByNewParam</find>
+      <find>故障</find>
+      <find>selectFaultLog</find>
+      <find>selectAlarmLogBySiteId</find>
+      <find>countZipperOffLineLog</find>
+      <find>selectAlarmLog1</find>
+      <find>项目</find>
+      <find>alarmLog</find>
+      <find>excelForWarnLogByNewParam</find>
+      <find>countZipperAlarmLog</find>
+      <find>alarmLogBySiteId</find>
+      <find>selectFaultLog1</find>
+      <find>countZipperFaultLog</find>
+      <find>faultLogBySiteId</find>
+      <find>faultLog</find>
+      <find>离线列表</find>
+      <find>countZipperOffLineLog1</find>
+      <find>offLineLog</find>
+      <find>重置</find>
+      <find>selectOffLineLog1</find>
+      <find>查询</find>
+      <find>rundash</find>
+      <find>数据</find>
+      <find>excelForFaultLogByNewParam</find>
+      <find>新增终端</find>
+      <find>offLineLogBySiteId</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/platform/3rd_party/redis/hiredis" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEfmDeviceMapper.java" />
+        <option value="$PROJECT_DIR$/api/pom.xml" />
+        <option value="$PROJECT_DIR$/web/src/components/page/UserManagement/Manage.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/UserManagement/ControlPersonnel.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/mapper/admin/HixentLogMapper.xml" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcEquipmentInfoMapper.java" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/DeviceDetail.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcControllGroupService.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireDelDeviceController.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/common/MqttTestController.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttGateway.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttProducerConfig.java" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/TerminalInformation.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcIndexMapper.xml" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcZipperUnionInfo.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/TestJavaMqtt.java" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/OffLogDev.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlaLogDev.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FauLogDev.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/common/Header.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcZipperInfo.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/mqtt/MqttCustomerService.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcIndexService.java" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/web/src/components/common/Sidebar.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/NewProject.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/Main.vue" />
+        <option value="$PROJECT_DIR$/web/src/router.js" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcSiteMapper.xml" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcSiteMapper.java" />
+        <option value="$PROJECT_DIR$/web/src/common/http.js" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttCustomerConfig.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireControlGroupController.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcSiteService.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcSiteServiceImpl.java" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttDeviceList.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttInformation.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlarmLog.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/admin/ExcelController.java" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/FaultLog.vue" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireAlarmListController.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcZipperInfoService.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcZipperInfoMapper.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcZipperInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcZipperInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/web/src/components/page/AlarmManagement/Off_LineLog.vue" />
+        <option value="$PROJECT_DIR$/web/src/components/page/ProjectManagement/NewDevice.vue" />
+        <option value="$PROJECT_DIR$/web/src/common/constant.js" />
+        <option value="$PROJECT_DIR$/api/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisCacheManager.java" />
+        <option value="$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/Test.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="H:\Maven\LocalWarehouse" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../apache-maven-3.6.1-bin/apache-maven-3.6.1" />
+        <option name="userSettingsFile" value="H:\Maven\apache-maven-3.6.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="QFMicroService" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="svntest" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="svntest" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1940" />
+    <option name="height" value="1060" />
+  </component>
+  <component name="ProjectId" id="1QzXr7XM1n9T85tDNEdH0bfcmaA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Garbage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Garbage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Garbage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Garbage" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Garbage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Garbage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelOrder2" value="2" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RequestMappingsPanelWidth2" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575983984877" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="last_opened_file_path" value="H:/svntest" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="ts.external.directory.path" value="H:\svntest\app\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qf.mapper.fire" />
+      <recent name="com.qf.common.mqtt" />
+      <recent name="com.qf.controller.common" />
+      <recent name="com.qf.model.fire" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="H:\svntest\web\src\components\page\ProjectManagement" />
+      <recent name="H:\svntest\api\src\main\resources\mapper\fire" />
+      <recent name="H:\svntest\web\src\resource\img" />
+      <recent name="H:\svntest\web\src\components\page" />
+      <recent name="H:\svntest\api\src\main\java\com\qf\controller" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+    <option name="contentProportion" value="0.15300547" />
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.qf.controller.api.fire.Test" />
+      <module name="QFMicroService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qf.controller.api.fire.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="QFMicroService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qf.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.14556277" />
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@32a25fa8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@32a25fa8" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@1a611d1f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\张君\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="H:\Garbage-v\Garbage" />
+          <option name="myCopyRoot" value="H:\Garbage-v\Garbage" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="H:\Garbage-v\Garbage\api" />
+          <option name="myCopyRoot" value="H:\Garbage-v\Garbage\api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="H:\Garbage-v\Garbage\web" />
+          <option name="myCopyRoot" value="H:\Garbage-v\Garbage\web" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="H:\Garbage-v\Garbage" />
+          <option name="myCopyRoot" value="H:\Garbage-v\Garbage" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e0475736-689e-44a6-bffe-1229fc28fc8e" name="Default Changelist" comment="" />
+      <created>1568774593080</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568774593080</updated>
+      <workItem from="1568774594904" duration="1779000" />
+      <workItem from="1568776923497" duration="759000" />
+      <workItem from="1568788878473" duration="1622000" />
+      <workItem from="1568792930778" duration="117000" />
+      <workItem from="1568948034275" duration="694000" />
+      <workItem from="1568950047479" duration="221000" />
+      <workItem from="1568950311495" duration="6254000" />
+      <workItem from="1568967913076" duration="2204000" />
+      <workItem from="1569200423430" duration="837000" />
+      <workItem from="1569201283710" duration="22288000" />
+      <workItem from="1569308348609" duration="739000" />
+      <workItem from="1569309328130" duration="92000" />
+      <workItem from="1569309743791" duration="444000" />
+      <workItem from="1569421378510" duration="1363000" />
+      <workItem from="1569423150318" duration="1010000" />
+      <workItem from="1569597547573" duration="693000" />
+      <workItem from="1572015397146" duration="2926000" />
+      <workItem from="1572053018801" duration="8029000" />
+      <workItem from="1572075789791" duration="1944000" />
+      <workItem from="1572100842384" duration="1188000" />
+      <workItem from="1572157350317" duration="334000" />
+      <workItem from="1572157772062" duration="326000" />
+      <workItem from="1572179916445" duration="8579000" />
+      <workItem from="1572361819489" duration="2014000" />
+      <workItem from="1572441103501" duration="1355000" />
+      <workItem from="1572527564589" duration="5796000" />
+      <workItem from="1572611436470" duration="815000" />
+      <workItem from="1572758161951" duration="27095000" />
+      <workItem from="1572953482052" duration="11705000" />
+      <workItem from="1573040588505" duration="2701000" />
+      <workItem from="1573367711067" duration="762000" />
+      <workItem from="1573369223575" duration="1684000" />
+      <workItem from="1573384754275" duration="6314000" />
+      <workItem from="1573396881814" duration="1490000" />
+      <workItem from="1573475473953" duration="8060000" />
+      <workItem from="1573523185384" duration="25342000" />
+      <workItem from="1573974977238" duration="10964000" />
+      <workItem from="1574044820401" duration="10944000" />
+      <workItem from="1574156184186" duration="7453000" />
+      <workItem from="1574246920249" duration="9943000" />
+      <workItem from="1574339108415" duration="1053000" />
+      <workItem from="1574664416328" duration="239000" />
+      <workItem from="1574667112852" duration="1799000" />
+      <workItem from="1575273621990" duration="2325000" />
+      <workItem from="1575512819020" duration="19709000" />
+      <workItem from="1575550362888" duration="8459000" />
+      <workItem from="1575629867083" duration="4021000" />
+      <workItem from="1575780615359" duration="7357000" />
+      <workItem from="1575807562997" duration="14224000" />
+      <workItem from="1575868140972" duration="12873000" />
+      <workItem from="1575961754601" duration="1259000" />
+      <workItem from="1575970867663" duration="4105000" />
+      <workItem from="1575985118045" duration="1185000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="239437000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="npm" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22788204" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32960895" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32960895" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932975" weight="0.3170391" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.32960895" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32960895" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32960895" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" visible="true" weight="0.36452514" />
+      <window_info anchor="bottom" id="TypeScript" order="16" />
+      <window_info anchor="bottom" id="GitHub Pull Requests" order="17" weight="0.32960895" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.3297587" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.117292225" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29490617" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32960895" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32960895" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932975" visible="true" weight="0.16061452" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067025" side_tool="true" weight="0.32960895" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32960895" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32960895" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" weight="0.400838" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.117292225" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/DeviceDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="13" column="87" selection-start-line="13" selection-start-column="82" selection-end-line="13" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/Project.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3052">
+          <caret line="137" column="32" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/Main.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/mapper/admin/HixentUserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/AddControlGrouping.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="11" column="69" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#2;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/EditControlGrouping.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2856">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/NewProject.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="160" column="19" selection-start-line="160" selection-start-column="19" selection-end-line="160" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/admin/ApiUserListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1624">
+          <caret line="1309" column="45" selection-start-line="1309" selection-start-column="30" selection-end-line="1309" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/ControlGrouping.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="245" column="12" selection-start-line="245" selection-start-column="12" selection-end-line="245" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcSiteMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="97" column="90" selection-start-line="97" selection-start-column="90" selection-end-line="97" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcSiteMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="1924" column="18" selection-start-line="1924" selection-start-column="18" selection-end-line="1924" selection-end-column="18" />
+          <folding>
+            <element signature="e#66457#66458#0" expanded="true" />
+            <element signature="e#66495#66496#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/common/MqttTestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/util/RedisUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="97" column="19" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/mqtt/MqttProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/mqtt/MqttCustomerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="593" column="31" selection-start-line="593" selection-start-column="31" selection-end-line="593" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttDeviceList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireControlGroupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2044">
+          <caret line="112" column="47" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcSiteService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcSiteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/MqttInformation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="501" column="30" selection-start-line="501" selection-start-column="30" selection-end-line="501" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/Login_Kys.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="166" column="54" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5460">
+          <caret line="274" column="41" selection-start-line="274" selection-start-column="41" selection-end-line="274" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#3168#3238#0" expanded="true" />
+            <element signature="e#4646#4725#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcSite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/AlarmManagement/FaultLog.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="309" column="38" selection-start-line="309" selection-start-column="38" selection-end-line="309" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/model/fire/HixentArcZipperInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/HixentArcZipperInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/mapper/fire/HixentArcZipperInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="299" column="59" selection-start-line="299" selection-start-column="59" selection-end-line="299" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="542" column="2" selection-start-line="542" selection-start-column="2" selection-end-line="542" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/AlarmManagement/AlarmLog.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11060">
+          <caret line="397" column="20" selection-start-line="397" selection-start-column="20" selection-end-line="397" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#el-button#0;n#template#0;n#el-table-column#7;n#el-table#0;n#div#2;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/AlarmManagement/Off_LineLog.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8764">
+          <caret line="314" column="83" selection-start-line="314" selection-start-column="83" selection-end-line="314" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#1;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/common/http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="45" column="89" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/admin/ExcelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3892">
+          <caret line="178" column="56" selection-start-line="178" selection-start-column="30" selection-end-line="178" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/common/constant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mybatis/Datasource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mybatis/DataBaseType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mybatis/MyBatisMapperScannerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mybatis/AdminMyBatisConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1538">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisShiroCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisSessionDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2846">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-redis/1.8.8.RELEASE/spring-data-redis-1.8.8.RELEASE.jar!/org/springframework/data/redis/core/RedisTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/ApiFireAlarmListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4060">
+          <caret line="173" column="50" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/components/page/ProjectManagement/NewDevice.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12768">
+          <caret line="456" column="44" selection-start-line="456" selection-start-column="44" selection-end-line="456" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#el-breadcrumb-item#0;n#el-breadcrumb#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#3249#3255#0" expanded="true" />
+            <element signature="e#3255#3261#0" expanded="true" />
+            <element signature="e#3292#3298#0" expanded="true" />
+            <element signature="e#3305#3311#0" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#0;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-select#0;n#el-form-item#1;n#el-form#0;n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/service/fire/impl/HixentArcZipperInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3668">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2716">
+          <caret line="97" column="24" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/redis/RedisCacheManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="868">
+          <caret line="40" column="1" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/common/mqtt/MqttCustomerConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2716">
+          <caret line="121" column="43" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/mapper/fire/HixentArcZipperInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1204">
+          <caret line="50" column="47" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/java/com/qf/controller/api/fire/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>svntest</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

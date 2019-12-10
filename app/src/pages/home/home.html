@@ -1,0 +1,125 @@
+<ion-content no-bounce scroll="false">
+  <!--<div class="home_color">-->
+  <div class="home_color">
+    <div>
+      <p class="home_title">首页</p>
+      <img class="common_header_img" style="position: absolute;margin-top: 1rem"
+           src="../../assets/imgs/nav_icon_user_whtie.png" (click)="showInfo1()">
+    </div>
+    <div class="home_header_picture">
+      <p class="home_header_text">任务数</p>
+      <p class="home_header_num">{{unDealCount}}</p>
+    </div>
+    <div class="home_box_msg">
+      <div class="home_msg_item">
+        <img src="../../assets/imgs/home_icon_alarm_complete.png">
+        <div class="home_msg_text">
+          <p class="home_msg_text1">已处理报警数</p>
+          <p class="home_msg_num">{{dealAlarmCount}}</p>
+        </div>
+      </div>
+      <div class="home_msg_item">
+        <img src="../../assets/imgs/home_icon_fault_complete.png">
+        <div class="home_msg_text">
+          <p class="home_msg_text1">已处理故障数</p>
+          <p class="home_msg_num">{{dealFaultCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-card class="home_row">
+    <img src="../../assets/imgs/home_icon_project.png">
+    <div>
+      <p style="margin-bottom: 0.8rem">项目数</p>
+      <p>{{homeInfo.siteCount}}</p>
+    </div>
+  </ion-card>
+  <ion-card class="home_row">
+    <img src="../../assets/imgs/home_icon_equipment.png">
+    <div>
+      <p style="margin-bottom: 0.8rem">设备数</p>
+      <p>{{homeInfo.deviceCount+homeInfo.arcOfEquipCount+homeInfo.currentOfEquipCount}}</p>
+    </div>
+    <div style="height: 0.5rem;border-bottom: 1px solid #EBEEF5"></div>
+    <div class="home_row_flex">
+      <div>
+        <p style="margin-bottom: 0.4rem">中控</p>
+        <p>{{homeInfo.deviceCount}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">电弧探测器</p>
+        <p>{{homeInfo.arcOfEquipCount}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">组合式探测器</p>
+        <p>{{homeInfo.currentOfEquipCount}}</p>
+      </div>
+    </div>
+  </ion-card>
+  <ion-card class="home_row">
+    <img src="../../assets/imgs/home_icon_offline.png">
+    <div>
+      <p style="margin-bottom: 0.8rem">离线设备</p>
+      <p>{{homeInfo.offlineCountOfAlarm+homeInfo.offlineOfArcEquipAlarm+homeInfo.offlineOfCurrentEquipAlarm}}</p>
+    </div>
+    <div style="height: 0.5rem;border-bottom: 1px solid #EBEEF5"></div>
+    <div class="home_row_flex">
+      <div>
+        <p style="margin-bottom: 0.4rem">中控</p>
+        <p>{{homeInfo.offlineCountOfAlarm}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">电弧探测器</p>
+        <p>{{homeInfo.offlineOfArcEquipAlarm}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">组合式探测器</p>
+        <p>{{homeInfo.offlineOfCurrentEquipAlarm}}</p>
+      </div>
+    </div>
+  </ion-card>
+  <ion-card class="home_row">
+    <img src="../../assets/imgs/home_icon_alarm.png">
+    <div>
+      <p style="margin-bottom: 0.8rem">报警设备</p>
+      <p>{{homeInfo.alarmOfArcEquipAlarm+homeInfo.alarmOfCurrentEquipAlarm}}</p>
+    </div>
+    <div style="height: 0.5rem;border-bottom: 1px solid #EBEEF5"></div>
+    <div class="home_row_flex">
+      <div>
+        <p style="margin-bottom: 0.4rem">中控</p>
+        <p>0</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">电弧探测器</p>
+        <p>{{homeInfo.alarmOfArcEquipAlarm}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">组合式探测器</p>
+        <p>{{homeInfo.alarmOfCurrentEquipAlarm}}</p>
+      </div>
+    </div>
+  </ion-card>
+  <ion-card class="home_row">
+    <img src="../../assets/imgs/home_icon_fault.png">
+    <div>
+      <p style="margin-bottom: 0.8rem">故障设备</p>
+      <p>{{homeInfo.faultCountOfAlarm+homeInfo.faultOfArcEquipAlarm+homeInfo.faultOfCurrentEquipAlarm}}</p>
+    </div>
+    <div style="height: 0.5rem;border-bottom: 1px solid #EBEEF5"></div>
+    <div class="home_row_flex">
+      <div>
+        <p style="margin-bottom: 0.4rem">中控</p>
+        <p>{{homeInfo.faultCountOfAlarm}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">电弧探测器</p>
+        <p>{{homeInfo.faultOfArcEquipAlarm}}</p>
+      </div>
+      <div>
+        <p style="margin-bottom: 0.4rem">组合式探测器</p>
+        <p>{{homeInfo.faultOfCurrentEquipAlarm}}</p>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

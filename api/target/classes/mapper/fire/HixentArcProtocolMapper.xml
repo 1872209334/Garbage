@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcProtocolMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcProtocol">
+	  <result column="protocol_type"  		jdbcType="INTEGER"   property="protocol_type"   	/>
+	  <result column="protocol_name"  		jdbcType="VARCHAR"   property="protocol_name"   	/>
+	  <result column="protocol_id"    		jdbcType="VARCHAR"   property="protocol_id"     	/>
+	  <result column="protocol_length"      jdbcType="VARCHAR"   property="protocol_length"     />
+	  <result column="protocol_value" 		jdbcType="VARCHAR"   property="protocol_value"  	/>
+	  <result column="protocol_attribute"   jdbcType="VARCHAR"   property="protocol_attribute"  />
+	  <result column="protocol_node"        jdbcType="VARCHAR"   property="protocol_node"       />
+  </resultMap>
+  
+  <!-- 获取其中一条数据 -->
+  <select id="getOne" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_id = '${protocolId}' and protocol_length = '${protocolLength}' and protocol_value = '${protocolValue}';
+  </select>
+
+  <select id="selectByName" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_name = '${name}';
+  </select>
+  
+  <select id="getOneByprotocolId" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_id = '${protocolId}';
+  </select>
+
+  <select id="ListgetOne" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_id = '${protocolId}' and protocol_length = '${protocolLength}' and protocol_value = '${protocolValue}';
+  </select>
+
+  <select id="ListgetOneByprotocolId" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_id = '${protocolId}';
+  </select>
+
+  <select id="ListselectByName" parameterType="String" resultMap="BaseResultMap">
+	   select * from  hixent_arc_system.hixent_arc_protocol where protocol_name = '${name}';
+  </select>
+  
+</mapper>

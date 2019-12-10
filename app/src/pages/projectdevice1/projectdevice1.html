@@ -1,0 +1,129 @@
+<ion-header no-border>
+  <ion-navbar style="height:4.5rem;text-align: center">
+    <div class="project_header" (click)="headerSelect()">
+      <span>{{header}}</span>
+      <div></div>
+    </div>
+    <!--<img src="../../assets/imgs/nav_icon_alarm_black@3x.png" (click)="showDevice()">-->
+    <img class="common_header_img" style="position: absolute" src="../../assets/imgs/nav_icon_user_black@3x.png"
+         (click)="showInfo1()">
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="common_select_box" [ngClass]="{'common_select_show':selectShow}" (click)="selectClose()">
+    <ul class="common_select_ul">
+      <li class="common_select_item" *ngFor="let item of headerItems"
+          [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected(item)">
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div class="project_box"> {{siteInfo.siteName}} <br/>
+      <span class="project_box_text">位置：{{siteInfo.sitePlace}} </span>
+    </div>
+    <div class="project_change_btn" (click)="model($event)">更换项目</div>
+    <div class="project_header_msg">
+      <div class="project_msg_item">
+        <img src="../../assets/imgs/home_icon_alarm_complete.png">
+        <div>
+          <p class="project_msg_text1">已处理报警数</p>
+          <p class="project_msg_text2">{{dealAlarmCount}}</p>
+        </div>
+      </div>
+      <div class="project_msg_item">
+        <img src="../../assets/imgs/home_icon_fault_complete.png">
+        <div>
+          <p class="project_msg_text1">已处理故障数</p>
+          <p class="project_msg_text2">{{dealFaultCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-item-divider sticky>
+    <ion-label class="project_select_item">
+      <div class="project_search">
+        <button ion-button #brect style="padding-right: 0" class="search_btn" (click)="goSearch($event)">
+          <ion-icon name="search" style="letter-spacing: 0.5rem"></ion-icon>
+          <span>搜索设备名称</span>
+        </button>
+      </div>
+      <div class="common_select">
+        <div (click)="headerSelect1()">{{header1}}<label class="common_select_icon"></label></div>
+        <div (click)="headerSelect2()">{{header2}}<label class="common_select_icon"></label></div>
+      </div>
+    </ion-label>
+  </ion-item-divider>
+  <div class="common_select_box" [ngClass]="{'common_select_show':selectShow1}" (click)="selectClose()">
+    <ul class="common_select_ul">
+      <li class="common_select_item" *ngFor="let item of headerItems1"
+          [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected1(item)">
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="common_select_box" [ngClass]="{'common_select_show':selectShow2}" (click)="selectClose()">
+    <ul class="common_select_ul">
+      <li class="common_select_item" *ngFor="let item of headerItems2"
+          [ngClass]="{'common_selected_color':item.selected}" (click)="itemSelected2(item)">
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="home_h1_part">
+
+    <div style="margin-top: 2rem;font-size: 16px;text-align: center" *ngIf="projectItem.length == 0">暂无设备</div>
+    <ion-card *ngFor="let item of projectItem" class="devicerow" (click)="showDevice(item)">
+      <ion-grid>
+        <ion-row class="project_item_text">
+          <ion-col *ngIf="headerItems[0].selected">
+            <p *ngIf="item.niName" class="project_item_title">{{item.niName}}</p>
+            <p *ngIf="!item.niName && item.specificator" class="project_item_title">{{item.specificator}}</p>
+            <p *ngIf="!item.niName && !item.specificator && item.deviceCode" class="project_item_title">
+              {{item.deviceCode}}</p>
+          </ion-col>
+          <ion-col *ngIf="!headerItems[0].selected">
+            <p class="project_item_title">编号：{{item.deviceCode2}}</p>
+          </ion-col>
+          <ion-col *ngIf="item.warnIndex == -1 || !item.warnIndex">
+            <p class="project_item_color1 project_float_right project_margin">正常</p>
+            <img src="../../assets/imgs/state_normal.png" class="project_item_img">
+          </ion-col>
+          <ion-col *ngIf="item.warnIndex == 2">
+            <p class="project_item_color2 project_float_right project_margin">离线</p>
+            <img src="../../assets/imgs/state_offline.png" class="project_item_img">
+          </ion-col>
+          <ion-col *ngIf="item.warnIndex == 1">
+            <p class="project_item_color3 project_float_right project_margin">故障</p>
+            <img src="../../assets/imgs/state_alarm.png" class="project_item_img">
+          </ion-col>
+          <ion-col *ngIf="item.warnIndex == 0">
+            <p class="project_item_color3 project_float_right project_margin">报警</p>
+            <img src="../../assets/imgs/state_alarm.png" class="project_item_img">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col *ngIf="headerItems[0].selected">
+            <p class="project_item_color2">编号：{{item.deviceCode}}</p>
+          </ion-col>
+          <ion-col *ngIf="headerItems[0].selected">
+            <p *ngIf="item.place" class="project_item_color2 project_float_right project_address">位置：{{item.place}}</p>
+          </ion-col>
+          <ion-col *ngIf="!headerItems[0].selected">
+            <p class="project_item_color2" style="height: 1.2rem"> </p>
+          </ion-col>
+          <ion-col *ngIf="!headerItems[0].selected">
+            <p *ngIf="item.message" class="project_item_color2 project_float_right project_address">位置：{{item.message}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-infinite-scroll *ngIf="isMore" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多数据...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <div *ngIf="!isMore && total > pageParam.page_size" class="text-align no-more">-No more-</div>
+  </div>
+</ion-content>

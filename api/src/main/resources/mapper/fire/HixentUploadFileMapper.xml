@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentUploadFileMapper">
+   <resultMap type="com.qf.model.fire.HixentArcFile" id="fileResultMap">
+     <result column="id"     property="id"      />
+     <result column="fileName"     property="fileName"      />
+     <result column="filePath"     property="filePath"      />
+     <result column="account"     property="uploader"      />
+     <result column="uploader"     property="uploaderId"      />
+     <result column="type"     property="type"      />
+     <result column="siteId"     property="siteId"      />
+     <result column="site_name"     property="siteName"      />
+     <result column="updateTime"     property="uploadTime"      />
+     <result column="site_code"     property="siteCode"      />
+     <result column="relativeFileUrl"     property="relativeFileUrl"      />
+     <result column="folderName"     property="folderName"      />
+      <result column="folderId"     property="folderId"      />
+      <result column="gFilePath"     property="gFilePath"      />
+   </resultMap>
+   <!-- 上传施工图 -->
+   <insert id="uploadPhoto">
+   INSERT INTO hixent_arc_system.hixent_arc_file(fileName,filePath,relativeFileUrl,folderId) 
+   VALUES(#{fileName},#{filePath},#{relativeFileUrl},#{folderId})
+   </insert>
+  
+  <select id="getPhotoList" resultMap="fileResultMap">
+ SELECT * FROM hixent_arc_system.hixent_arc_file HAF WHERE HAF.folderId=#{folderId}
+ <if test="limits!=null and limits!=''">
+ LIMIT ${limits}
+ </if>
+  </select>
+  
+  <select id="getPhotoListCount" resultType="Integer">
+  SELECT COUNT(*) FROM hixent_arc_system.hixent_arc_file HAF WHERE HAF.folderId=#{folderId}
+  </select>
+  
+  <!-- 通过图片Id查询图片 -->
+  <select id="selPhotoById" resultMap="fileResultMap">
+  SELECT HAF.*,HU.account,HAS.site_name,HAS.site_code,HAFL.* FROM 
+  hixent_arc_system.hixent_arc_folder HAF 
+  LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HAF.siteId
+  JOIN hixent_user.hixent_user HU ON HU.id=HAF.uploader 
+  WHERE HAFL.id=#{photoId}
+  
+  </select>
+    <!-- 通过文件夹Id查询详情 -->
+  <select id="selFolderById" resultMap="fileResultMap">
+  SELECT HAF.*,HU.account,HAS.site_name,HAS.site_code FROM hixent_arc_system.hixent_arc_folder HAF 
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HAF.siteId
+  JOIN hixent_user.hixent_user HU ON HU.id=HAF.uploader 
+  WHERE HAF.folderId=#{folderId}
+  
+  </select>
+  <!-- 删除图片 -->
+  <delete id="delPhotoById">
+  DELETE FROM hixent_arc_system.hixent_arc_file  WHERE id=#{photoId}
+  </delete>
+  
+  <!-- 编辑图片 -->
+ <update id="editPhotoById">
+  UPDATE hixent_arc_system.hixent_arc_file HAF SET HAF.fileName=#{fileName},
+   HAF.filePath=#{filePath},HAF.uploadTime=#{time},HAF.siteId=#{siteId},HAF.remark=#{remark},
+   HAF.relativeFileUrl=#{relativeFileUrl}
+  WHERE HAF.id=#{photoId}
+  </update>
+  
+  <!-- 查询文件夹名是否重复 -->
+  <select id="checkFolderName" resultMap="fileResultMap">
+  SELECT * FROM hixent_arc_system.hixent_arc_folder HAF  WHERE HAF.folderName=#{folderName} AND HAF.uploader=#{adminId}
+  
+  </select>
+  
+  <!-- 插入文件夹数据 -->
+  <insert id="folderData" useGeneratedKeys="true" keyProperty="folderId" parameterType="com.qf.model.fire.HixentArcFile">
+  INSERT INTO hixent_arc_system.hixent_arc_folder(folderName,uploader,updateTime,type,siteId) 
+   VALUES(#{folderName},#{uploaderId},#{uploadTime},#{type},#{siteId})
+  </insert>
+  
+  <!-- 更新文件夹 -->
+  <update id="updateFolder">
+  UPDATE hixent_arc_system.hixent_arc_folder HAF 
+  SET HAF.folderName=#{folderName},HAF.updateTime=#{time},HAF.siteId=#{siteId}
+  WHERE HAF.folderId=#{folderId}
+  </update>
+  
+  <!-- 通过文件夹删除文件 -->
+  <delete id="delFileByFoldId">
+  DELETE HAFL FROM hixent_arc_system.hixent_arc_file HAFL WHERE HAFL.folderId=#{folderId}
+  </delete>
+  
+  <!-- 删除文件夹 -->
+  <delete id="delFolderByFoldId">
+  DELETE HAF FROM hixent_arc_system.hixent_arc_folder HAF WHERE HAF.folderId=#{folderId}
+  </delete>
+  
+  
+  <!-- 文件夹分页 -->
+   <select id="getFolderList" resultMap="fileResultMap">
+ SELECT HAF.*,HU.account,HAS.site_name,HAS.site_code
+ , GROUP_CONCAT(DISTINCT HAFL.filePath ORDER BY HAFL.id DESC) gFilePath
+FROM hixent_arc_system.hixent_arc_folder HAF 
+  LEFT JOIN  hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HAF.siteId
+  JOIN hixent_user.hixent_user HU ON HU.id=HAF.uploader 
+  WHERE HAF.folderId>0 
+  <include refid="provinceAndArea"></include>
+  <if test="roleType!=0">
+   AND HAF.uploader=#{adminId}
+  </if>
+  <if test="siteId!=0">
+   AND HAF.siteId=#{siteId}
+  </if>
+  <if test="type!=-1">
+  AND HAF.type=#{type}
+  </if>
+   <if test="startTime!=0">
+   AND HAF.uploadTime &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAF.uploadTime &lt;= #{endTime}
+   </if>
+   GROUP BY HAF.folderId
+   LIMIT ${limits}
+   
+  </select>
+   <!-- 文件夹数量 -->
+  <select id="getFolderListCount" resultType="Integer">
+SELECT COUNT(A.folderId) FROM (SELECT HAF.folderId
+FROM hixent_arc_system.hixent_arc_folder HAF 
+  LEFT JOIN  hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+  JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HAF.siteId
+  JOIN hixent_user.hixent_user HU ON HU.id=HAF.uploader 
+  WHERE HAF.folderId>0 
+  <include refid="provinceAndArea"></include>
+  <if test="roleType!=0">
+   AND HAF.uploader=#{adminId}
+  </if>
+  <if test="siteId!=0">
+   AND HAF.siteId=#{siteId}
+  </if>
+  <if test="type!=-1">
+  AND HAF.type=#{type}
+  </if>
+   <if test="startTime!=0">
+   AND HAF.uploadTime &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAF.uploadTime &lt;= #{endTime}
+   </if>
+   GROUP BY HAF.folderId)A
+  </select>
+  
+  
+  <!-- 管理员拥有项目 -->
+  	<sql id="provinceAndArea">
+		<if test="provinceId!=0 ">
+			AND substring(HAS.site_code,1,2)=(SELECT HAPR.province_code
+			FROM
+			hixent_arc_province HAPR WHERE HAPR.id=#{provinceId})
+		</if>
+		<if test="areaId!=0 ">
+			AND substring(HAS.site_code,3,2)=(SELECT HAA.area_code FROM
+			hixent_arc_area
+			HAA WHERE HAA.id=#{areaId} AND HAA.pid=#{provinceId})
+		</if>
+		<if test="siteCordArr[0]!='0'.toString() ">
+			AND HAS.site_code IN
+			<foreach item="item" index="index" collection="siteCordArr"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</sql>
+</mapper>

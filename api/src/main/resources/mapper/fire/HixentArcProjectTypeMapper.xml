@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcProjectTypeMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcProjectType">
+	  <result column="id"             jdbcType="INTEGER"   property="id"           />
+      <result column="admin_id"       jdbcType="INTEGER"   property="admin_id"     />
+	  <result column="name"           jdbcType="VARCHAR"   property="name"         />
+      <result column="address"        jdbcType="VARCHAR"   property="address"      />
+	  <result column="phone"          jdbcType="VARCHAR"   property="phone"        />
+      <result column="img_url"    	  jdbcType="VARCHAR"   property="img_url"      />
+	  <result column="lng_bmap"       jdbcType="DOUBLE"    property="lng_bmap"     />
+	  <result column="lng_bmap"       jdbcType="DOUBLE"    property="lng_bmap"     />
+  </resultMap>
+
+  <!-- 根据分组id获取所有信息 -->
+  <select id="getAllByProjectId" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_project_type where id in
+	   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+  <select id="getOne" parameterType="Integer" resultMap="BaseResultMap">
+       select * from hixent_arc_system.hixent_arc_project_type where id=#{pid}
+  </select>
+  
+   <select id="getProjectSize" parameterType="Integer" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_project_type where admin_id=#{id}
+  </select>
+  
+  <select id="getPageProject" parameterType="Integer" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_project_type where admin_id=#{id}
+        limit ${limits};
+  </select>
+  
+     <!-- 添加 -->
+   <select id="insertProject" parameterType="String" resultMap="BaseResultMap">
+       INSERT INTO hixent_arc_system.hixent_arc_project_type (`name`,`address`,`admin_id`,`phone`) VALUES ('${name}','${address}',${id},'${phone}');
+  </select>
+
+  <select id="checkName" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_project_type where name=#{name};
+  </select>
+  
+    <!-- 添加 -->
+   <select id="updateProject" parameterType="String" resultMap="BaseResultMap">
+   	   update hixent_arc_system.hixent_arc_project_type set name='${name}',address='${address}',phone='${phone}' where id = ${type};
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

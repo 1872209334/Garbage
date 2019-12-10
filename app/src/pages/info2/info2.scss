@@ -1,0 +1,42 @@
+page-info2 {
+  .img10 {
+    max-width:8rem;
+    max-height:8rem;
+    width:8rem;
+    height:8rem;
+    border-radius:100%;
+  }
+
+  .header-ios .toolbar-background-ios{
+    border: none;
+  }
+
+  .info_header_picture{
+    width: 5rem;
+    float: right;
+  }
+
+  .user_text_color1{
+    color: #303133;
+    font-size: 1.8rem;
+    font-weight: bolder;
+  }
+
+  .user_text_color2{
+    color: #909399;
+    font-size: 1.8rem;
+    float: right;
+  }
+
+  .item-ios.item-block .item-inner{
+    border-bottom: 1px solid #CDD0D8 !important;
+  }
+
+  .item-ios{
+    padding-left: 0;
+  }
+
+  .user_text_color1{
+    margin-left: 1rem;
+  }
+}

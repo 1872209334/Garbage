@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.qf.mapper.fire.HixentArcZipperInfoMapper">
+
+	<resultMap id="BaseResultMap"
+		type="com.qf.model.fire.HixentArcZipperInfo">
+		<result column="unid" jdbcType="INTEGER" property="unid" />
+		<result column="project_id" jdbcType="VARCHAR"
+				property="projectId" />
+		<result column="device_id" jdbcType="VARCHAR"
+			property="deviceId" />
+		<result column="finished_sum" jdbcType="VARCHAR"
+			property="finishedSum" />
+		<result column="defective_sum" jdbcType="VARCHAR"
+			property="defectiveSum" />
+		<result column="total_cycles" jdbcType="VARCHAR"
+			property="totalCycles" />
+		<result column="current_angle" jdbcType="VARCHAR"
+			property="currentAngle" />
+		<result column="current_speed" jdbcType="VARCHAR"
+			property="currentSpeed" />
+		<result column="speed_setting" jdbcType="VARCHAR"
+			property="speedSetting" />
+		<result column="operational_mode" jdbcType="VARCHAR"
+			property="operationalMode" />
+		<result column="is_alarm" jdbcType="VARCHAR"
+			property="isAlarm" />
+		<result column="alarm_type" jdbcType="VARCHAR"
+			property="alarmType" />
+		<result column="fault_type" jdbcType="VARCHAR"
+				property="faultType" />
+		<result column="type" jdbcType="VARCHAR"
+				property="type" />
+		<result column="is_deal" jdbcType="VARCHAR"
+				property="isDeal" />
+		<!--<result column="site_name" jdbcType="VARCHAR"-->
+				<!--property="siteName" />-->
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+				property="updateTime" />
+		<result column="create_people" jdbcType="VARCHAR"
+				property="createPeople" />
+		<result column="update_people" jdbcType="VARCHAR"
+				property="updatePeople" />
+        <result column="site_name" jdbcType="VARCHAR"
+                property="siteName" />
+        <result column="site_id" jdbcType="VARCHAR"
+                property="siteId" />
+	</resultMap>
+	<resultMap id="unionMap" type="com.qf.model.fire.HixentArcZipperUnionInfo">
+		<result column="site_name" jdbcType="VARCHAR"
+				property="siteName" />
+		<result column="site_id" jdbcType="VARCHAR"
+				property="siteId" />
+	</resultMap>
+	<resultMap id="siteResultMap" type="com.qf.model.fire.HixentArcSite">
+		<result column="site_id" jdbcType="INTEGER"
+				property="siteId" />
+		<result column="site_code" jdbcType="VARCHAR"
+				property="siteCode" />
+		<result column="site_name" jdbcType="VARCHAR"
+				property="siteName" />
+		<result column="site_place" jdbcType="VARCHAR"
+				property="sitePlace" />
+		<result column="site_build_id" jdbcType="INTEGER"
+				property="siteBuildId" />
+		<result column="longitute" jdbcType="VARCHAR"
+				property="longitute" />
+		<result column="latitude" jdbcType="VARCHAR"
+				property="latitude" />
+		<result column="map_num" jdbcType="INTEGER"
+				property="mapNum" />
+		<result column="logo_file_name" jdbcType="VARCHAR"
+				property="logoFileName" />
+		<result column="logo_file_url" jdbcType="VARCHAR"
+				property="logoFileUrl" />
+		<result column="logo_relative_file_url" jdbcType="VARCHAR"
+				property="logoRelativeFileUrl" />
+		<result column="back_file_name" jdbcType="VARCHAR"
+				property="backFileName" />
+		<result column="back_file_url" jdbcType="VARCHAR"
+				property="backFileUrl" />
+		<result column="back_relative_file_url" jdbcType="VARCHAR"
+				property="backRelativeFileUrl" />
+	</resultMap>
+
+	<select id="selectSiteName" parameterType="String" resultMap="unionMap">
+		select site_name,site_id
+		from
+		hixent_arc_system.hixent_arc_site
+		where
+		site_code= #{projectId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAllZipperInfo" parameterType="String" resultMap="BaseResultMap">
+		select t1.*
+		from
+		hixent_arc_system.hixent_arc_zipper t1
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_name
+		where t1.device_id = #{deviceId,jdbcType=VARCHAR}
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="countZipperInfoByDeviceId" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper
+		where device_id = #{deviceId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAlarmLog" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,
+		t2.type
+		from
+		hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id
+		where 1=1
+		<!--<if test="projectId != null and projectId!=''">-->
+			<!--AND t1.project_id= #{projectId,jdbcType=VARCHAR}-->
+		<!--</if>-->
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="selectAlarmLog1" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,
+		t2.type,
+		t3.site_id,t3.site_name
+		from
+		(hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+		left join
+		hixent_arc_system.hixent_arc_site t3
+		on
+		t1.project_id = t3.site_code
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="selectAlarmLogBySiteId" parameterType="Integer" resultMap="siteResultMap">
+		select *
+		from
+		hixent_arc_system.hixent_arc_site
+		where
+		 site_id= #{siteId,jdbcType=INTEGER}
+
+	</select>
+	<select id="countZipperAlarmLog" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="selectFaultLog" parameterType="String" resultMap="BaseResultMap">
+	select t1.*, t2.type
+	from
+	hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_name
+	where 1=1
+	<if test="deviceId != null and deviceId!=''">
+		AND t1.device_id= #{deviceId,jdbcType=VARCHAR}
+	</if>
+	<if test="isAlarm != null and isAlarm!=''">
+		AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+	</if>
+	order by t1.create_time desc
+	<if test="limits!=null and limits!=''">
+		limit ${limits}
+	</if>
+</select>
+	<select id="selectFaultLog1" parameterType="String" resultMap="BaseResultMap">
+	select t1.*, t2.type,t3.site_id,t3.site_name
+	    from
+        (hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+        left join
+        hixent_arc_system.hixent_arc_site t3
+        on
+        t1.project_id = t3.site_code
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_name
+	where 1=1
+	<if test="projectId != null and projectId!=''">
+		AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+	</if>
+	<if test="deviceId != null and deviceId!=''">
+		AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+	</if>
+	<if test="isAlarm != null and isAlarm!=''">
+		AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+	</if>
+	order by t1.create_time desc
+	<if test="limits!=null and limits!=''">
+		limit ${limits}
+	</if>
+</select>
+	<select id="countZipperFaultLog" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="selectOffLineLog" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,t2.type
+		from
+		hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_name
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="selectOffLineLog1" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,t2.type,
+		t3.site_id,t3.site_name
+		from
+		(hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+		left join
+		hixent_arc_system.hixent_arc_site t3
+		on
+		t1.project_id = t3.site_code
+		where 1=1
+        <if test="projectId != null and projectId!=''">
+            AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+        </if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="countZipperOffLineLog1" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="countZipperOffLineLog" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper t1
+
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<delete id="deleteAlarmLog" parameterType="INTEGER">
+		delete
+		from
+		hixent_arc_system.hixent_arc_zipper
+		where unid=#{unid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insertZipperLog" parameterType="com.qf.model.fire.HixentArcZipperInfo">
+    insert into hixent_arc_system.hixent_arc_zipper (unid, project_id, device_id, finished_sum,
+      defective_sum, total_cycles, current_angle, current_speed, speed_setting, operational_mode, is_alarm,
+      alarm_type, fault_type, is_deal, create_time, create_people,
+      update_time, update_people)
+    values (#{unid,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{finishedSum,jdbcType=VARCHAR},
+      #{defectiveSum,jdbcType=VARCHAR},#{totalCycles,jdbcType=VARCHAR},#{currentAngle,jdbcType=VARCHAR},#{currentSpeed,jdbcType=VARCHAR},#{speedSetting,jdbcType=VARCHAR},
+      #{operationalMode,jdbcType=VARCHAR},#{isAlarm,jdbcType=VARCHAR},#{alarmType,jdbcType=VARCHAR},#{faultType,jdbcType=VARCHAR},#{isDeal,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{createPeople,jdbcType=VARCHAR},
+      #{updateTime,jdbcType=TIMESTAMP}, #{updatePeople,jdbcType=VARCHAR})
+  </insert>
+	<update id="updateWarningIndex" parameterType="INTEGER">
+		UPDATE
+		hixent_arc_system.hixent_arc_warning_list
+		set warning_index = #{isAlarm,jdbcType=INTEGER},
+		where  eid=#{deviceId,jdbcType=VARCHAR}
+	</update>
+
+	</mapper>

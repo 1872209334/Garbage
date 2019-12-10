@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:background="#5f9fff"
+    	android:gravity="center"
+		android:fitsSystemWindows="true"     	
+    	android:orientation="vertical">
+         <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp"
+	        android:background="#5f9fff">	
+	        <Button 
+	            android:id="@+id/return_btn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="8dp"
+	            android:layout_alignParentLeft="true"
+	            android:layout_centerVertical="true"
+	            android:background="@null"
+	            android:textColor="#ffffff"
+	            android:text="返回" 
+	            android:paddingLeft="15dp"
+	            android:paddingRight="10dp"
+	            android:paddingTop="5dp"
+	            android:paddingBottom="5dp" />	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true"
+				android:layout_centerInParent="true"
+	            android:text="定位"
+	            android:textColor="#ffffff"
+	            android:textSize="19sp"
+	            android:textStyle="bold" />
+
+	
+	    </RelativeLayout>
+	    
+		
+
+ 		<RelativeLayout
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="fill_parent"
+ 		    android:orientation="vertical" >
+
+ 		    <com.baidu.mapapi.map.MapView
+ 		        android:id="@+id/mapsView"
+ 		        android:layout_width="fill_parent"
+ 		        android:layout_height="fill_parent"
+ 		        android:clickable="true" /> 
+			<Button
+ 		        android:id="@+id/dingwei"
+ 		        style="@style/AppTheme"
+ 		        android:layout_width="40dp"
+ 		        android:layout_height="40dp"
+ 		        android:layout_alignParentBottom="true"
+ 		        android:layout_alignParentLeft="true"
+ 		        android:layout_marginBottom="100dp"
+ 		        android:layout_marginRight="10.0dip" 
+ 		        android:layout_marginLeft="10.0dip" 
+ 		        android:background="@drawable/custom_loc" />
+ 		    <RelativeLayout
+ 		        android:layout_width="wrap_content"
+ 		        android:layout_height="50dip"
+ 		        android:layout_alignParentBottom="true"
+ 		        android:layout_alignParentLeft="true"
+ 		       	android:layout_marginBottom="21dp"
+ 		         android:layout_marginRight="10.0dip" 
+ 		        android:layout_marginLeft="10.0dip" 
+ 		        android:background="@drawable/btn_white_selector"
+      			android:paddingRight="10.0dip" >
+ 		         <TextView 
+			        android:id="@+id/tv_location_lli"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:gravity="center_vertical"
+			        android:layout_marginLeft="10dip"
+			        android:textColor="@color/black" 
+			        android:text="位置信息"/>
+		    <Button 
+		        android:id="@+id/btn_ok_lli"
+		        android:layout_width="80dip"
+		        android:layout_height="35dip"
+		        android:layout_alignParentRight="true"
+		        android:layout_marginRight="10dip"
+		        android:layout_gravity="center"  
+		        android:layout_centerVertical="true"
+		        android:background="@color/blue"
+		        android:textColor="@color/white" 
+		        android:textSize="16dip" 
+		        android:text="确定"/>
+ 		    </RelativeLayout>
+
+ 		    <Button 
+ 		       
+ 		        android:layout_width="20dip"
+ 		        android:layout_height="50dip"
+ 		        android:layout_centerHorizontal="true"
+ 		        android:layout_centerVertical="true"
+ 		        android:gravity="center"
+ 		        android:background="@drawable/ic_mark_rectangle_blue"
+ 		        android:textSize="20dp" 
+ 		        />
+
+ 		</RelativeLayout>
+
+</LinearLayout>

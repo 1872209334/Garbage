@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>我的</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-bounce scroll="false" style="background-color: #F5F7FA;">
+    <ion-item-sliding style="margin-bottom: 1rem">
+      <ion-item>
+        <!--<button ion-item style="left:2%;height:8rem" (click)="showInfo1()">
+          <ion-avatar item-left>
+            <img  style="margin-top:-2.2rem;position:absolute;left:0%;max-width:6rem;max-height:6rem;width:6rem;height:6rem;border-radius:100%;" src="../../assets/imgs/avatar.png" >
+          </ion-avatar>
+          <p style="position: absolute;left:24%;font-size: 20px;color: #000000;font-weight: bold;margin-top:-3.0rem;">{{userInfo.username}}</p>
+          <img src="../../assets/imgs/user_icon_phone.png" style="position: absolute;left:20%;width:1.6rem;top: 4.0rem;">
+          <div style="position: absolute;left:30%;top:4.0rem;">
+            <p style="font-size: 14px;color: #909399;">{{userInfo.mobile}}</p>
+          </div>
+        </button>-->
+        <div class="info_box">
+          <button ion-item (click)="showInfo1()">
+            <img class="info_header_pictrue" src="../../assets/imgs/avatar.png">
+            <div class="info_name">
+              <h1 class="user_name_text">{{userInfo.username}}</h1>
+              <img class="info_phone_icon" src="../../assets/imgs/user_icon_phone.png">
+              <span class="user_phone_num_first">{{userInfo.mobile}}</span>
+            </div>
+          </button>
+          <div class="user_phone_box">
+            <img src="../../assets/imgs/map_img_admin_1.png">
+            <p class="user_info_phone_num" (click)="tel()">{{userInfo.adminMobile}}</p>
+          </div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  <ion-item class="info_item">
+    <img class="info_item_icon" src="../../assets/imgs/user_list_icon_version@3x.png">
+    <span class="info_item_text">当前版本</span>
+    <span class="info_item_v">V1.0</span>
+  </ion-item>
+
+  <button ion-item (click)="resetPwd()" class="user_item_button info_item">
+    <img class="info_item_icon" src="../../assets/imgs/user_list_icon_code@3x.png">
+    <span class="info_item_text">修改密码</span>
+  </button>
+  <button ion-button class="login_out_btn" style="position: absolute;bottom: 2.5rem;width:80%;left:10%;padding-right: 0;border-radius: 20px;" (click)="login_out()" outline>退出登录</button>
+</ion-content>

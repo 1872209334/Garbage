@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcEquipmentInfoMqttMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcEquipmentInfoMqtt">
+	  <result column="id"                    property="id"                    />
+      <result column="module_code"           property="module_code"           />
+	  <result column="line_code"             property="line_code"             />
+	  <result column="device_code"           property="device_code"           />
+	  <result column="site_code"             property="site_code"             />
+	  <result column="address"               property="address"               />
+	  <result column="device_ip"             property="device_ip"             />
+	  <result column="node"        		     property="node"                  />
+	  <result column="lng_bmap"          jdbcType="DOUBLE"    property="lng_bmap"              />
+	  <result column="lat_bmap"          jdbcType="DOUBLE"    property="lat_bmap"              />
+	  <result column="city_id"               property="city_id"               />
+      <result column="province_id"           property="province_id"           />
+	  <result column="area_id"               property="area_id"               />
+	  <result column="status"                property="status"                />
+	  <result column="is_effect"             property="is_effect"             />
+	  <result column="device_type"           property="device_type"           />
+	  <result column="report_time"           property="report_time"           />
+	  <result column="register_time"         property="register_time"         />
+	  <result column="temp_alarm_en"         property="temp_alarm_en"         />
+	  <result column="arc_alarm_en"          property="arc_alarm_en"          />
+	  <result column="alive_en"              property="alive_en"              />
+	  <result column="admin_id"              property="admin_id"              />
+	  <result column="efm_id"                property="efm_id"                />
+  	  <result column="type"                  property="type"                  />
+      <result column="subtype"       	     property="subtype"           	   />
+	  <result column="version"               property="version"               />
+	  <result column="sens"                  property="sens"                  />
+	  <result column="erelay"                property="erelay"                />
+	  <result column="tempration"            property="tempration"            />
+	  <result column="trelay"                property="trelay"                />
+	  <result column="time"        		     property="time"                  />
+	  <result column="cnt"                   property="cnt"                   />
+	  <result column="message"               property="message"               />
+	  <result column="addr"           	     property="addr"                  />
+	  <result column="fire_info"             property="fire_info"             />
+	  <result column="broken_info"           property="broken_info"           />
+	  <result column="other_info"            property="other_info"            />
+      <result column="equipment_manufacturer_code"      property="equipmentManufacturerCode" />
+      <result column="equipment_category"      property="equipmentCategory" />
+      <result column="longitude"      property="longitude" />
+      <result column="latitude"      property="latitude" />
+  </resultMap>
+
+ 
+  
+  <!-- 更新 -->
+  <select id="UpdateMqtt" parameterType="String" resultMap="BaseResultMap">
+       Update hixent_arc_system.hixent_arc_equipment_info_mqtt set `${fieldname}` = '${fieldvalue}'  where `id` = '${id}';
+  </select>
+
+  <!-- 根据虚拟分组id获取设备号 -->
+  <select id="getDeviceListByProjectId" parameterType="String" resultMap="BaseResultMap">
+       SELECT e.* FROM hixent_arc_system.hixent_arc_project_equipment_relevance r LEFT JOIN hixent_arc_system.hixent_arc_equipment_info_mqtt e on r.eid=e.id where r.pid in
+	   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+	   	   #{item}
+	   </foreach>;
+  </select>
+
+  <!-- 列表 -->
+  <select id="getAllDeviceList" parameterType="String" resultMap="BaseResultMap">
+	  <!--SELECT e.* FROM hixent_arc_project_equipment_relevance r LEFT JOIN hixent_arc_equipment_info_mqtt e on r.eid=e.id where r.pid=${pid};-->
+	  SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt;
+  </select>
+  <select id="getPageDeviceList" parameterType="String" resultMap="BaseResultMap">
+	  <!--  暂不判断虚拟分组权限
+	  SELECT e.*
+	  FROM hixent_arc_project_equipment_relevance r 
+	  LEFT JOIN hixent_arc_equipment_info_mqtt e on r.eid=e.id 
+	  where r.pid=${pid}
+	  order by ${order} 
+	  limit ${limits};-->
+	  SELECT e.*
+	  FROM hixent_arc_system.hixent_arc_project_equipment_relevance r 
+	  RIGHT JOIN hixent_arc_system.hixent_arc_equipment_info_mqtt e on r.eid=e.id 
+	  order by ${order} 
+	  limit ${limits};
+  </select>
+  
+  
+  <!-- 列表(后台站点) -->
+  <select id="getAllDeviceListByBid" parameterType="String" resultMap="BaseResultMap">
+	  SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where site_code in
+	  <foreach item="item" index="index" collection="bid" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach>
+	  <if test="efmId != null"> and  efm_id = ${efmId}  </if>;
+  </select>
+  <select id="getPageDeviceListByBid" parameterType="String" resultMap="BaseResultMap">
+	  <!-- 
+	  //暂不判断站点权限
+	  SELECT * FROM hixent_arc_equipment_info_mqtt where site_code in
+	  <foreach item="item" index="index" collection="bid" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach>
+	  <if test="efmId != null"> and  efm_id = ${efmId}  </if>
+	  order by ${order} 
+	  limit ${limits};
+	   -->
+	   
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where 1
+	  <if test="efmId != null"> and   efm_id = ${efmId}  </if> 
+	  <if test="lineCode != null and lineCode != ''"> and line_code = ${lineCode}  </if> 
+	  order by ${order} 
+	  limit ${limits};
+  </select>
+  
+  <!-- 获取设备详细信息 -->
+  <select id="getOneList" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_equipment_info_mqtt where id=#{eid}
+  </select>
+  
+  <!-- 获取设备详细信息 -->
+  <select id="getOne" parameterType="String" resultMap="BaseResultMap">
+       select * from  hixent_arc_system.hixent_arc_equipment_info_mqtt where id=#{eid}
+  </select>
+  
+  <select id="getPageEfmTerminalList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where 1
+	  <if test="efmId != null"> and   efm_id = ${efmId}  </if> 
+	  <if test="lineCode != null and lineCode != ''"> and line_code = ${lineCode}  </if> 
+	  order by addr asc
+	  limit ${limits};
+  </select>
+  
+    <select id="getAllEfmTerminalList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where 1
+	  <if test="efmId != null"> and   efm_id = ${efmId}  </if> 
+	  <if test="lineCode != null and lineCode != ''"> and line_code = ${lineCode}  </if>;
+   </select>
+   
+    <select id="getAllMqttDeviceList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where efm_id >= 0;
+   </select>
+   
+     <select id="getPageMqttDeviceList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where efm_id >= 0
+	    limit ${limits};
+   </select>
+    
+  <select id="getEfmTerminalCount" parameterType="String"  resultType="Integer" resultMap="BaseResultMap">
+	   SELECT count(*) FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where 1
+	  <if test="efmId != null"> and  efm_id = ${efmId}  </if> 
+	  <if test="lineCode != null and lineCode != ''"> and line_code = ${lineCode}  </if>;
+  </select>
+  
+   <select id="getCommonMqttList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where efm_id >= 0 and site_code in
+	   <foreach item="item" index="index" collection="allDid" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach>;
+   </select>
+   
+    <select id="getPageCommonMqttList" parameterType="String" resultMap="BaseResultMap">
+	   SELECT * FROM hixent_arc_system.hixent_arc_equipment_info_mqtt where efm_id >= 0 and site_code in
+	   <foreach item="item" index="index" collection="allDid" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach>
+	    limit ${limits};
+   </select>
+  
+  <!-- 通过项目code查询项目 -->
+  <select id="getSiteCodeBySiteCode" resultType="String">
+  SELECT HAS.site_code FROM hixent_arc_system.hixent_arc_site HAS WHERE HAS.site_code =#{siteCode}
+  </select>
+
+
+  <!-- 插入项目 -->
+  <insert id="addSite">
+  INSERT INTO hixent_arc_system.hixent_arc_site(site_code) VALUES(#{siteCode})
+  </insert>
+  
+  <select id="selEquipMqttByEquipId" resultMap="BaseResultMap">
+  SELECT * FROM hixent_arc_system.hixent_arc_equipment_info HAEIM WHERE HAEIM.id=#{equipId}
+  </select>
+  
+   <!-- 添加无线设备 -->
+  <insert id="insertMqtt">
+       INSERT INTO hixent_arc_system.hixent_arc_equipment_info 
+       (id,module_code,line_code,device_code,site_code,addr) VALUES (#{id},#{module_code},#{line_code},#{device_code},#{site_code},#{addr});
+  </insert>
+  
+  <!-- 更新信息 -->
+  <update id="updateEquipMqtt">
+  UPDATE hixent_arc_system.hixent_arc_equipment_info  SET ${field}=#{message}
+   WHERE id=#{equipId}
+  </update>
+  
+  <!-- 获取无线设备列表 分页 -->
+   <select id="getPageMqttEquipList"  resultMap="BaseResultMap">
+	 SELECT * FROM hixent_arc_system.hixent_arc_equipment_info HAEIM 
+	  WHERE HAEIM.site_code=#{siteCode} 
+	   <if test="equipmentCategory!=-1">
+	   AND HAEIM.type=#{equipmentCategory}
+	   </if>
+	 
+  </select>
+  
+  <!--获取无线设备列表  数量  -->
+  <select id="getPageMqttEquipCount" resultType="Integer">
+   SELECT COUNT(HAEIM.id) FROM hixent_arc_system.hixent_arc_equipment_info HAEIM 
+	  WHERE HAEIM.site_code=#{siteCode} 
+	   <if test="equipmentCategory!=-1">
+	   AND HAEIM.type=#{equipmentCategory}
+	   </if>
+  </select>
+  
+  <!-- 删除选中的设备 -->
+  <delete id="delMqttEquips" parameterType="java.util.List">
+   DELETE FROM hixent_arc_system.hixent_arc_equipment_info WHERE id IN
+    <foreach collection="equipIds" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  
+    <!-- 获取报警表的ID 拼接字符串(通过终端Ids)-->
+  <select id="getWarnIdByEquipIds" parameterType="java.util.List" resultType="String">
+  SELECT GROUP_CONCAT(DISTINCT HAWL.warning_no  )  FROM hixent_arc_system.hixent_arc_warning_list  HAWL
+   WHERE HAWL.etype=0 AND HAWL.eid IN 
+   <foreach collection="equipIds" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+  
+  <!-- 删除报警表数据通过终端IDs -->
+  <delete id="delWarnByEquipIds" parameterType="java.util.List">
+  DELETE FROM hixent_arc_system.hixent_arc_warning_list  
+   WHERE etype=0 AND eid IN 
+   <foreach collection="equipIds" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  
+  <!-- 删除反馈表数据 -->
+  <delete id="delFeedBackByWarnIds" parameterType="java.util.List">
+  DELETE FROM hixent_arc_system.hixent_arc_warn_deal_feedback 
+  WHERE defe_warn_id IN
+    <foreach collection="warnIds" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+  
+  <!-- 获取项目下的无线终端 -->
+  <select id="getMqttEquipBySiteCode" resultType="String">
+  SELECT GROUP_CONCAT(DISTINCT  id ) hixent_arc_system.hixent_arc_equipment_info_mqtt WHERE site_code=#{siteCode}
+  </select>
+  
+  <!--删除终端通过项目  -->
+  <delete id="delMqttEquipBySiteCode">
+  DELETE FROM hixent_arc_system.hixent_arc_equipment_info_mqtt WHERE site_code=#{siteCode}
+  </delete>
+</mapper>

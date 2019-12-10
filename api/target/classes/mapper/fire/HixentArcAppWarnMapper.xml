@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.app.HixentArcAppWarnMapper">
+
+
+
+	<resultMap
+		type="com.qf.model.fire.HixentArcAppDeviceAndEquipWarn"
+		id="deviceAndEquipWarnResultMap">
+
+		<result column="id" property="id" />
+		<result column="specificator" property="specificator" />
+		<result column="device_code" property="deviceCode" />
+		<result column="niName" property="niName" />
+		<result column="device_place" property="place" />
+		<result column="warnIndex" property="warnIndex" />
+
+		<result column="message" property="message" />
+		<result column="equip_place" property="place" />
+		<result column="addr" property="addr" />
+		<result column="line_code" property="lineCode" />
+
+		<result column="site_name" property="siteName" />
+		<result column="site_code" property="siteCode" />
+		<result column="node" property="node" />
+
+		<result column="warning_no" property="warnId" />
+		<result column="protocol_node" property="warnName" />
+		<result column="warning_time" property="warnTime" />
+		<result column="defe_dispatch_time" property="dealTime" />
+		<result column="defe_id" property="dealId" />
+        <result column="filePath" property="filePath" />
+        <result column="etype" property="etype" />
+	</resultMap>
+	<resultMap
+		type="com.qf.model.admin.HixentAppUser"
+		id="appUserResultMap">
+
+		<result column="account" property="account" />
+		<result column="email" property="email" />
+		<result column="mobile" property="mobile" />
+		
+	</resultMap>
+	
+<!-- 中控报警列表 -->
+	<select id="getDeviceWarnList" resultMap="deviceAndEquipWarnResultMap">
+	SELECT * FROM(SELECT HAED.id,HAED.specificator,HAED.device_code,HAED.device_place,HAED.niName,HAS.site_name,HAS.site_code,
+ HAWDF.defe_id,HAWL.warning_no,HAP.protocol_node,HAWL.warning_time,HAWL.etype,
+ HAWL.warning_index,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+FROM hixent_arc_system.hixent_arc_efm_device HAED 
+ JOIN  hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.efm_id=HAED.id AND HAWL.etype=1 AND HAWL.is_deal IN (0,2)
+LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+ 
+ JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAED.id=HAEI.efm_id
+    JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+    JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+    JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+    JOIN hixent_app_user HAU ON	 HAU.id=HAUGL.appUser_id
+    WHERE HAU.id=#{appUserId} 
+	 <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	
+    GROUP BY HAWL.warning_no )A WHERE 1=1 
+      <if test="warnIndex==-1">
+	AND isNull(A.warning_index)
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND A.warning_index = #{warnIndex}
+	</if> 
+	ORDER BY A.warning_time DESC
+	limit ${limits} 
+	</select>
+	
+	<!-- 中控报警列表 -->
+	<select id="getDeviceWarnCount" resultType="Integer">
+	SELECT COUNT(*) FROM(SELECT HAED.id,HAED.specificator,HAED.device_code,HAED.device_place,HAED.niName,HAS.site_name,HAS.site_code,
+ HAWDF.defe_id,HAWL.warning_no,HAP.protocol_node,HAWL.warning_time,HAWL.etype,
+ HAWL.warning_index,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+FROM hixent_arc_system.hixent_arc_efm_device HAED 
+ JOIN  hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.efm_id=HAED.id AND HAWL.etype=1 AND HAWL.is_deal IN (0,2)
+LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+ 
+ JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+ JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAED.id=HAEI.efm_id
+    JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code
+    JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+    JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+    JOIN hixent_app_user HAU ON	 HAU.id=HAUGL.appUser_id
+    WHERE HAU.id=#{appUserId} 
+	 <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	
+    GROUP BY HAWL.warning_no )A WHERE 1=1 
+      <if test="warnIndex==-1">
+	AND isNull(A.warning_index)
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND A.warning_index = #{warnIndex}
+	</if> 
+	
+	</select>
+	
+	
+	<!-- 终端报警列表 -->
+	<select id="getEquipWarnList" resultMap="deviceAndEquipWarnResultMap" >
+	SELECT * FROM(SELECT HAEI.id,HAEI.message,HAEI.addr,HAEI.line_code,HAEI.equip_place,HAWDF.defe_id,
+    HAWL.warning_no,HAP.protocol_node,HAS.site_name,HAS.site_code,HAWL.etype,HAEI.device_code,
+    HAWL.warning_time,HAWL.warning_index,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+     FROM hixent_arc_system.hixent_arc_equipment_info HAEI
+	JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+	 JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+	 JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+	 JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+	 	JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.eid=HAEI.id AND HAWL.etype IN(0,2) AND HAWL.is_deal IN (0,2) 
+	LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+	LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+    WHERE HAU.id=#{appUserId} 
+	 <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	 <if test="equipType!=-1">
+	AND HAEI.type=#{equipType} 
+	</if>
+	 GROUP BY HAWL.warning_no)A WHERE 1=1 
+	  <if test="warnIndex==-1">
+	AND isNull(A.warning_index)
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND A.warning_index = #{warnIndex}
+	</if> 
+	ORDER BY A.warning_time DESC
+	limit ${limits} 
+	</select>
+	
+	<select id="getEquipWarnCount" resultType="Integer" >
+	SELECT COUNT(*) FROM(SELECT HAEI.id,HAEI.message,HAEI.addr,HAEI.line_code,HAEI.equip_place,HAWDF.defe_id,
+    HAWL.warning_no,HAP.protocol_node,HAS.site_name,HAS.site_code,HAWL.etype,HAEI.device_code,
+    HAWL.warning_time,HAWL.warning_index,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+     FROM hixent_arc_system.hixent_arc_equipment_info HAEI
+	JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code
+	 JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+	 JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+	 JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+	 	JOIN hixent_arc_system.hixent_arc_warning_list HAWL ON HAWL.eid=HAEI.id AND HAWL.etype IN(0,2) AND HAWL.is_deal IN (0,2) 
+	LEFT JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+	LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+    WHERE HAU.id=#{appUserId} 
+	 <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	 <if test="equipType!=-1">
+	AND HAEI.type=#{equipType} 
+	</if>
+	 GROUP BY HAWL.warning_no)A WHERE 1=1 
+	  <if test="warnIndex==-1">
+	AND isNull(A.warning_index)
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND A.warning_index = #{warnIndex}
+	</if> 
+	
+	</select>
+	
+	<!-- 处理反馈 -->
+	<insert id="addFeedback">
+	INSERT INTO hixent_arc_system.hixent_arc_warn_deal_feedback(defe_warn_id,defe_appUser_id,defe_dispatch_time,defe_img_folderId)
+     VALUES(#{warnId},#{appUserId},#{time},#{folderId})
+	
+	</insert>
+	
+	<!-- 查询反馈上传者ID -->
+	<select id="selDealAppUserId" resultType="Integer">
+	SELECT HAWDF.defe_appUser_id FROM hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+	WHERE HAWDF.defe_warn_id =#{warnId}
+	</select>
+	
+	<!-- 查询反馈文件夹ID-->
+	<select id="selFoldId" resultType="Integer">
+	SELECT HAWDF.defe_img_folderId FROM hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF 
+	WHERE HAWDF.defe_warn_id =#{warnId}
+	</select>
+	
+	<!-- 更新反馈表-->
+	<update id="updateDealFeedback">
+	UPDATE hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF SET
+	HAWDF.defe_dispatch_time=#{time}
+	WHERE HAWDF.defe_warn_id=#{warnId}
+	</update>
+	
+	<!-- 查询拥有某终端的用户 -->
+	
+	<select id="selAppUserByEquipId" resultMap="appUserResultMap">
+	SELECT GROUP_CONCAT(DISTINCT HAU.account) account ,GROUP_CONCAT(DISTINCT HAU.email) email,GROUP_CONCAT(DISTINCT HAU.mobile) mobile 
+	FROM hixent_arc_system.hixent_arc_equipment_info HAEI 
+ JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+	 JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+	 JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+ WHERE HAEI.id=#{equipId}
+	</select>
+	
+	<!-- 查询拥有某中控的用户 -->
+	<select id="selAppUserByDeviceId" resultMap="appUserResultMap">
+	SELECT GROUP_CONCAT(DISTINCT HAU.account) account ,GROUP_CONCAT(DISTINCT HAU.email) email,GROUP_CONCAT(DISTINCT HAU.mobile) mobile 
+	 FROM hixent_arc_system.hixent_arc_efm_device HAED
+    JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.efm_id=HAED.id
+    JOIN hixent_app_control_group HACG ON HACG.id=HAEI.equip_group_id
+	 JOIN hixent_app_user_group_link HAUGL ON HAUGL.group_id=HACG.id
+	 JOIN hixent_app_user HAU ON HAU.id=HAUGL.appUser_id
+      WHERE HAED.id=#{deviceId}
+	
+	</select>
+	
+	<!-- 历史处理(中控) -->
+	<select id="dealHistory" resultMap="deviceAndEquipWarnResultMap" >
+	SELECT HAED.id,HAED.specificator,HAED.device_code,HAED.device_place,
+	HAP.protocol_node,HAWDF.defe_dispatch_time,HAWL.warning_no,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+	 FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	 JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	 JOIN  hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+	 JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code 
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+	LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+	LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+	WHERE HAWL.is_deal=1 AND HAWL.etype=1 AND HAWDF.defe_appUser_id=#{appUserId}
+	  <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND HAWL.warning_index = #{warnIndex}
+	</if> 
+	<if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt;= #{endTime}
+   </if>
+   GROUP BY HAWL.warning_no
+   ORDER BY HAWDF.defe_dispatch_time DESC
+   limit ${limits}
+	</select>
+	
+		<!-- 历史处理(中控) -->
+	<select id="dealHistoryCount" resultType="Integer" >
+	SELECT COUNT(*) FROM (SELECT HAWL.warning_no
+	 FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	 JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	 JOIN  hixent_arc_system.hixent_arc_efm_device HAED ON HAED.id=HAWL.efm_id
+	 JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAED.site_code 
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+	
+	WHERE HAWL.is_deal=1 AND HAWL.etype=1 AND HAWDF.defe_appUser_id=#{appUserId}
+	  <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND HAWL.warning_index = #{warnIndex}
+	</if> 
+	<if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt;= #{endTime}
+   </if>
+ GROUP BY HAWL.warning_no)A
+	</select> 
+	
+	<!-- 历史处理(终端) -->
+	<select id="dealHistoryEquip" resultMap="deviceAndEquipWarnResultMap" >
+     SELECT HAEI.id,HAEI.message,HAEI.addr,HAEI.line_code,HAEI.equip_place,
+     HAP.protocol_node,HAWDF.defe_dispatch_time,HAWL.warning_no,GROUP_CONCAT(DISTINCT HAFL.filePath) filePath
+	 FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	 JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	 JOIN  hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+	 JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+	LEFT JOIN hixent_arc_system.hixent_arc_folder HAF ON HAF.folderId=HAWDF.defe_img_folderId
+	LEFT JOIN hixent_arc_system.hixent_arc_file HAFL ON HAFL.folderId=HAF.folderId
+	WHERE HAWL.is_deal=1 AND HAWL.etype IN(0,2) AND HAWDF.defe_appUser_id=#{appUserId}
+	  <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	<if test="equipType!=-1">
+	AND HAEI.type=#{equipType} 
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND HAWL.warning_index = #{warnIndex}
+	</if> 
+	<if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt;= #{endTime}
+   </if>
+   GROUP BY HAWL.warning_no
+    ORDER BY HAWDF.defe_dispatch_time DESC
+   limit ${limits}
+	</select>
+	
+	<!-- 历史处理(终端) -->
+	<select id="dealHistoryEquipCount" resultType="Integer" >
+   SELECT COUNT(*) FROM (SELECT HAWL.warning_no
+	 FROM hixent_arc_system.hixent_arc_warning_list HAWL 
+	 JOIN hixent_arc_system.hixent_arc_warn_deal_feedback HAWDF ON HAWDF.defe_warn_id=HAWL.warning_no
+	 JOIN  hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.id=HAWL.eid
+	 JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_code=HAEI.site_code 
+	 JOIN hixent_arc_protocol HAP ON HAP.protocol_name=HAWL.warning_type
+	WHERE HAWL.is_deal=1 AND HAWL.etype IN(0,2) AND HAWDF.defe_appUser_id=#{appUserId}
+	  <if test="siteCode!=null and siteCode!=''">
+	AND HAS.site_code=#{siteCode} 
+	</if>
+	<if test="equipType!=-1">
+	AND HAEI.type=#{equipType} 
+	</if>
+	<if test="warnIndex!=-1 and warnIndex!=-2">
+	AND HAWL.warning_index = #{warnIndex}
+	</if> 
+	<if test="startTime!=0">
+    AND HAWDF.defe_dispatch_time &gt;= #{startTime}
+   </if>
+   <if test="endTime!=0">
+    AND HAWDF.defe_dispatch_time &lt;= #{endTime}
+   </if>
+   GROUP BY HAWL.warning_no)A
+	</select>
+	
+	<update id="updateWarn">
+	UPDATE hixent_arc_system.hixent_arc_warning_list HAWL SET HAWL.is_deal=2,HAWL.dispatch_time=#{time} WHERE HAWL.warning_no=#{warnId}
+	</update>
+</mapper>

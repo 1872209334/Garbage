@@ -1,0 +1,48 @@
+page-contact {
+
+  .me_background{
+    background-image: url('../../assets/imgs/login_bg.png');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height:20rem;
+  }
+  .login_out_btn{
+    border-radius: 4px;
+    margin:12px;
+    width:calc(100% - 24px);
+    background-color: #2982E6;
+    color: #fff;
+    padding: 0;
+    height: 46px;
+    font-size: 16px;
+  }
+  .button-outline-ios:active{
+    background-color: #2678d3;
+    color:#ffffff;
+  }
+  .button-outline-ios.activated{
+    background-color: #2678d3;
+    color:#ffffff;
+  }
+  .avatar{
+    width: 8rem;
+    height:8rem;
+    margin: 0 auto;
+    position: relative;
+    top: 5rem;
+    background-image: url("../../assets/imgs/avatar.png");
+    background-position: center;
+    background-size: cover;
+  }
+  .nickname{
+    width:100%;
+    height:2rem;
+    text-align:center;
+    margin:0 auto;
+    position: relative;
+    top: 7rem;
+    font-size: 17px;
+    color: #fff;
+  }
+}

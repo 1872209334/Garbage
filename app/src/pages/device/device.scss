@@ -1,0 +1,38 @@
+page-device {
+  .list_box{
+    width: 100%;
+    height:27rem;
+    position:relative;
+    top: -2px;
+    background-image: url('../../assets/imgs/login_bg.png');
+    background-position: center;
+    background-size: cover;
+  }
+  .list_title{
+    width: 100%;
+    height:4rem;
+    top: 9rem;
+    text-align: center;
+    position: absolute;
+    font-size: 20px;
+    color: #ffffff;
+  }
+  .select-icon-inner{
+    color: #fff !important;
+  }
+  .device_box_part{
+    width: 50%;
+    position: absolute;
+    height: 8rem;
+    font-size: 17px;
+  }
+  .device_box_part p{
+    width:100%;
+    text-align:center;
+    color:#ffffff;
+  }
+  .select-icon{
+    top: 5px;
+    left: -5px;
+  }
+}

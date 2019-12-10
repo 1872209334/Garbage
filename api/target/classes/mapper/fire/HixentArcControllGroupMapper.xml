@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.fire.HixentArcControllGroupMapper" >
+  <resultMap type="com.qf.model.fire.HixentArcControlGroup" id="controllGroupResult">
+    <result column="sm" property="id"  />
+     <result column="siteName" property="siteName"  />
+     <result column="haccount" property="appUsers"  />
+     <result column="hid" property="hid"  />
+     <result column="haccount" property="appUsers"  />
+     <result column="cnEquip" property="cnEquip"  />
+      <result column="place" property="groupPlace"  />
+       <result column="hmobile" property="mobiles"  />
+       <result column="equipIds" property="equipIds"  />
+       <result column="site_id" property="siteId"  />
+        <result column="site_code" property="siteCode"  />
+  </resultMap>
+  <resultMap type="com.qf.model.admin.HixentAppUser" id="appUserResult">
+     <result column="id" property="id"  />
+     <result column="account" property="account"  />
+     
+  </resultMap>
+  
+  <!-- 查询管控分组 分页-->
+  <select id="getControllGroupList" resultMap="controllGroupResult">
+  SELECT A.*,COUNT(HAEI.id) cnEquip  FROM (     
+ SELECT HACG.id sm,HACG.group_place place,HAS.site_name siteName,HAS.site_id,HAS.site_code,
+      GROUP_CONCAT(DISTINCT HAEI.id  ) equipIds,
+      GROUP_CONCAT(DISTINCT HAU.id ORDER BY appUser_id DESC ) hid,
+         GROUP_CONCAT(DISTINCT HAU.account ORDER BY appUser_id DESC ) haccount,
+         GROUP_CONCAT(DISTINCT HAU.mobile ORDER BY appUser_id DESC ) hmobile,
+         GROUP_CONCAT(DISTINCT HAU.uid ORDER BY appUser_id DESC ) huid
+       FROM hixent_user.hixent_app_control_group HACG
+       LEFT JOIN hixent_user.hixent_app_user_group_link HAUG  ON HACG.id=HAUG.group_id
+       LEFT JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUG.appUser_id
+        JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HACG.group_site_id
+       LEFT JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.equip_group_id=HACG.id
+       <where>
+        <if test="adminId!=0">
+         HACG.group_admin_id = #{adminId} 
+        </if>
+
+        <if test="siteId!=0">
+        AND HAS.site_id=#{siteId}
+        </if>
+       </where>
+       
+       GROUP BY HAUG.group_id )A JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.equip_group_id=A.sm
+      <where>
+        <if test="uid!=null and uid!=''">
+         A.huid LIKE CONCAT('%',#{uid},'%' )
+        </if>
+      
+       </where>
+       GROUP BY A.sm limit ${limits}
+  </select>
+  
+  <!-- 查询管控分组 数量-->
+    <select id="getControllGroupCount" resultType="Integer">
+  SELECT COUNT(A.sm) FROM (     
+   SELECT HACG.id sm,HACG.group_place place,HAS.site_name siteName,
+         GROUP_CONCAT(DISTINCT HAU.account ORDER BY appUser_id DESC ) haccount,
+         GROUP_CONCAT(DISTINCT HAU.mobile ORDER BY appUser_id DESC ) hmobile,
+         GROUP_CONCAT(DISTINCT HAU.uid ORDER BY appUser_id DESC ) huid
+       FROM hixent_user.hixent_app_control_group HACG
+       LEFT JOIN hixent_user.hixent_app_user_group_link HAUG  ON HACG.id=HAUG.group_id
+       LEFT JOIN hixent_user.hixent_app_user HAU ON HAU.id=HAUG.appUser_id
+        JOIN hixent_arc_system.hixent_arc_site HAS ON HAS.site_id=HACG.group_site_id
+       JOIN hixent_arc_system.hixent_arc_equipment_info HAEI ON HAEI.equip_group_id=HACG.id
+       <where>
+        <if test="adminId!=0">
+         HACG.group_admin_id = #{adminId} 
+        </if>
+       
+        <if test="siteId!=0">
+        AND HAS.site_id=#{siteId}
+        </if>
+       </where>
+       
+       GROUP BY HAUG.group_id )A 
+      <where>
+        <if test="uid!=null and uid!=''">
+         A.huid LIKE CONCAT('%',#{uid},'%' )
+        </if>
+      
+       </where>
+      
+  </select>
+  <select id="getAppUser" resultMap="appUserResult">
+  SELECT HAU.id,HAU.account FROM hixent_app_user HAU WHERE HAU.pid=#{adminId}
+  </select>
+  <insert id="getGroupIdFromAdd" useGeneratedKeys="true" keyProperty="id" parameterType="com.qf.model.fire.HixentArcControlGroup">
+   INSERT INTO hixent_app_control_group(group_site_id,group_place,group_admin_id)
+    VALUES(#{siteId},#{place},#{adminId})
+   
+  </insert>
+  <insert id="addUserGroupLink">
+    INSERT INTO hixent_app_user_group_link(appUser_id,group_id) 
+        VALUES 
+     <foreach collection ="arrUser" item="item" index= "index" separator =",">
+            
+                (
+                #{item}, #{groupId}
+               
+                )
+       </foreach >
+  
+  </insert>
+  <update id="updateEquipInfo">
+  UPDATE hixent_arc_system.hixent_arc_equipment_info HAEI 
+  SET HAEI.equip_isGroup=1,HAEI.equip_group_id=#{groupId} WHERE HAEI.id IN
+   <foreach item="item" index="index" collection="arrEquip" open="(" separator="," close=")">
+	   	   #{item}
+	  </foreach>
+  </update>
+  <delete id="deleteUserGroupLink">
+  DELETE FROM hixent_app_user_group_link  WHERE group_id=#{groupId}
+  </delete>
+  <update id="updateEquipGroupId">
+  UPDATE hixent_arc_system.hixent_arc_equipment_info HAEI SET
+  HAEI.equip_isGroup=0,HAEI.equip_group_id='0' WHERE HAEI.equip_group_id=#{groupId}
+  </update>
+  <delete id="delGroup">
+  DELETE FROM hixent_app_control_group  WHERE id=#{groupId}
+  </delete>
+  
+  <!--修改group表数据 -->
+ <update id="updateGroup">
+ UPDATE hixent_app_control_group SET group_place=#{groupPlace} WHERE id=#{groupId}
+ </update>
+ </mapper>

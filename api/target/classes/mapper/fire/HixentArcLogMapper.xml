@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.fire.HixentArcLogMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.fire.HixentArcLog">
+	  <result column="id"             jdbcType="INTEGER"   property="id"              />
+      <result column="post_time"      jdbcType="INTEGER"   property="post_time"       />
+	  <result column="eid"            jdbcType="VARCHAR"   property="eid"          	  />
+	  <result column="temperature"    jdbcType="REAL"      property="temperature"     />
+	  <result column="electricity"    jdbcType="REAL"      property="electricity"     />
+  </resultMap>
+  
+  <!--判断是否存在该表 -->
+  <select id="existTable" parameterType="String" resultMap="BaseResultMap">
+	   show tables like 'hixent_arc_system.hixent_arc_log_${eid}'; 
+  </select>
+  
+  <select id="getOne" parameterType="String" resultMap="BaseResultMap">
+	   select * from 'hixent_arc_system.hixent_arc_log_${eid}' where eid = '${eid}' order by id desc limit 0,1; 
+  </select>
+
+</mapper>

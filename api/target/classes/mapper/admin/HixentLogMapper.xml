@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.admin.HixentLogMapper">
+
+  <resultMap id="BaseResultMap" type="com.qf.model.admin.HixentLog">
+      <result column="id"   		     jdbcType="INTEGER" 		property="id"                 />
+      <result column="message"           jdbcType="VARCHAR" 		property="message"            />
+      <result column="username"          jdbcType="VARCHAR" 		property="username"           />
+      <result column="opration"          jdbcType="VARCHAR" 		property="opration"           />
+      <result column="controller"        jdbcType="VARCHAR" 		property="controller"         />
+      <result column="method"            jdbcType="VARCHAR" 		property="method"             />
+      <result column="params"        	 jdbcType="VARCHAR" 		property="params"             />
+      <result column="ip"            	 jdbcType="VARCHAR" 		property="ip"                 />
+      <result column="created_at"        jdbcType="TIMESTAMP" 		property="created_at"         />
+  </resultMap>
+  
+  <!-- 含关键字查询 -->
+  <select id="getLogAllList" parameterType="String" resultMap="BaseResultMap">
+	  <foreach item="item" index="index" collection="dateArray" separator="UNION ALL">  
+  		  select * from hixent_history_${item} where username in
+			  <foreach item="item" index="index" collection="userNameArray" open="(" separator="," close=")">  
+		  		  #{item}  
+		 	  </foreach>  
+			  <if test="username != null and username !=''"> 	   and username     like  '%${username}%'       </if>
+			  <if test="opration != null and opration !=''">       and opration     = '${opration}'             </if>
+			  <if test="controller != null and controller != ''">  and controller   like  '%${controller}%'     </if>
+			  <if test="method != null and method !=''"> 	       and method       = '${method}'               </if>
+			  <if test="ip != null and ip !=''"> 	               and ip           = '${ip}'                   </if>
+			   <if test="time1 != null and time1 !=''">
+			  	and STR_TO_DATE(created_at,'%Y-%m-%d %H:%i:%s') &gt;= STR_TO_DATE(#{time1},'%Y-%m-%d %H:%i:%s')
+			  </if>
+			  <if test="time2 != null and time2 !=''">
+			  and STR_TO_DATE(created_at,'%Y-%m-%d %H:%i:%s')  &lt;= STR_TO_DATE(#{time2},'%Y-%m-%d %H:%i:%s')
+			  </if>
+			  <if test="isException == 1">
+			  	and message = ''
+			  </if>
+			  <if test="isException == 2">
+			  	and message != ''
+			  </if>
+ 	  </foreach>
+ 	  limit 100
+  </select>
+  
+  <select id="getLogPageList" parameterType="String" resultMap="BaseResultMap">
+	  <foreach item="item" index="index" collection="dateArray" separator="UNION ALL">  
+  		  select * from hixent_history_${item}  where username in
+			  <foreach item="item" index="index" collection="userNameArray" open="(" separator="," close=")">  
+		  		  #{item}  
+		 	  </foreach>  
+			  <if test="username != null and username !=''"> 	   and username     LIKE CONCAT(CONCAT('%', #{username}),'%')      </if>
+			  <if test="opration != null and opration !=''">       and opration     = #{opration}             </if>
+			  <if test="controller != null and controller != ''">  and controller   like  CONCAT(CONCAT('%', #{controller}),'%')    </if>
+			  <if test="method != null and method !=''"> 	       and method       = #{method}              </if>
+			  <if test="ip != null and ip !=''"> 	               and ip           = #{ip}                   </if>
+		      <if test="time1 != null and time1 !=''">
+			  	and STR_TO_DATE(created_at,'%Y-%m-%d %H:%i:%s') &gt;= STR_TO_DATE(#{time1},'%Y-%m-%d %H:%i:%s')
+			  </if>
+			  <if test="time2 != null and time2 !=''">
+			  and STR_TO_DATE(created_at,'%Y-%m-%d %H:%i:%s')  &lt;= STR_TO_DATE(#{time2},'%Y-%m-%d %H:%i:%s')
+			  </if>
+			  <if test="isException == 1">
+			  	and message = ''
+			  </if>
+			  <if test="isException == 2">
+			  	and message != ''
+			  </if>
+ 	  </foreach>  
+      order by created_at desc
+      limit ${limits};
+  </select>
+  
+  <!--判断是否存在该表 -->
+  <select id="existTable" parameterType="String" resultMap="BaseResultMap">
+	   show tables like 'hixent_history_${date}'; 
+  </select>
+  
+  <!--根据月份创建分表 -->
+  <select id="createTable" parameterType="string" resultMap="BaseResultMap" >
+		CREATE TABLE IF NOT EXISTS hixent_history_${date} (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+		  `username` varchar(50) NOT NULL COMMENT '用户名',
+		  `opration` varchar(100) NOT NULL COMMENT '操作说明',
+		  `controller` varchar(100) NOT NULL DEFAULT '' COMMENT '控制器名称',
+		  `method` varchar(100) NOT NULL COMMENT '模块方法',
+		  `params` text NOT NULL COMMENT '操作数据',
+		  `ip` varchar(20) NOT NULL COMMENT '前端web服务器IP',
+		  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '添加时间',
+		  `message`  text NULL COMMENT '错误消息',
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  </select>
+  
+  <!-- 搜索主表 -->
+  <select id="mainLogAllList" parameterType="string" resultMap="BaseResultMap" >
+      select * from  hixent_history where id>0;
+  </select>
+  <select id="mainLogSelect" parameterType="string" resultMap="BaseResultMap" >
+      select * from  hixent_history where params = #{date};
+  </select>
+  
+  <!-- 插入数据 -->
+  <select id="mainLogInsert" parameterType="string" resultMap="BaseResultMap" >
+      INSERT INTO hixent_history (params) VALUES (#{date});
+  </select>
+  <select id="logInsert" parameterType="string" resultMap="BaseResultMap" >
+      INSERT INTO hixent_history_${date} (username,opration,controller,method,ip,params,message) VALUES (#{username},#{opration},#{controller},#{method},#{ip},#{params},#{message});
+  </select>
+  
+  
+</mapper>
