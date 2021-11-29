@@ -16,7 +16,7 @@
     "echarts": "^4.2.0-rc.1",
     "echarts-gl": "^1.1.1",
     "element-ui": "2.3.3",
-    "mavon-editor": "^2.5.4",
+    "mavon-editor": "^2.8.2",
     "perfect-scrollbar": "^1.4.0",
     "sockjs": "^0.3.19",
     "vue": "^2.5.16",
